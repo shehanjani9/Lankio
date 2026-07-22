@@ -1,0 +1,131 @@
+{
+  "Navbar": {
+    "services": "Services",
+    "templates": "Template Hub",
+    "caseStudies": "Case Studies",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "bookCall": "Book a Call"
+  },
+  "Hero": {
+    "eyebrow": "Digital Agency — Web, Brand, Growth",
+    "headline": "Websites built to earn trust before the first call.",
+    "subheadline": "We design and ship premium web experiences, then prove the results with real numbers — not stock photos.",
+    "primaryCta": "Get a Free Audit",
+    "secondaryCta": "See Our Work"
+  },
+  "CTA": {
+    "auditTitle": "See exactly where your site is losing visitors.",
+    "auditButton": "Run Free Website Audit",
+    "quoteButton": "Start Your Project"
+  },
+  "TemplateHub": {
+    "eyebrow": "Template Hub",
+    "title": "Pick a starting point, not a blank page.",
+    "subtitle": "Every template is production-ready, performance-tested, and built to be customized to your brand.",
+    "weeks": "wks",
+    "from": "From",
+    "preview": "Preview",
+    "categories": {
+      "all": "All",
+      "corporate": "Corporate",
+      "ecommerce": "Ecommerce",
+      "portfolio": "Portfolio",
+      "restaurant": "Restaurant",
+      "medical": "Medical",
+      "realEstate": "Real Estate"
+    }
+  },
+  "Planner": {
+    "eyebrow": "Project Planner",
+    "title": "Build your project, see the price.",
+    "steps": {
+      "businessType": "What's your business?",
+      "pages": "How many pages do you need?",
+      "features": "Any of these features?",
+      "timeline": "Choose your timeline"
+    },
+    "businessTypes": {
+      "restaurant": "Restaurant",
+      "lawFirm": "Law Firm",
+      "photographer": "Photographer",
+      "medical": "Medical",
+      "startup": "Startup",
+      "ecommerce": "Ecommerce"
+    },
+    "pages": "pages",
+    "features": {
+      "booking": "Booking",
+      "payments": "Payments",
+      "multiLanguage": "Multi-language",
+      "customBranding": "Custom Branding"
+    },
+    "timeline": {
+      "standard": "Standard",
+      "rush": "Rush"
+    },
+    "estimate": "Estimated Cost",
+    "delivery": "Delivery",
+    "weeks": "weeks",
+    "packages": {
+      "starter": "Starter Package",
+      "growth": "Growth Package",
+      "premiumGrowth": "Premium Growth Package"
+    },
+    "cta": "Start Your Project",
+    "back": "Back",
+    "next": "Next"
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Tell us about your project.",
+    "subtitle": "Share a few details and we'll follow up within one business day.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "errors": {
+      "name": "Please enter your name.",
+      "email": "Please enter a valid email address.",
+      "message": "Please add a short message.",
+      "general": "Something went wrong. Please try again."
+    },
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message sent.",
+    "successBody": "Thanks for reaching out -- we'll be in touch within one business day.",
+    "directEmailNote": "Prefer email? Reach us directly at hello@lankio.it"
+  },
+  "CaseStudies": {
+    "eyebrow": "Case Studies",
+    "title": "Results, not just screenshots.",
+    "subtitle": "Every project starts with a real problem -- here's how a few of them were solved.",
+    "industries": {
+      "restaurant": "Restaurant",
+      "lawFirm": "Law Firm",
+      "medical": "Medical"
+    },
+    "caseStudies": {
+      "case01": {
+        "problem": "Online bookings were nearly nonexistent -- most reservations still came by phone.",
+        "solution": "Rebuilt around a booking-first homepage with real-time table availability.",
+        "resultLabel": "increase in online bookings"
+      },
+      "case02": {
+        "problem": "The existing site looked dated, which undercut credibility with higher-value clients.",
+        "solution": "Redesigned with a case-focused layout and clearer practice-area navigation.",
+        "resultLabel": "increase in consultation requests"
+      },
+      "case03": {
+        "problem": "Patients dropped off during the multi-step appointment request form.",
+        "solution": "Simplified to a single-step request flow with instant confirmation.",
+        "resultLabel": "increase in completed appointment requests"
+      }
+    }
+  },
+  "Metadata": {
+    "title": "Lankio — Premium Web Design & Digital Agency",
+    "description": "We design and build premium websites, then prove the results with real numbers -- audits, case studies, and transparent pricing."
+  }
+}

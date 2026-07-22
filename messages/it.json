@@ -1,0 +1,131 @@
+{
+  "Navbar": {
+    "services": "Servizi",
+    "templates": "Template Hub",
+    "caseStudies": "Case Study",
+    "pricing": "Prezzi",
+    "contact": "Contatti",
+    "bookCall": "Prenota una Call"
+  },
+  "Hero": {
+    "eyebrow": "Agenzia Digitale — Web, Brand, Crescita",
+    "headline": "Siti web costruiti per guadagnare fiducia prima ancora della prima chiamata.",
+    "subheadline": "Progettiamo e realizziamo esperienze web premium, poi dimostriamo i risultati con numeri reali — non foto stock.",
+    "primaryCta": "Ricevi un Audit Gratuito",
+    "secondaryCta": "Guarda i Nostri Lavori"
+  },
+  "CTA": {
+    "auditTitle": "Scopri esattamente dove il tuo sito perde visitatori.",
+    "auditButton": "Avvia Audit Gratuito",
+    "quoteButton": "Inizia il Tuo Progetto"
+  },
+  "TemplateHub": {
+    "eyebrow": "Template Hub",
+    "title": "Parti da una base solida, non da una pagina vuota.",
+    "subtitle": "Ogni template è pronto per la produzione, testato per le performance e personalizzabile in base al tuo brand.",
+    "weeks": "sett.",
+    "from": "Da",
+    "preview": "Anteprima",
+    "categories": {
+      "all": "Tutti",
+      "corporate": "Corporate",
+      "ecommerce": "Ecommerce",
+      "portfolio": "Portfolio",
+      "restaurant": "Ristorazione",
+      "medical": "Medico",
+      "realEstate": "Immobiliare"
+    }
+  },
+  "Planner": {
+    "eyebrow": "Project Planner",
+    "title": "Costruisci il tuo progetto, scopri il prezzo.",
+    "steps": {
+      "businessType": "Qual è la tua attività?",
+      "pages": "Quante pagine ti servono?",
+      "features": "Vuoi aggiungere queste funzionalità?",
+      "timeline": "Scegli la tempistica"
+    },
+    "businessTypes": {
+      "restaurant": "Ristorante",
+      "lawFirm": "Studio Legale",
+      "photographer": "Fotografo",
+      "medical": "Medico",
+      "startup": "Startup",
+      "ecommerce": "Ecommerce"
+    },
+    "pages": "pagine",
+    "features": {
+      "booking": "Prenotazioni",
+      "payments": "Pagamenti",
+      "multiLanguage": "Multilingua",
+      "customBranding": "Branding Personalizzato"
+    },
+    "timeline": {
+      "standard": "Standard",
+      "rush": "Urgente"
+    },
+    "estimate": "Costo Stimato",
+    "delivery": "Consegna",
+    "weeks": "settimane",
+    "packages": {
+      "starter": "Pacchetto Starter",
+      "growth": "Pacchetto Growth",
+      "premiumGrowth": "Pacchetto Premium Growth"
+    },
+    "cta": "Inizia il Tuo Progetto",
+    "back": "Indietro",
+    "next": "Avanti"
+  },
+  "Contact": {
+    "eyebrow": "Contatti",
+    "title": "Raccontaci il tuo progetto.",
+    "subtitle": "Condividi qualche dettaglio e ti risponderemo entro un giorno lavorativo.",
+    "fields": {
+      "name": "Nome",
+      "email": "Email",
+      "message": "Messaggio"
+    },
+    "errors": {
+      "name": "Inserisci il tuo nome.",
+      "email": "Inserisci un indirizzo email valido.",
+      "message": "Aggiungi un breve messaggio.",
+      "general": "Qualcosa è andato storto. Riprova."
+    },
+    "submit": "Invia Messaggio",
+    "sending": "Invio in corso...",
+    "successTitle": "Messaggio inviato.",
+    "successBody": "Grazie per averci contattato -- ti risponderemo entro un giorno lavorativo.",
+    "directEmailNote": "Preferisci l'email? Scrivici direttamente a hello@lankio.it"
+  },
+  "CaseStudies": {
+    "eyebrow": "Case Study",
+    "title": "Risultati, non solo screenshot.",
+    "subtitle": "Ogni progetto parte da un problema reale -- ecco come ne abbiamo risolti alcuni.",
+    "industries": {
+      "restaurant": "Ristorante",
+      "lawFirm": "Studio Legale",
+      "medical": "Medico"
+    },
+    "caseStudies": {
+      "case01": {
+        "problem": "Le prenotazioni online erano quasi assenti -- la maggior parte arrivava ancora per telefono.",
+        "solution": "Sito ricostruito con homepage focalizzata sulle prenotazioni e disponibilità tavoli in tempo reale.",
+        "resultLabel": "aumento delle prenotazioni online"
+      },
+      "case02": {
+        "problem": "Il sito esistente appariva datato, riducendo la credibilità con clienti di valore più alto.",
+        "solution": "Redesign con layout incentrato sui casi e navigazione più chiara per area di competenza.",
+        "resultLabel": "aumento delle richieste di consulenza"
+      },
+      "case03": {
+        "problem": "I pazienti abbandonavano il modulo di richiesta appuntamento a più passaggi.",
+        "solution": "Semplificato in un unico passaggio con conferma immediata.",
+        "resultLabel": "aumento delle richieste di appuntamento completate"
+      }
+    }
+  },
+  "Metadata": {
+    "title": "Lankio — Web Design Premium e Agenzia Digitale",
+    "description": "Progettiamo e realizziamo siti web premium, poi dimostriamo i risultati con numeri reali -- audit, case study e prezzi trasparenti."
+  }
+}
