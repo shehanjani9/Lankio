@@ -14,6 +14,7 @@ import {
   Award,
   ArrowRight,
   Check,
+  type LucideIcon,
 } from 'lucide-react';
 
 const FontImport = () => (
@@ -27,7 +28,7 @@ const FontImport = () => (
 type Practice = {
   id: string;
   name: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   summary: string;
   details: string[];
 };

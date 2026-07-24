@@ -19,6 +19,7 @@ import {
   Cloud,
   CloudRain,
   Compass,
+  type LucideIcon,
 } from 'lucide-react';
 
 const FontImport = () => (
@@ -43,7 +44,7 @@ const EXPERIENCES: Experience[] = [
   { id: 'exp4', name: 'Cinque Terre Cliffside Suite', location: 'Liguria', price: 310, img: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1200', tag: 'Boutique Suite' },
 ];
 
-type Extra = { id: string; label: string; price: number; icon: React.ElementType };
+type Extra = { id: string; label: string; price: number; icon: LucideIcon };
 
 const EXTRAS: Extra[] = [
   { id: 'boat', label: 'Private Boat Tour', price: 180, icon: Sailboat },

@@ -17,6 +17,7 @@ import {
   Wheat,
   Droplet,
   ThermometerSun,
+  type LucideIcon,
 } from 'lucide-react';
 
 const FontImport = () => (
@@ -86,7 +87,7 @@ const QUALITY_TABS = [
   },
 ];
 
-const TAG_STYLE: Record<string, { label: string; icon: React.ElementType; className: string }> = {
+const TAG_STYLE: Record<string, { label: string; icon: LucideIcon; className: string }> = {
   vegano: { label: 'Vegano', icon: Leaf, className: 'bg-[#6B7A4F]/15 text-[#4C5936] border-[#6B7A4F]/30' },
   senzaGlutine: { label: 'Senza Glutine', icon: WheatOff, className: 'bg-[#C1502E]/10 text-[#8C3A20] border-[#C1502E]/25' },
 };
