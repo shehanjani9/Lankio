@@ -17,6 +17,7 @@ import {
   Zap,
   Bath,
   ChefHat,
+  type LucideIcon,
 } from 'lucide-react';
 
 const FontImport = () => (
@@ -29,7 +30,7 @@ const FontImport = () => (
 
 type ProjectType = 'bagno' | 'cucina' | 'elettrico';
 
-const PROJECT_TYPES: { id: ProjectType; label: string; icon: React.ElementType; perSqm: [number, number] }[] = [
+const PROJECT_TYPES: { id: ProjectType; label: string; icon: LucideIcon; perSqm: [number, number] }[] = [
   { id: 'bagno', label: 'Ristrutturazione Bagno', icon: Bath, perSqm: [450, 700] },
   { id: 'cucina', label: 'Ristrutturazione Cucina', icon: ChefHat, perSqm: [380, 620] },
   { id: 'elettrico', label: 'Impianto Elettrico', icon: Zap, perSqm: [80, 140] },
