@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
@@ -37,16 +37,19 @@ const PROJECT_TYPES: { id: ProjectType; label: string; icon: React.ElementType; 
 
 const PORTFOLIO = [
   {
+    id: 'portfolio-1',
     title: 'Bagno Moderno — Bergamo',
     before: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200',
     after: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1200',
   },
   {
+    id: 'portfolio-2',
     title: 'Cucina a Isola — Brescia',
     before: 'https://images.unsplash.com/photo-1595514535215-8a029a8e2b6d?auto=format&fit=crop&w=1200',
     after: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200',
   },
   {
+    id: 'portfolio-3',
     title: 'Open Space — Milano',
     before: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200',
     after: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200',
@@ -64,7 +67,7 @@ function InspectionModal({ open, onClose, presetType }: { open: boolean; onClose
   const [form, setForm] = useState({ name: '', phone: '', address: '', type: presetType || 'bagno', notes: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       setSubmitted(false);
       setForm((f) => ({ ...f, type: presetType || f.type }));
@@ -76,14 +79,14 @@ function InspectionModal({ open, onClose, presetType }: { open: boolean; onClose
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0F1E30]/80 backdrop-blur-sm p-4"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0F1E30]/80 backdrop-blur-sm p-4 overflow-y-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
         <motion.div
-          className="relative w-full max-w-lg bg-white rounded-2xl p-8 font-body text-[#1E2A3A] shadow-2xl"
+          className="relative w-full max-w-lg bg-white rounded-2xl p-6 md:p-8 font-body text-[#1E2A3A] shadow-2xl my-8"
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -132,7 +135,7 @@ function InspectionModal({ open, onClose, presetType }: { open: boolean; onClose
                     className="w-full bg-[#F4F6F8] border border-[#E1E6EC] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#1E3A5F] placeholder:text-[#B0B8C2]"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs uppercase tracking-wider text-[#5A6472] mb-2 font-medium">Telefono</label>
                     <input
@@ -197,7 +200,8 @@ export default function EdiliziaPage() {
     <div className="bg-[#F4F6F8] text-[#1E2A3A] min-h-screen font-body">
       <FontImport />
 
-      <header className="fixed top-0 inset-x-0 z-50 bg-[#1E3A5F] text-white">
+      {/* HEADER */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-[#1E3A5F] text-white shadow-md">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <span className="font-display text-xl tracking-tight uppercase">Costruire<span className="text-[#E8A33D]">.</span></span>
           <nav className="hidden md:flex items-center gap-8 text-sm text-[#C2CEDB] font-medium">
@@ -215,7 +219,7 @@ export default function EdiliziaPage() {
       </header>
 
       {/* HERO */}
-      <section className="relative pt-40 pb-24 px-6 overflow-hidden bg-[#1E3A5F] text-white">
+      <section className="relative pt-36 pb-20 md:pt-44 md:pb-24 px-6 overflow-hidden bg-[#1E3A5F] text-white">
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -225,15 +229,15 @@ export default function EdiliziaPage() {
           }}
         />
         <div className="relative max-w-6xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-5">Edilizia & Ristrutturazioni — Lombardia</p>
-          <h1 className="font-display text-4xl md:text-6xl leading-[1.1] max-w-3xl uppercase">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-4">Edilizia & Ristrutturazioni — Lombardia</p>
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl leading-[1.1] max-w-3xl uppercase">
             Ristrutturazioni chiavi in mano, senza sorprese.
           </h1>
-          <p className="mt-6 text-[#C2CEDB] max-w-xl text-lg">
+          <p className="mt-6 text-[#C2CEDB] max-w-xl text-base md:text-lg">
             Bagni, cucine e impianti elettrici: squadre interne, tempi certi e un preventivo
             chiaro prima ancora di iniziare i lavori.
           </p>
-          <div className="mt-9 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <button
               onClick={() => setModalOpen(true)}
               className="flex items-center gap-2 px-7 py-3.5 rounded-lg bg-[#E8A33D] text-[#1E2A3A] font-semibold hover:bg-[#d8933a] transition-colors"
@@ -248,7 +252,7 @@ export default function EdiliziaPage() {
             </a>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl">
+          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
             {[
               ['420+', 'Cantieri completati'],
               ['18', 'Anni di esperienza'],
@@ -256,7 +260,7 @@ export default function EdiliziaPage() {
               ['0', 'Subappalti'],
             ].map(([num, label]) => (
               <div key={label}>
-                <p className="font-display text-3xl text-[#E8A33D]">{num}</p>
+                <p className="font-display text-2xl md:text-3xl text-[#E8A33D]">{num}</p>
                 <p className="text-xs text-[#C2CEDB] mt-1">{label}</p>
               </div>
             ))}
@@ -265,15 +269,15 @@ export default function EdiliziaPage() {
       </section>
 
       {/* ESTIMATOR */}
-      <section id="preventivo" className="px-6 py-24 border-t border-[#E1E6EC]">
+      <section id="preventivo" className="px-6 py-20 md:py-24 border-t border-[#E1E6EC]">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-4">Preventivo Rapido</p>
-          <h2 className="font-display text-3xl md:text-4xl mb-4 uppercase">Stima il costo del tuo progetto</h2>
-          <p className="text-[#5A6472] max-w-lg mb-12">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-3">Preventivo Rapido</p>
+          <h2 className="font-display text-2xl md:text-4xl mb-4 uppercase">Stima il costo del tuo progetto</h2>
+          <p className="text-[#5A6472] max-w-lg mb-10">
             Seleziona il tipo di intervento e i metri quadri: otterrai subito una fascia di prezzo indicativa.
           </p>
 
-          <div className="grid md:grid-cols-5 gap-10">
+          <div className="grid md:grid-cols-5 gap-8 md:gap-10">
             <div className="md:col-span-3 space-y-8">
               <div>
                 <p className="text-xs uppercase tracking-widest text-[#5A6472] font-semibold mb-3">Tipo di Progetto</p>
@@ -283,7 +287,7 @@ export default function EdiliziaPage() {
                       key={p.id}
                       onClick={() => setProjectType(p.id)}
                       className={`flex flex-col items-center gap-2 px-4 py-5 rounded-xl border-2 transition-colors ${
-                        projectType === p.id ? 'border-[#1E3A5F] bg-[#1E3A5F]/5' : 'border-[#E1E6EC] hover:border-[#B0B8C2]'
+                        projectType === p.id ? 'border-[#1E3A5F] bg-[#1E3A5F]/5' : 'border-[#E1E6EC] hover:border-[#B0B8C2] bg-white'
                       }`}
                     >
                       <p.icon size={22} className={projectType === p.id ? 'text-[#1E3A5F]' : 'text-[#8A93A0]'} />
@@ -304,7 +308,7 @@ export default function EdiliziaPage() {
                   max={60}
                   value={sqm}
                   onChange={(e) => setSqm(Number(e.target.value))}
-                  className="w-full accent-[#1E3A5F]"
+                  className="w-full accent-[#1E3A5F] cursor-pointer"
                 />
                 <div className="flex justify-between text-xs text-[#8A93A0] mt-1">
                   <span>4 m²</span>
@@ -314,7 +318,7 @@ export default function EdiliziaPage() {
             </div>
 
             <div className="md:col-span-2">
-              <div className="rounded-2xl border-2 border-[#1E3A5F]/15 bg-white p-8 sticky top-28">
+              <div className="rounded-2xl border-2 border-[#1E3A5F]/15 bg-white p-6 md:p-8 sticky top-28 shadow-sm">
                 <p className="text-xs uppercase tracking-widest text-[#5A6472] font-semibold mb-2">Fascia di Prezzo Stimata</p>
                 <AnimatePresence mode="wait">
                   <motion.p
@@ -323,7 +327,7 @@ export default function EdiliziaPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="font-display text-3xl md:text-4xl text-[#1E3A5F] leading-tight"
+                    className="font-display text-2xl sm:text-3xl md:text-4xl text-[#1E3A5F] leading-tight"
                   >
                     €{minPrice.toLocaleString('it-IT')} – €{maxPrice.toLocaleString('it-IT')}
                   </motion.p>
@@ -333,10 +337,10 @@ export default function EdiliziaPage() {
                 <div className="h-px bg-[#E1E6EC] my-6" />
 
                 <ul className="space-y-3 text-sm text-[#5A6472]">
-                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D]" /> {selected.label}</li>
-                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D]" /> Materiali di media/alta gamma inclusi</li>
-                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D]" /> Manodopera e smaltimento inclusi</li>
-                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D]" /> Sopralluogo tecnico gratuito</li>
+                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D] shrink-0" /> {selected.label}</li>
+                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D] shrink-0" /> Materiali di media/alta gamma inclusi</li>
+                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D] shrink-0" /> Manodopera e smaltimento inclusi</li>
+                  <li className="flex items-center gap-2"><Check size={15} className="text-[#E8A33D] shrink-0" /> Sopralluogo tecnico gratuito</li>
                 </ul>
 
                 <button
@@ -352,23 +356,23 @@ export default function EdiliziaPage() {
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="px-6 py-24 border-t border-[#E1E6EC] bg-white">
+      <section id="portfolio" className="px-6 py-20 md:py-24 border-t border-[#E1E6EC] bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-4">Prima e Dopo</p>
-          <h2 className="font-display text-3xl md:text-4xl mb-10 uppercase">{activeProject.title}</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-3">Prima e Dopo</p>
+          <h2 className="font-display text-2xl md:text-4xl mb-8 md:mb-10 uppercase">{activeProject.title}</h2>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-xl select-none" style={{ aspectRatio: '16/10' }}>
+          <div className="relative rounded-2xl overflow-hidden shadow-xl select-none bg-gray-100" style={{ aspectRatio: '16/10' }}>
             <img src={activeProject.after} alt="Dopo" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 overflow-hidden" style={{ width: `${revealAmount}%` }}>
               <img
                 src={activeProject.before}
                 alt="Prima"
-                className="h-full object-cover"
-                style={{ width: `${10000 / revealAmount}%`, maxWidth: 'none' }}
+                className="h-full object-cover max-w-none"
+                style={{ width: `${(100 / revealAmount) * 100}%` }}
               />
             </div>
             <div className="absolute inset-y-0" style={{ left: `${revealAmount}%` }}>
-              <div className="w-0.5 h-full bg-white" />
+              <div className="w-0.5 h-full bg-white shadow" />
               <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#E8A33D] shadow-lg flex items-center justify-center">
                 <ChevronLeft size={14} className="text-[#1E2A3A] -mr-1" />
                 <ChevronRight size={14} className="text-[#1E2A3A] -ml-1" />
@@ -384,16 +388,16 @@ export default function EdiliziaPage() {
             max={95}
             value={revealAmount}
             onChange={(e) => setRevealAmount(Number(e.target.value))}
-            className="w-full mt-6 accent-[#1E3A5F]"
+            className="w-full mt-6 accent-[#1E3A5F] cursor-pointer"
           />
 
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-6 flex-wrap">
             {PORTFOLIO.map((p, i) => (
               <button
-                key={p.title}
+                key={p.id}
                 onClick={() => { setPortfolioIndex(i); setRevealAmount(50); }}
                 className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
-                  portfolioIndex === i ? 'bg-[#1E3A5F] text-white' : 'bg-[#F4F6F8] text-[#5A6472]'
+                  portfolioIndex === i ? 'bg-[#1E3A5F] text-white' : 'bg-[#F4F6F8] text-[#5A6472] hover:bg-gray-200'
                 }`}
               >
                 Cantiere {i + 1}
@@ -404,13 +408,13 @@ export default function EdiliziaPage() {
       </section>
 
       {/* TRUST BADGES */}
-      <section id="garanzie" className="px-6 py-24 border-t border-[#E1E6EC]">
+      <section id="garanzie" className="px-6 py-20 md:py-24 border-t border-[#E1E6EC]">
         <div className="max-w-6xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-4 text-center">Perché Sceglierci</p>
-          <h2 className="font-display text-3xl md:text-4xl mb-12 uppercase text-center">Trasparenza dal primo giorno.</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-[#E8A33D] font-semibold mb-3 text-center">Perché Sceglierci</p>
+          <h2 className="font-display text-2xl md:text-4xl mb-12 uppercase text-center">Trasparenza dal primo giorno.</h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
             {TRUST_BADGES.map((b) => (
-              <div key={b.label} className="bg-white rounded-xl border border-[#E1E6EC] p-6 text-center">
+              <div key={b.label} className="bg-white rounded-xl border border-[#E1E6EC] p-6 text-center shadow-sm">
                 <b.icon size={26} className="text-[#1E3A5F] mx-auto mb-3" />
                 <p className="text-sm font-medium text-[#1E2A3A]">{b.label}</p>
               </div>
@@ -420,10 +424,10 @@ export default function EdiliziaPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-24 border-t border-[#E1E6EC] bg-[#1E3A5F] text-white">
+      <section className="px-6 py-20 md:py-24 border-t border-[#E1E6EC] bg-[#1E3A5F] text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-3xl md:text-4xl mb-5 uppercase">Parliamo del tuo progetto.</h2>
-          <p className="text-[#C2CEDB] mb-9 max-w-lg mx-auto">
+          <h2 className="font-display text-2xl md:text-4xl mb-4 uppercase">Parliamo del tuo progetto.</h2>
+          <p className="text-[#C2CEDB] mb-8 max-w-lg mx-auto text-sm md:text-base">
             Un nostro tecnico verrà a valutare il cantiere gratuitamente, senza impegno.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -441,7 +445,7 @@ export default function EdiliziaPage() {
       </section>
 
       <footer className="px-6 py-8 border-t border-[#E1E6EC] text-center text-xs text-[#8A93A0]">
-        © {new Date().getFullYear()} Costruire — Edilizia e Ristrutturazioni, Lombardia
+        © Costruire — Edilizia e Ristrutturazioni, Lombardia
       </footer>
 
       <InspectionModal open={modalOpen} onClose={() => setModalOpen(false)} presetType={projectType} />
