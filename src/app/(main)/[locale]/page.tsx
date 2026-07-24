@@ -1,8 +1,10 @@
 import { Navbar } from '@/components/navbar';
 import { Hero } from '@/components/hero';
+import { ServicesSection } from '@/components/services-section';
 import { AuditSection } from '@/components/audit-section';
 import { TemplateHub } from '@/components/template-hub';
-import { CaseStudiesSection } from '@/components/case-studies-section';
+import { SuccessStories } from '@/components/success-stories';
+import { PricingSection } from '@/components/pricing-section';
 import { PlannerSection } from '@/components/planner-section';
 import { ContactSection } from '@/components/contact-section';
 
@@ -11,9 +13,11 @@ export default function HomePage() {
     <>
       <Navbar />
       <Hero />
+      <ServicesSection />
       <AuditSection />
       <TemplateHub />
-      <CaseStudiesSection />
+      <SuccessStories />
+      <PricingSection />
       <PlannerSection />
       <ContactSection />
     </>

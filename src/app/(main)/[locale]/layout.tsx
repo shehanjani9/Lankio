@@ -4,7 +4,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google';
 import { routing } from '@/i18n/routing';
-import '../globals.css';
+import '../../globals.css';
 
 const sora = Sora({
   subsets: ['latin'],
@@ -58,8 +58,6 @@ export async function generateMetadata({
       siteName: 'Lankio',
       locale: locale === 'it' ? 'it_IT' : 'en_US',
       type: 'website',
-      // Add a real 1200x630 image at public/og-image.png before launch --
-      // this reference will 404 until that file exists.
       images: [{ url: `${BASE_URL}/og-image.png`, width: 1200, height: 630, alt: t('title') }],
     },
     twitter: {
@@ -88,7 +86,15 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-base text-[color:var(--text-primary)] antialiased">
-        <NextIntlClientProvider messages={messages}>
+        {/*
+          key={locale} forces React to fully unmount and remount this
+          provider (and everything below it) when the locale changes,
+          instead of reconciling in place. Without this, navigating between
+          /en and /it via next-intl's Link can leave the client tree
+          reconciled rather than remounted, which is what was causing the
+          URL to update while the rendered translations stayed stale.
+        */}
+        <NextIntlClientProvider key={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
       </body>

@@ -26,14 +26,122 @@
     "weeks": "wks",
     "from": "From",
     "preview": "Preview",
+    "liveDemo": "Live Demo",
+    "close": "Close",
+    "openInNewTab": "Open in New Tab",
+    "loadingDemo": "Loading live preview...",
+    "loadTimeoutMessage": "This preview is taking longer than expected to load, or the site may not allow embedding.",
+    "viewports": {
+      "desktop": "Desktop",
+      "tablet": "Tablet",
+      "mobile": "Mobile"
+    },
     "categories": {
       "all": "All",
-      "corporate": "Corporate",
       "ecommerce": "Ecommerce",
+      "saas": "SaaS",
       "portfolio": "Portfolio",
-      "restaurant": "Restaurant",
-      "medical": "Medical",
-      "realEstate": "Real Estate"
+      "restaurantHotel": "Restaurant / Hotel",
+      "healthcare": "Healthcare",
+      "realEstate": "Real Estate",
+      "education": "Education",
+      "transportation": "Transportation",
+      "fashion": "Fashion & Retail",
+      "beauty": "Beauty & Wellness",
+      "construction": "Construction & Renovation",
+      "tourism": "Tourism & Hospitality",
+      "professionalServices": "Professional Services",
+      "healthFitness": "Health & Fitness"
+    },
+    "templates": {
+      "ncc": {
+        "title": "Autoblu — Chauffeur & Airport Transfers",
+        "description": "A booking-first template for chauffeur and NCC services, with live fare estimates by route and vehicle class.",
+        "badges": ["Airport transfers", "Fleet showcase", "Instant fare estimate"],
+        "features": [
+          "Route-based price calculator",
+          "Vehicle class comparison",
+          "Flight-monitoring messaging",
+          "Phone / WhatsApp booking call-to-action"
+        ]
+      },
+      "fashion": {
+        "title": "Atelier — Boutique & Made-to-Measure",
+        "description": "An editorial lookbook template for fashion boutiques and tailors, with collections, a size guide, and appointment booking.",
+        "badges": ["Lookbook", "Size guide", "Made-to-measure"],
+        "features": [
+          "Filterable collections",
+          "Interactive size guide",
+          "Appointment requests",
+          "Editorial-style product pages"
+        ]
+      },
+      "pizzeria": {
+        "title": "Forno — Pizzeria & Trattoria",
+        "description": "A menu-first template for pizzerias and casual dining, with a tabbed menu, dietary tags, and table reservations.",
+        "badges": ["Digital menu", "Dietary tags", "Table booking"],
+        "features": [
+          "Tabbed menu (classics / specialties / desserts)",
+          "Vegan and gluten-free tags",
+          "Reservation form",
+          "Delivery / takeaway call-to-action"
+        ]
+      },
+      "beauty": {
+        "title": "Lumen — Beauty Salon & Spa",
+        "description": "A treatment-led template for salons and spas, with a service menu, staff selection, and online booking.",
+        "badges": ["Treatment menu", "Staff booking", "Before & after gallery"],
+        "features": [
+          "Category-filtered treatments",
+          "Staff / operator selection",
+          "Duration and price display",
+          "Guided booking flow"
+        ]
+      },
+      "edilizia": {
+        "title": "Fondamenta — Renovation & Construction",
+        "description": "A portfolio-first template for construction and renovation firms, with project galleries and quote requests.",
+        "badges": ["Project portfolio", "Trust badges", "Quote request"],
+        "features": [
+          "Before / after project gallery",
+          "Certifications and trust badges",
+          "Free quote request form",
+          "Service area coverage"
+        ]
+      },
+      "tourism": {
+        "title": "Terra & Mare — Boutique Tourism & Eco-Resort",
+        "description": "A high-converting tourism template with a complete multi-step booking engine, seasonal activities, and a best-time-to-visit guide.",
+        "badges": ["Multi-step booking engine", "Seasonal activities", "Live price calculator"],
+        "features": [
+          "4-step booking flow: experience, dates & guests, add-ons, confirmation",
+          "Live total price calculation in euros",
+          "Seasonal tour & activity showcase",
+          "Interactive weather / best-time-to-visit tabs"
+        ]
+      },
+      "legal": {
+        "title": "Bellini & Associati — Law Firm & Legal Practice",
+        "description": "An ultra-professional legal template with a practice-area selector, consultation request modal, and case-review checklist.",
+        "badges": ["Practice area selector", "Consultation modal", "Trust badges"],
+        "features": [
+          "Interactive practice-area selector with detail panels",
+          "Consultation request form with case description & attorney preference",
+          "Initial case-review checklist (accordion)",
+          "Bar association and experience trust badges"
+        ]
+      },
+      "fitness": {
+        "title": "Forza — Modern Fitness Club & Gym",
+        "description": "A high-energy fitness template with a filterable class schedule, a BMI/calorie calculator, and a free trial signup flow.",
+        "badges": ["Class schedule filter", "BMI calculator", "Free trial signup"],
+        "features": [
+          "Class schedule filterable by day and workout type",
+          "BMI & daily calorie needs calculator",
+          "Free 1-day trial pass signup with time-slot picker",
+          "Coach and capacity display per session"
+        ]
+      }
     }
   },
   "Planner": {
@@ -80,15 +188,40 @@
     "eyebrow": "Contact",
     "title": "Tell us about your project.",
     "subtitle": "Share a few details and we'll follow up within one business day.",
+    "inquiringAbout": "Inquiring about: {template}",
+    "clearTemplate": "Clear selected template",
+    "selectPlaceholder": "Select an option",
     "fields": {
       "name": "Name",
+      "company": "Company (optional)",
       "email": "Email",
+      "phone": "Phone / WhatsApp",
+      "serviceType": "Service Type",
+      "budget": "Budget Range",
+      "preferredLanguage": "Preferred Language",
       "message": "Message"
+    },
+    "services": {
+      "templateCustomization": "Template Customization & Launch",
+      "customDevelopment": "Custom Web Development",
+      "seoBranding": "SEO & Digital Branding",
+      "other": "Other"
+    },
+    "budgets": {
+      "range500to1000": "€500 - €1,000",
+      "range1000to2500": "€1,000 - €2,500",
+      "range2500plus": "€2,500+"
+    },
+    "languages": {
+      "en": "English",
+      "it": "Italiano"
     },
     "errors": {
       "name": "Please enter your name.",
       "email": "Please enter a valid email address.",
       "message": "Please add a short message.",
+      "serviceType": "Please select a service type.",
+      "budget": "Please select a budget range.",
       "general": "Something went wrong. Please try again."
     },
     "submit": "Send Message",
@@ -127,5 +260,128 @@
   "Metadata": {
     "title": "Lankio — Premium Web Design & Digital Agency",
     "description": "We design and build premium websites, then prove the results with real numbers -- audits, case studies, and transparent pricing."
+  },
+  "Services": {
+    "eyebrow": "Services",
+    "title": "Four disciplines, one team.",
+    "subtitle": "Everything a growing business needs to look credible, get found, and convert -- without juggling four different vendors.",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "items": {
+      "webDev": {
+        "title": "Full-Stack Web Development",
+        "description": "Next.js and WordPress builds engineered for speed, SEO, and long-term maintainability.",
+        "features": [
+          "Custom Next.js or WordPress builds",
+          "Core Web Vitals optimization",
+          "CMS setup so you can edit content yourself",
+          "Ongoing technical support"
+        ]
+      },
+      "branding": {
+        "title": "Digital Branding & Media Production",
+        "description": "Visual identity and video/media content that make a business look as credible as it actually is.",
+        "features": [
+          "Logo and visual identity systems",
+          "Brand guidelines",
+          "Product and promotional video",
+          "Photography direction"
+        ]
+      },
+      "ai": {
+        "title": "AI Solutions & Workflow Automation",
+        "description": "Practical automation that removes manual busywork from lead handling, reporting, and operations.",
+        "features": [
+          "Lead routing and CRM automation",
+          "AI-assisted customer support flows",
+          "Internal reporting automation",
+          "Custom API integrations"
+        ]
+      },
+      "marketing": {
+        "title": "Digital Marketing & SEO",
+        "description": "Organic and paid strategies built around measurable traffic and conversion, not vanity metrics.",
+        "features": [
+          "Technical and on-page SEO",
+          "Content strategy",
+          "Paid campaign management",
+          "Monthly performance reporting"
+        ]
+      }
+    }
+  },
+  "Pricing": {
+    "eyebrow": "Pricing",
+    "title": "Transparent pricing, no surprises.",
+    "subtitle": "Choose a one-time project or an ongoing monthly plan -- every tier includes everything below it.",
+    "billing": {
+      "oneTime": "One-Time Project",
+      "monthly": "Monthly Plan"
+    },
+    "mostPopular": "Most Popular",
+    "customQuote": "Custom Quote",
+    "perMonth": "/mo",
+    "getStarted": "Get Started",
+    "contactSales": "Contact Sales",
+    "tiers": {
+      "starterDigital": {
+        "name": "Starter Digital",
+        "description": "For a single, focused website that needs to look professional fast."
+      },
+      "businessGrowth": {
+        "name": "Business Growth",
+        "description": "For businesses ready to invest in conversion, not just a web presence."
+      },
+      "customEnterprise": {
+        "name": "Custom Enterprise",
+        "description": "For multi-site, multi-language, or highly custom requirements."
+      }
+    },
+    "features": {
+      "responsiveWebsite": "Responsive website",
+      "basicSeo": "Basic on-page SEO",
+      "contactForm": "Contact form",
+      "oneRevisionRound": "One revision round",
+      "cmsIntegration": "CMS integration",
+      "multiLanguage": "Multi-language support",
+      "bookingOrPayments": "Booking or payments integration",
+      "prioritySupport": "Priority support",
+      "dedicatedStrategy": "Dedicated strategy consulting"
+    }
+  },
+  "SuccessStories": {
+    "eyebrow": "Success Stories",
+    "title": "Results, not just screenshots.",
+    "subtitle": "Representative outcomes from projects across different industries -- generalized to protect client confidentiality.",
+    "disclaimer": "Case concepts and metrics are representative composites based on typical project outcomes, not tied to a single named client.",
+    "categories": {
+      "hospitality": "Local Hospitality Brand",
+      "ecommerceAutomation": "E-commerce Automation",
+      "saasRedesign": "SaaS Platform Redesign"
+    },
+    "metrics": {
+      "organicTraffic": "increase in organic traffic",
+      "fasterLoadSpeed": "faster page load speed",
+      "automatedLeadWorkflow": "of lead intake now automated"
+    },
+    "stories": {
+      "story-hospitality": {
+        "problem": "A local hospitality business relied almost entirely on walk-ins and word of mouth, with no organic search presence.",
+        "solution": "Rebuilt around local SEO fundamentals, structured content, and a booking-first homepage."
+      },
+      "story-ecommerce": {
+        "problem": "An online store's checkout flow and product pages were slow enough to visibly hurt conversion on mobile.",
+        "solution": "Rebuilt the storefront on a modern stack with image optimization and a streamlined checkout."
+      },
+      "story-saas": {
+        "problem": "Inbound leads were manually copied between a contact form, spreadsheet, and email -- with regular drop-offs.",
+        "solution": "Automated the full intake-to-CRM pipeline with routing rules and instant follow-up emails."
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or may have moved.",
+    "backHome": "Back to Home"
   }
 }

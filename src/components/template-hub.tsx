@@ -3,14 +3,17 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Gauge, Clock, ArrowUpRight } from 'lucide-react';
+import { Gauge, Clock, ArrowUpRight, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { TEMPLATES, CATEGORIES, type TemplateCategory } from '@/lib/templates-data';
+import { TEMPLATES, CATEGORIES, type TemplateCategory, type Template } from '@/lib/templates-data';
+import { TemplatePreviewImage } from './template-mockup';
+import { TemplatePreviewModal } from './template-preview-modal';
 
 export function TemplateHub() {
   const t = useTranslations('TemplateHub');
   const reduceMotion = useReducedMotion();
   const [activeCategory, setActiveCategory] = useState<TemplateCategory | 'all'>('all');
+  const [previewTemplate, setPreviewTemplate] = useState<Template | null>(null);
 
   const filtered = useMemo(() => {
     if (activeCategory === 'all') return TEMPLATES;
@@ -47,10 +50,7 @@ export function TemplateHub() {
           ))}
         </div>
 
-        <motion.div
-          layout
-          className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <motion.div layout className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((template) => (
               <motion.div
@@ -62,16 +62,23 @@ export function TemplateHub() {
                 transition={{ duration: reduceMotion ? 0 : 0.3 }}
                 className="glass-panel glass-panel-interactive group overflow-hidden"
               >
-                <div
-                  className="flex h-40 items-center justify-center text-4xl font-semibold text-white/90"
-                  style={{
-                    background: `linear-gradient(135deg, hsl(${template.accentHue} 70% 55% / 0.9), hsl(${template.accentHue + 40} 70% 40% / 0.9))`,
-                  }}
-                >
-                  {template.name.charAt(0)}
+                <div className="relative h-36 overflow-hidden p-3">
+                  <TemplatePreviewImage
+                    src={template.image}
+                    alt={`${template.name} template preview`}
+                    category={template.category}
+                  />
+
+                  <button
+                    onClick={() => setPreviewTemplate(template)}
+                    className="absolute inset-3 flex items-center justify-center gap-2 rounded-lg bg-black/0 text-sm font-medium text-white opacity-0 transition-all duration-200 group-hover:bg-black/50 group-hover:opacity-100 group-hover:backdrop-blur-[1px]"
+                  >
+                    <Maximize2 size={15} />
+                    {t('liveDemo')}
+                  </button>
                 </div>
 
-                <div className="p-5">
+                <div className="p-5 pt-0">
                   <div className="flex items-center justify-between">
                     <h3 className="font-display text-lg font-semibold text-[color:var(--text-primary)]">
                       {template.name}
@@ -100,6 +107,7 @@ export function TemplateHub() {
                       </span>
                     </span>
                     <button
+                      onClick={() => setPreviewTemplate(template)}
                       className="flex items-center gap-1 text-sm font-medium text-primary transition-transform group-hover:translate-x-0.5"
                       aria-label={`${t('preview')} ${template.name}`}
                     >
@@ -113,6 +121,8 @@ export function TemplateHub() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <TemplatePreviewModal template={previewTemplate} onClose={() => setPreviewTemplate(null)} />
     </section>
   );
 }

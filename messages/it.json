@@ -26,14 +26,122 @@
     "weeks": "sett.",
     "from": "Da",
     "preview": "Anteprima",
+    "liveDemo": "Demo Live",
+    "close": "Chiudi",
+    "openInNewTab": "Apri in Nuova Scheda",
+    "loadingDemo": "Caricamento anteprima live...",
+    "loadTimeoutMessage": "Questa anteprima sta impiegando più tempo del previsto, oppure il sito potrebbe non consentire l'incorporamento.",
+    "viewports": {
+      "desktop": "Desktop",
+      "tablet": "Tablet",
+      "mobile": "Mobile"
+    },
     "categories": {
       "all": "Tutti",
-      "corporate": "Corporate",
       "ecommerce": "Ecommerce",
+      "saas": "SaaS",
       "portfolio": "Portfolio",
-      "restaurant": "Ristorazione",
-      "medical": "Medico",
-      "realEstate": "Immobiliare"
+      "restaurantHotel": "Ristorante / Hotel",
+      "healthcare": "Sanità",
+      "realEstate": "Immobiliare",
+      "education": "Formazione",
+      "transportation": "Trasporti",
+      "fashion": "Moda & Retail",
+      "beauty": "Bellezza & Benessere",
+      "construction": "Edilizia & Ristrutturazioni",
+      "tourism": "Turismo & Ospitalità",
+      "professionalServices": "Servizi Professionali",
+      "healthFitness": "Salute & Fitness"
+    },
+    "templates": {
+      "ncc": {
+        "title": "Autoblu — NCC e Transfer Aeroportuali",
+        "description": "Un template orientato alla prenotazione per servizi NCC e autisti privati, con stima tariffa in tempo reale per tratta e classe di veicolo.",
+        "badges": ["Transfer aeroportuali", "Vetrina della flotta", "Stima tariffa immediata"],
+        "features": [
+          "Calcolatore prezzi per tratta",
+          "Confronto tra classi di veicolo",
+          "Messaggistica per monitoraggio voli",
+          "Call to action per prenotazione via telefono/WhatsApp"
+        ]
+      },
+      "fashion": {
+        "title": "Atelier — Boutique e Sartoria su Misura",
+        "description": "Un template lookbook in stile editoriale per boutique di moda e sartorie, con collezioni, guida alle taglie e prenotazione appuntamenti.",
+        "badges": ["Lookbook", "Guida alle taglie", "Su misura"],
+        "features": [
+          "Collezioni filtrabili",
+          "Guida alle taglie interattiva",
+          "Richiesta appuntamento",
+          "Schede prodotto in stile editoriale"
+        ]
+      },
+      "pizzeria": {
+        "title": "Forno — Pizzeria e Trattoria",
+        "description": "Un template incentrato sul menu per pizzerie e ristoranti informali, con menu a schede, tag per intolleranze e prenotazione tavoli.",
+        "badges": ["Menu digitale", "Tag intolleranze", "Prenotazione tavoli"],
+        "features": [
+          "Menu a schede (classiche / speciali / dolci)",
+          "Tag vegano e senza glutine",
+          "Modulo di prenotazione",
+          "Call to action per asporto/consegna"
+        ]
+      },
+      "beauty": {
+        "title": "Lumen — Centro Estetico e Spa",
+        "description": "Un template incentrato sui trattamenti per centri estetici e spa, con menu dei servizi, scelta dell'operatore e prenotazione online.",
+        "badges": ["Menu trattamenti", "Prenotazione operatore", "Galleria prima/dopo"],
+        "features": [
+          "Trattamenti filtrabili per categoria",
+          "Selezione operatore/operatrice",
+          "Durata e prezzo in evidenza",
+          "Percorso di prenotazione guidato"
+        ]
+      },
+      "edilizia": {
+        "title": "Fondamenta — Ristrutturazioni ed Edilizia",
+        "description": "Un template orientato al portfolio per imprese edili e di ristrutturazione, con gallerie progetti e richiesta preventivo.",
+        "badges": ["Portfolio progetti", "Certificazioni", "Richiesta preventivo"],
+        "features": [
+          "Galleria progetti prima/dopo",
+          "Certificazioni e badge di fiducia",
+          "Modulo di richiesta preventivo gratuito",
+          "Copertura zone di intervento"
+        ]
+      },
+      "tourism": {
+        "title": "Terra & Mare — Turismo Boutique & Eco-Resort",
+        "description": "Un template turistico ad alta conversione con un motore di prenotazione completo a più passaggi, attività stagionali e una guida al periodo migliore per visitare.",
+        "badges": ["Motore di prenotazione multi-step", "Attività stagionali", "Calcolo prezzo in tempo reale"],
+        "features": [
+          "Prenotazione in 4 passaggi: esperienza, date e ospiti, extra, conferma",
+          "Calcolo del totale in tempo reale in euro",
+          "Vetrina di tour ed attività stagionali",
+          "Schede interattive su meteo e periodo migliore per visitare"
+        ]
+      },
+      "legal": {
+        "title": "Bellini & Associati — Studio Legale",
+        "description": "Un template legale estremamente professionale con selettore delle aree di competenza, modulo di richiesta consulenza e checklist per la prima valutazione del caso.",
+        "badges": ["Selettore aree di competenza", "Modulo consulenza", "Badge di fiducia"],
+        "features": [
+          "Selettore interattivo delle aree di competenza con pannelli di dettaglio",
+          "Modulo di richiesta consulenza con descrizione del caso e preferenza dell'avvocato",
+          "Checklist per la prima valutazione del caso (a fisarmonica)",
+          "Badge di fiducia su ordine forense ed esperienza"
+        ]
+      },
+      "fitness": {
+        "title": "Forza — Centro Fitness Moderno",
+        "description": "Un template fitness ad alta energia con calendario corsi filtrabile, calcolatore di BMI/calorie e percorso di iscrizione alla prova gratuita.",
+        "badges": ["Filtro calendario corsi", "Calcolatore BMI", "Iscrizione prova gratuita"],
+        "features": [
+          "Calendario corsi filtrabile per giorno e tipo di allenamento",
+          "Calcolatore di BMI e fabbisogno calorico giornaliero",
+          "Iscrizione al pass di prova gratuito di 1 giorno con scelta della fascia oraria",
+          "Indicazione di coach e posti disponibili per ogni sessione"
+        ]
+      }
     }
   },
   "Planner": {
@@ -80,15 +188,40 @@
     "eyebrow": "Contatti",
     "title": "Raccontaci il tuo progetto.",
     "subtitle": "Condividi qualche dettaglio e ti risponderemo entro un giorno lavorativo.",
+    "inquiringAbout": "Richiesta per: {template}",
+    "clearTemplate": "Rimuovi template selezionato",
+    "selectPlaceholder": "Seleziona un'opzione",
     "fields": {
       "name": "Nome",
+      "company": "Azienda (opzionale)",
       "email": "Email",
+      "phone": "Telefono / WhatsApp",
+      "serviceType": "Tipo di Servizio",
+      "budget": "Fascia di Budget",
+      "preferredLanguage": "Lingua Preferita",
       "message": "Messaggio"
+    },
+    "services": {
+      "templateCustomization": "Personalizzazione e Lancio Template",
+      "customDevelopment": "Sviluppo Web Personalizzato",
+      "seoBranding": "SEO e Branding Digitale",
+      "other": "Altro"
+    },
+    "budgets": {
+      "range500to1000": "€500 - €1.000",
+      "range1000to2500": "€1.000 - €2.500",
+      "range2500plus": "€2.500+"
+    },
+    "languages": {
+      "en": "English",
+      "it": "Italiano"
     },
     "errors": {
       "name": "Inserisci il tuo nome.",
       "email": "Inserisci un indirizzo email valido.",
       "message": "Aggiungi un breve messaggio.",
+      "serviceType": "Seleziona un tipo di servizio.",
+      "budget": "Seleziona una fascia di budget.",
       "general": "Qualcosa è andato storto. Riprova."
     },
     "submit": "Invia Messaggio",
@@ -127,5 +260,128 @@
   "Metadata": {
     "title": "Lankio — Web Design Premium e Agenzia Digitale",
     "description": "Progettiamo e realizziamo siti web premium, poi dimostriamo i risultati con numeri reali -- audit, case study e prezzi trasparenti."
+  },
+  "Services": {
+    "eyebrow": "Servizi",
+    "title": "Quattro discipline, un solo team.",
+    "subtitle": "Tutto ciò di cui un'azienda in crescita ha bisogno per apparire credibile, farsi trovare e convertire -- senza gestire quattro fornitori diversi.",
+    "learnMore": "Scopri di Più",
+    "getStarted": "Inizia Ora",
+    "items": {
+      "webDev": {
+        "title": "Sviluppo Web Full-Stack",
+        "description": "Siti Next.js e WordPress progettati per velocità, SEO e manutenibilità nel tempo.",
+        "features": [
+          "Siti su misura in Next.js o WordPress",
+          "Ottimizzazione dei Core Web Vitals",
+          "CMS configurato per modificare i contenuti autonomamente",
+          "Supporto tecnico continuativo"
+        ]
+      },
+      "branding": {
+        "title": "Branding Digitale e Produzione Media",
+        "description": "Identità visiva e contenuti video/media che rendono un'azienda credibile quanto merita.",
+        "features": [
+          "Sistemi di identità visiva e logo",
+          "Linee guida del brand",
+          "Video promozionali e di prodotto",
+          "Direzione fotografica"
+        ]
+      },
+      "ai": {
+        "title": "Soluzioni AI e Automazione dei Processi",
+        "description": "Automazioni pratiche che eliminano il lavoro manuale nella gestione lead, reportistica e operations.",
+        "features": [
+          "Instradamento lead e automazione CRM",
+          "Flussi di assistenza clienti basati su AI",
+          "Automazione della reportistica interna",
+          "Integrazioni API personalizzate"
+        ]
+      },
+      "marketing": {
+        "title": "Marketing Digitale e SEO",
+        "description": "Strategie organiche e a pagamento costruite su traffico e conversioni misurabili, non su metriche di vanità.",
+        "features": [
+          "SEO tecnica e on-page",
+          "Strategia dei contenuti",
+          "Gestione campagne a pagamento",
+          "Report mensile delle performance"
+        ]
+      }
+    }
+  },
+  "Pricing": {
+    "eyebrow": "Prezzi",
+    "title": "Prezzi trasparenti, nessuna sorpresa.",
+    "subtitle": "Scegli un progetto una tantum o un piano mensile continuativo -- ogni livello include tutto quello sottostante.",
+    "billing": {
+      "oneTime": "Progetto Una Tantum",
+      "monthly": "Piano Mensile"
+    },
+    "mostPopular": "Più Popolare",
+    "customQuote": "Preventivo Personalizzato",
+    "perMonth": "/mese",
+    "getStarted": "Inizia Ora",
+    "contactSales": "Contatta le Vendite",
+    "tiers": {
+      "starterDigital": {
+        "name": "Starter Digital",
+        "description": "Per un singolo sito web mirato che deve apparire professionale rapidamente."
+      },
+      "businessGrowth": {
+        "name": "Business Growth",
+        "description": "Per aziende pronte a investire nella conversione, non solo nella presenza web."
+      },
+      "customEnterprise": {
+        "name": "Custom Enterprise",
+        "description": "Per requisiti multi-sito, multilingua o altamente personalizzati."
+      }
+    },
+    "features": {
+      "responsiveWebsite": "Sito web responsive",
+      "basicSeo": "SEO on-page di base",
+      "contactForm": "Modulo di contatto",
+      "oneRevisionRound": "Un ciclo di revisione",
+      "cmsIntegration": "Integrazione CMS",
+      "multiLanguage": "Supporto multilingua",
+      "bookingOrPayments": "Integrazione prenotazioni o pagamenti",
+      "prioritySupport": "Supporto prioritario",
+      "dedicatedStrategy": "Consulenza strategica dedicata"
+    }
+  },
+  "SuccessStories": {
+    "eyebrow": "Success Stories",
+    "title": "Risultati, non solo screenshot.",
+    "subtitle": "Risultati rappresentativi da progetti in diversi settori -- generalizzati per proteggere la riservatezza dei clienti.",
+    "disclaimer": "I concept dei case study e le metriche sono composizioni rappresentative basate su risultati tipici di progetto, non riferite a un singolo cliente nominato.",
+    "categories": {
+      "hospitality": "Brand di Ospitalità Locale",
+      "ecommerceAutomation": "Automazione E-commerce",
+      "saasRedesign": "Redesign Piattaforma SaaS"
+    },
+    "metrics": {
+      "organicTraffic": "aumento del traffico organico",
+      "fasterLoadSpeed": "velocità di caricamento più rapida",
+      "automatedLeadWorkflow": "dei lead ora gestiti automaticamente"
+    },
+    "stories": {
+      "story-hospitality": {
+        "problem": "Un'attività ricettiva locale dipendeva quasi interamente da clienti di passaggio e passaparola, senza presenza organica sui motori di ricerca.",
+        "solution": "Sito ricostruito su fondamenta di SEO locale, contenuti strutturati e homepage orientata alle prenotazioni."
+      },
+      "story-ecommerce": {
+        "problem": "Il flusso di checkout e le pagine prodotto di un negozio online erano abbastanza lenti da danneggiare visibilmente la conversione su mobile.",
+        "solution": "Storefront ricostruito su uno stack moderno con ottimizzazione delle immagini e checkout semplificato."
+      },
+      "story-saas": {
+        "problem": "I lead in ingresso venivano copiati manualmente tra modulo di contatto, foglio di calcolo ed email -- con perdite regolari.",
+        "solution": "Automatizzata l'intera pipeline dall'acquisizione al CRM con regole di instradamento ed email di follow-up immediate."
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Pagina Non Trovata",
+    "description": "La pagina che stai cercando non esiste o è stata spostata.",
+    "backHome": "Torna alla Home"
   }
 }
