@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useMemo, useState, type FormEvent } from 'react';
+import { Suspense, useMemo, useState, type FormEvent, type ChangeEvent } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
@@ -47,6 +47,16 @@ function ContactSectionInner() {
     if (!templateSlug) return null;
     return TEMPLATES.find((template) => template.demoUrl.endsWith(`/${templateSlug}`)) ?? null;
   }, [templateSlug]);
+
+  const clearError = (fieldName: string) => {
+    if (errors[fieldName]) {
+      setErrors((prev) => {
+        const copy = { ...prev };
+        delete copy[fieldName];
+        return copy;
+      });
+    }
+  };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -123,7 +133,6 @@ function ContactSectionInner() {
                 type="button"
                 onClick={() => setTemplateSlug(null)}
                 aria-label={t('clearTemplate')}
-                suppressHydrationWarning
                 className="flex h-7 w-7 items-center justify-center rounded-full text-[color:var(--text-muted)] hover:text-[color:var(--text-primary)]"
               >
                 <X size={14} />
@@ -137,6 +146,8 @@ function ContactSectionInner() {
             {status === 'success' ? (
               <motion.div
                 key="success"
+                role="status"
+                aria-live="polite"
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: reduceMotion ? 0 : 0.35 }}
@@ -159,11 +170,16 @@ function ContactSectionInner() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: reduceMotion ? 0 : 0.25 }}
                 noValidate
-                suppressHydrationWarning
                 className="flex flex-col gap-4"
               >
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <Field name="name" label={t('fields.name')} error={errors.name} autoComplete="name" />
+                  <Field
+                    name="name"
+                    label={t('fields.name')}
+                    error={errors.name}
+                    onChange={() => clearError('name')}
+                    autoComplete="name"
+                  />
                   <Field name="company" label={t('fields.company')} autoComplete="organization" />
                 </div>
 
@@ -173,6 +189,7 @@ function ContactSectionInner() {
                     type="email"
                     label={t('fields.email')}
                     error={errors.email}
+                    onChange={() => clearError('email')}
                     autoComplete="email"
                   />
                   <Field name="phone" label={t('fields.phone')} autoComplete="tel" />
@@ -184,6 +201,7 @@ function ContactSectionInner() {
                     label={t('fields.serviceType')}
                     placeholder={t('selectPlaceholder')}
                     error={errors.serviceType}
+                    onChange={() => clearError('serviceType')}
                     options={SERVICE_KEYS.map((key) => ({ value: key, label: t(`services.${key}`) }))}
                   />
                   <SelectField
@@ -191,6 +209,7 @@ function ContactSectionInner() {
                     label={t('fields.budget')}
                     placeholder={t('selectPlaceholder')}
                     error={errors.budget}
+                    onChange={() => clearError('budget')}
                     options={BUDGET_KEYS.map((key) => ({ value: key, label: t(`budgets.${key}`) }))}
                   />
                 </div>
@@ -205,7 +224,6 @@ function ContactSectionInner() {
                         key={lang}
                         type="button"
                         onClick={() => setPreferredLanguage(lang)}
-                        suppressHydrationWarning
                         className={`flex-1 rounded-xl border px-4 py-2.5 text-sm transition-colors ${
                           preferredLanguage === lang
                             ? 'border-transparent bg-primary text-white'
@@ -218,12 +236,17 @@ function ContactSectionInner() {
                   </div>
                 </div>
 
-                <Field name="message" label={t('fields.message')} error={errors.message} textarea />
+                <Field
+                  name="message"
+                  label={t('fields.message')}
+                  error={errors.message}
+                  onChange={() => clearError('message')}
+                  textarea
+                />
 
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  suppressHydrationWarning
                   className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100"
                 >
                   {status === 'submitting' ? t('sending') : t('submit')}
@@ -231,7 +254,9 @@ function ContactSectionInner() {
                 </button>
 
                 {status === 'error' && (
-                  <p className="text-center text-sm text-secondary">{t('errors.general')}</p>
+                  <p role="alert" className="text-center text-sm text-secondary">
+                    {t('errors.general')}
+                  </p>
                 )}
 
                 <p className="mt-1 flex items-center justify-center gap-1.5 text-xs text-[color:var(--text-muted)]">
@@ -254,6 +279,7 @@ function Field({
   type = 'text',
   autoComplete,
   textarea = false,
+  onChange,
 }: {
   name: string;
   label: string;
@@ -261,6 +287,7 @@ function Field({
   type?: string;
   autoComplete?: string;
   textarea?: boolean;
+  onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }) {
   const baseClass =
     'w-full rounded-xl border bg-transparent px-4 py-3 text-sm text-[color:var(--text-primary)] placeholder:text-[color:var(--text-muted)] focus:outline-none transition-colors';
@@ -278,7 +305,7 @@ function Field({
           id={name}
           name={name}
           rows={4}
-          suppressHydrationWarning
+          onChange={onChange}
           className={`${baseClass} ${borderClass} resize-none`}
           aria-invalid={Boolean(error)}
         />
@@ -288,7 +315,7 @@ function Field({
           name={name}
           type={type}
           autoComplete={autoComplete}
-          suppressHydrationWarning
+          onChange={onChange}
           className={`${baseClass} ${borderClass}`}
           aria-invalid={Boolean(error)}
         />
@@ -304,12 +331,14 @@ function SelectField({
   placeholder,
   error,
   options,
+  onChange,
 }: {
   name: string;
   label: string;
   placeholder: string;
   error?: string;
   options: { value: string; label: string }[];
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   const borderClass = error
     ? 'border-secondary'
@@ -324,15 +353,15 @@ function SelectField({
         id={name}
         name={name}
         defaultValue=""
-        suppressHydrationWarning
+        onChange={onChange}
         aria-invalid={Boolean(error)}
-        className={`w-full rounded-xl border bg-[#0d0e14] px-4 py-3 text-sm text-[color:var(--text-primary)] focus:outline-none transition-colors ${borderClass}`}
+        className={`w-full rounded-xl border bg-[color:var(--glass-panel-bg,transparent)] px-4 py-3 text-sm text-[color:var(--text-primary)] focus:outline-none transition-colors ${borderClass}`}
       >
-        <option value="" disabled>
+        <option value="" disabled className="bg-slate-900 text-[color:var(--text-muted)]">
           {placeholder}
         </option>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} value={option.value} className="bg-slate-900 text-white">
             {option.label}
           </option>
         ))}
