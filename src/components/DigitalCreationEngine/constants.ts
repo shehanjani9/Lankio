@@ -1,10 +1,7 @@
 import type { EngineStage, ModuleGroup, ModuleId } from './types';
 
 // ---------------------------------------------------------------------------
-// PALETTE -- copied verbatim from the old HeroCube/constants.ts. The brief
-// requires the existing color palette to stay untouched, so these hex values
-// are not "inspired by" the old cube -- they ARE the old cube's palette,
-// reused so the new visual reads as the same product, not a reskin.
+// PALETTE -- copied verbatim from the old HeroCube/constants.ts.
 // ---------------------------------------------------------------------------
 export const PALETTE = {
   obsidian: '#0B0D12',
@@ -30,10 +27,6 @@ interface ModuleDef {
   accent: string;
 }
 
-// Static definition of every module: which column it lives in and which
-// accent it glows. Accent assignment cycles through ACCENT_COLORS so the
-// existing 5-color rotation used by the cube's six faces carries over
-// exactly, just spread across 14 modules instead of 6.
 export const MODULE_DEFS: readonly ModuleDef[] = [
   { id: 'idea', group: 'input', accent: ACCENT_COLORS[0] },
   { id: 'strategy', group: 'input', accent: ACCENT_COLORS[1] },
@@ -52,12 +45,7 @@ export const MODULE_DEFS: readonly ModuleDef[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// LAYOUT -- percentage coordinates inside a 0-100 x 0-100 box. Both the
-// module nodes and the SVG connection paths are positioned from these same
-// numbers, so a line drawn from a module's anchor always terminates exactly
-// at that module's rendered center regardless of the container's real pixel
-// size. This is the desktop/tablet ("engine diagram") layout only -- mobile
-// uses a separate stacked-list layout (see DigitalCreationEngine.tsx).
+// LAYOUT
 // ---------------------------------------------------------------------------
 export const BROWSER_RECT = { x: 28, y: 20, width: 44, height: 42 } as const; // percent
 export const BROWSER_CENTER = { x: 50, y: 41 } as const;
@@ -68,8 +56,6 @@ const SIDE_COLUMN_TOP_Y = 10;
 const SIDE_COLUMN_BOTTOM_Y = 76;
 
 const BOTTOM_ROW_Y = 92;
-const BOTTOM_ROW_LEFT_X = 32;
-const BOTTOM_ROW_RIGHT_X = 68;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -78,13 +64,26 @@ function lerp(a: number, b: number, t: number): number {
 /** Returns the {x, y} percentage anchor for a module given its group and its index within that group. */
 export function getModuleAnchor(group: ModuleGroup, indexInGroup: number, groupSize: number): { x: number; y: number } {
   const t = groupSize <= 1 ? 0.5 : indexInGroup / (groupSize - 1);
+
   if (group === 'input') {
     return { x: LEFT_COLUMN_X, y: lerp(SIDE_COLUMN_TOP_Y, SIDE_COLUMN_BOTTOM_Y, t) };
   }
   if (group === 'execution') {
     return { x: RIGHT_COLUMN_X, y: lerp(SIDE_COLUMN_TOP_Y, SIDE_COLUMN_BOTTOM_Y, t) };
   }
-  return { x: lerp(BOTTOM_ROW_LEFT_X, BOTTOM_ROW_RIGHT_X, t), y: BOTTOM_ROW_Y };
+
+  // ---------------------------------------------------------------------------
+  // Outcome group (Bottom Row: Deployment, Hosting, Maintenance, Growth)
+  // ---------------------------------------------------------------------------
+  // මැද දෙක (Hosting & Maintenance) දෙපැත්තට ඈත් කිරීම සඳහා explicit X coordinates:
+  const bottomXPositions = [6, 32, 68, 94]; 
+  const x = bottomXPositions[indexInGroup] ?? lerp(10, 90, t);
+
+  // Deployment (0) සහ Growth (3) උඩට (Y: 85), Hosting (1) සහ Maintenance (2) පහළට (Y: 92)
+  const isOuterNode = indexInGroup === 0 || indexInGroup === groupSize - 1;
+  const y = isOuterNode ? 85 : BOTTOM_ROW_Y;
+
+  return { x, y };
 }
 
 /** Where a connection line should touch the browser window, given the module's group. */
@@ -107,8 +106,6 @@ export const STAGE_SEQUENCE: EngineStage[] = [
   'growth',
 ];
 
-// ms each stage "holds" before the next one begins. Kept short and additive
-// (never a jump-cut) -- see useEngineSequence.ts for how these compose.
 export const STAGE_DURATIONS_MS: Record<EngineStage, number> = {
   idle: 0,
   idea: 650,
@@ -120,8 +117,6 @@ export const STAGE_DURATIONS_MS: Record<EngineStage, number> = {
   growth: 1200,
 };
 
-// Which modules light up on which stage. Used to drive both the module glow
-// and the matching connection line illumination.
 export const STAGE_MODULE_MAP: Partial<Record<EngineStage, ModuleId[]>> = {
   idea: ['idea'],
   wireframe: ['strategy', 'research'],
@@ -132,8 +127,8 @@ export const STAGE_MODULE_MAP: Partial<Record<EngineStage, ModuleId[]>> = {
   growth: ['analytics', 'marketing', 'maintenance', 'growth'],
 };
 
-export const STAGE_GAP_MS = 180; // small pause between stages, never a jump
-export const INITIAL_DELAY_MS = 450; // settle pause before the sequence begins
-export const BREATHE_CYCLE_S = 4.4; // seconds per gentle "breathing" cycle once settled
-export const PARALLAX_STRENGTH_DEG = 3.5; // max tilt in degrees -- deliberately small
-export const PARALLAX_SMOOTHING = 0.12; // spring damping factor
+export const STAGE_GAP_MS = 180; 
+export const INITIAL_DELAY_MS = 450; 
+export const BREATHE_CYCLE_S = 4.4; 
+export const PARALLAX_STRENGTH_DEG = 3.5; 
+export const PARALLAX_SMOOTHING = 0.12;
