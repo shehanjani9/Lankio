@@ -23,9 +23,7 @@ const GROUP_COUNTS = MODULE_DEFS.reduce<Record<string, number>>((acc, m) => {
   return acc;
 }, {});
 
-// Ambient particles: fixed, deterministic positions (no client-only
-// Math.random on every render) so there is no hydration mismatch and the
-// set never has to be recomputed.
+// Ambient particles: fixed, deterministic positions so there is no hydration mismatch
 const PARTICLES = Array.from({ length: 10 }, (_, i) => ({
   x: (i * 37 + 11) % 100,
   y: (i * 53 + 7) % 100,
@@ -53,7 +51,7 @@ export function DigitalCreationEngine({ modules, browserCopy, ariaLabel, onActiv
     if (id) onActiveModuleChange?.(id);
   };
 
-  // Subtle pointer parallax -- desktop/fine-pointer only, always tiny.
+  // Subtle pointer parallax -- desktop/fine-pointer only
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
   const springX = useSpring(rawX, { stiffness: 60, damping: 1 / PARALLAX_SMOOTHING });
@@ -67,6 +65,7 @@ export function DigitalCreationEngine({ modules, browserCopy, ariaLabel, onActiv
     rawX.set((e.clientX - rect.left) / rect.width - 0.5);
     rawY.set((e.clientY - rect.top) / rect.height - 0.5);
   };
+
   const handlePointerLeave = () => {
     rawX.set(0);
     rawY.set(0);
@@ -75,13 +74,13 @@ export function DigitalCreationEngine({ modules, browserCopy, ariaLabel, onActiv
   const groupIndex: Record<string, number> = {};
 
   return (
-    <div ref={ref} className="relative h-full w-full" role="group" aria-label={ariaLabel}>
-      {/* Screen-reader summary of the process. The diagram itself is decorative. */}
+    <div ref={ref} className="relative h-full w-full overflow-hidden flex items-center justify-center py-2" role="group" aria-label={ariaLabel}>
+      {/* Screen-reader summary of the process */}
       <p className="sr-only">{ariaLabel}</p>
 
-      {/* Desktop / tablet 2D diagram */}
+      {/* Universal 2D Diagram for Mobile, Tablet & Desktop */}
       <motion.div
-        className="relative hidden h-full w-full md:block"
+        className="relative h-full w-full min-h-[420px] sm:min-h-[480px] scale-[0.62] xs:scale-[0.75] sm:scale-90 md:scale-100 transition-transform origin-center"
         style={{ rotateX, rotateY, transformPerspective: 800 }}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
@@ -123,32 +122,6 @@ export function DigitalCreationEngine({ modules, browserCopy, ariaLabel, onActiv
           );
         })}
       </motion.div>
-
-      {/* Mobile: stacked workflow, no absolute diagram */}
-      <div className="flex h-full w-full flex-col gap-3 overflow-y-auto md:hidden">
-        <div className="glass-panel flex items-center justify-center rounded-2xl px-4 py-6 text-center">
-          <span className="font-mono-label text-xs text-[color:var(--text-secondary)]">{browserCopy.urlPlaceholder}</span>
-        </div>
-        {(['input', 'execution', 'outcome'] as const).map((group) => (
-          <div key={group} className="flex flex-wrap gap-2">
-            {MODULE_DEFS.filter((d) => d.group === group).map((def) => (
-              <button
-                key={def.id}
-                type="button"
-                aria-label={modules[def.id].label}
-                className="glass-panel rounded-full px-3 py-1.5 text-xs font-medium text-[color:var(--text-primary)]"
-                style={{
-                  borderColor: litModules.has(def.id) ? `${def.accent}66` : undefined,
-                  color: litModules.has(def.id) ? def.accent : undefined,
-                }}
-              >
-                {modules[def.id].label}
-              </button>
-            ))}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
-
