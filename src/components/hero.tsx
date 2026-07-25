@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
-import { motion, useReducedMotion, type Variants } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import { HeroCubeLoader } from './hero-cube-loader';
 import { HeroCubeStatic } from './hero-cube-static';
+import { SERVICE_FACE_ORDER, type CubeService, type ServiceId } from './hero-cube';
 
 // ssr:false + this only being referenced inside JSX that's conditionally
 // rendered (see `allowCube` below) means the three.js/@react-three bundle is
@@ -25,6 +26,7 @@ export function Hero() {
   // render -- disabling animation on an already-loaded 3D component doesn't
   // avoid downloading it in the first place.
   const [allowCube, setAllowCube] = useState<boolean | null>(null);
+  const [activeServiceId, setActiveServiceId] = useState<ServiceId | null>(null);
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -34,6 +36,18 @@ export function Hero() {
     query.addEventListener('change', handleChange);
     return () => query.removeEventListener('change', handleChange);
   }, []);
+
+  // Translated label/glyph for each of the 6 core services. Built once per
+  // locale change; the cube only ever needs to know ids, not translation keys.
+  const services = useMemo<Record<ServiceId, CubeService>>(() => {
+    return SERVICE_FACE_ORDER.reduce((acc, id) => {
+      acc[id] = {
+        label: t(`services.${id}.label`),
+        glyph: t(`services.${id}.glyph`),
+      };
+      return acc;
+    }, {} as Record<ServiceId, CubeService>);
+  }, [t]);
 
   const container: Variants = {
     hidden: {},
@@ -54,12 +68,25 @@ export function Hero() {
           animate="show"
           className="flex flex-col items-center text-center lg:items-start lg:text-left"
         >
-          <motion.span
-            variants={item}
-            className="font-mono-label mb-6 inline-block rounded-full border border-[color:var(--glass-border)] px-4 py-1.5 text-xs text-[color:var(--text-secondary)]"
-          >
-            {t('eyebrow')}
-          </motion.span>
+          <motion.div variants={item} className="mb-6 h-8">
+            {/* Crossfades between the default brand badge and whichever
+                service the visitor is currently hovering/clicking on the
+                cube, so the cube and the copy read as one interaction. */}
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={activeServiceId ?? 'default'}
+                initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reduceMotion ? 0 : -6 }}
+                transition={{ duration: reduceMotion ? 0 : 0.25 }}
+                className="font-mono-label inline-block rounded-full border border-[color:var(--glass-border)] px-4 py-1.5 text-xs text-[color:var(--text-secondary)]"
+              >
+                {activeServiceId
+                  ? t('activeServiceBadge', { service: services[activeServiceId].label })
+                  : t('badge')}
+              </motion.span>
+            </AnimatePresence>
+          </motion.div>
 
           <motion.h1
             variants={item}
@@ -72,7 +99,7 @@ export function Hero() {
             variants={item}
             className="mt-6 max-w-xl text-base text-[color:var(--text-secondary)] sm:text-lg"
           >
-            {t('subheadline')}
+            {t('tagline')}
           </motion.p>
 
           <motion.div
@@ -105,9 +132,9 @@ export function Hero() {
           {allowCube === null ? (
             <HeroCubeLoader />
           ) : allowCube ? (
-            <HeroCube />
+            <HeroCube services={services} onActiveServiceChange={setActiveServiceId} />
           ) : (
-            <HeroCubeStatic />
+            <HeroCubeStatic services={services} />
           )}
         </motion.div>
       </div>

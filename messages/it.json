@@ -7,13 +7,22 @@
     "contact": "Contatti",
     "bookCall": "Parliamo"
   },
-  "Hero": {
-    "eyebrow": "Agenzia Digitale — Web, Brand, Crescita",
-    "headline": "Siti web costruiti per guadagnare fiducia prima ancora della prima chiamata.",
-    "subheadline": "Progettiamo e realizziamo esperienze web premium, poi dimostriamo i risultati con numeri reali — non foto stock.",
-    "primaryCta": "Ricevi un Audit Gratuito",
-    "secondaryCta": "Guarda i Nostri Lavori"
-  },
+"Hero": {
+  "badge": "Idee Disordinate → Crescita Strutturata",
+  "activeServiceBadge": "In Evidenza: {service}",
+  "headline": "Sistemi Digitali Creati per Scalare",
+  "tagline": "Trasformiamo sfide digitali complesse in ecosistemi ad alta conversione.",
+  "primaryCta": "Ricevi Audit Gratis",
+  "secondaryCta": "Esplora Progetti",
+  "services": {
+    "webDesign": { "label": "Web Design", "glyph": "WEB" },
+    "graphicDesign": { "label": "Graphic Design", "glyph": "GFX" },
+    "smm": { "label": "Social Media", "glyph": "SMM" },
+    "seo": { "label": "SEO", "glyph": "SEO" },
+    "aiSystems": { "label": "Sistemi AI", "glyph": "AI" },
+    "growthStrategy": { "label": "Strategia di Crescita", "glyph": "GROW" }
+  }
+},
   "CTA": {
     "auditTitle": "Scopri esattamente dove il tuo sito perde visitatori.",
     "auditButton": "Avvia Audit Gratuito",

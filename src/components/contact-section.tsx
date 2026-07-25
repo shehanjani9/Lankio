@@ -133,6 +133,7 @@ function ContactSectionInner() {
                 type="button"
                 onClick={() => setTemplateSlug(null)}
                 aria-label={t('clearTemplate')}
+                suppressHydrationWarning
                 className="flex h-7 w-7 items-center justify-center rounded-full text-[color:var(--text-muted)] hover:text-[color:var(--text-primary)]"
               >
                 <X size={14} />
@@ -224,6 +225,7 @@ function ContactSectionInner() {
                         key={lang}
                         type="button"
                         onClick={() => setPreferredLanguage(lang)}
+                        suppressHydrationWarning
                         className={`flex-1 rounded-xl border px-4 py-2.5 text-sm transition-colors ${
                           preferredLanguage === lang
                             ? 'border-transparent bg-primary text-white'
@@ -247,6 +249,7 @@ function ContactSectionInner() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
+                  suppressHydrationWarning
                   className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100"
                 >
                   {status === 'submitting' ? t('sending') : t('submit')}
@@ -306,6 +309,7 @@ function Field({
           name={name}
           rows={4}
           onChange={onChange}
+          suppressHydrationWarning
           className={`${baseClass} ${borderClass} resize-none`}
           aria-invalid={Boolean(error)}
         />
@@ -316,6 +320,7 @@ function Field({
           type={type}
           autoComplete={autoComplete}
           onChange={onChange}
+          suppressHydrationWarning
           className={`${baseClass} ${borderClass}`}
           aria-invalid={Boolean(error)}
         />
@@ -355,6 +360,7 @@ function SelectField({
         defaultValue=""
         onChange={onChange}
         aria-invalid={Boolean(error)}
+        suppressHydrationWarning
         className={`w-full rounded-xl border bg-[color:var(--glass-panel-bg,transparent)] px-4 py-3 text-sm text-[color:var(--text-primary)] focus:outline-none transition-colors ${borderClass}`}
       >
         <option value="" disabled className="bg-slate-900 text-[color:var(--text-muted)]">

@@ -7,13 +7,22 @@
     "contact": "Contact",
     "bookCall": "Let's Talk"
   },
-  "Hero": {
-    "eyebrow": "Digital Agency — Web, Brand, Growth",
-    "headline": "Websites built to earn trust before the first call.",
-    "subheadline": "We design and ship premium web experiences, then prove the results with real numbers — not stock photos.",
-    "primaryCta": "Get a Free Audit",
-    "secondaryCta": "See Our Work"
-  },
+"Hero": {
+  "badge": "Scattered Ideas → Structured Growth",
+  "activeServiceBadge": "Focused on: {service}",
+  "headline": "Digital Systems Built for Scale",
+  "tagline": "We turn complex digital challenges into sleek, high-converting digital ecosystems.",
+  "primaryCta": "Get Free Audit",
+  "secondaryCta": "Explore Work",
+  "services": {
+    "webDesign": { "label": "Web Design", "glyph": "WEB" },
+    "graphicDesign": { "label": "Graphic Design", "glyph": "GFX" },
+    "smm": { "label": "Social Media", "glyph": "SMM" },
+    "seo": { "label": "SEO", "glyph": "SEO" },
+    "aiSystems": { "label": "AI Systems", "glyph": "AI" },
+    "growthStrategy": { "label": "Growth Strategy", "glyph": "GROW" }
+  }
+},
   "CTA": {
     "auditTitle": "See exactly where your site is losing visitors.",
     "auditButton": "Run Free Website Audit",
