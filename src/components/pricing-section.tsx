@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Check, Minus, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PRICING_TIERS, PRICING_FEATURE_KEYS, type BillingMode } from '@/lib/pricing-data';
+import { Button } from '@/components/ui/button';
 
 export function PricingSection() {
   const t = useTranslations('Pricing');
@@ -30,7 +31,7 @@ export function PricingSection() {
         <div className="mt-8 flex justify-center">
           <div className="glass-panel inline-flex gap-1 p-1">
             {(['oneTime', 'monthly'] as BillingMode[]).map((mode) => (
-              <button
+              <Button
                 key={mode}
                 onClick={() => setBilling(mode)}
                 className={cn(
@@ -41,7 +42,7 @@ export function PricingSection() {
                 )}
               >
                 {t(`billing.${mode}`)}
-              </button>
+              </Button>
             ))}
           </div>
         </div>

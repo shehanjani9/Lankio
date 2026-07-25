@@ -4,6 +4,7 @@ import { useState, type FormEvent } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Search, Loader2, Gauge, ShieldCheck, Search as SeoIcon, Accessibility } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 type AuditStatus = 'idle' | 'loading' | 'done';
 
@@ -80,7 +81,6 @@ export function AuditSection() {
 
         <form
           onSubmit={handleSubmit}
-          suppressHydrationWarning
           className="glass-panel mt-8 flex flex-col items-stretch gap-3 p-2 sm:flex-row"
         >
           <div className="flex flex-1 items-center gap-2 px-3">
@@ -90,15 +90,14 @@ export function AuditSection() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="yourwebsite.com"
-              suppressHydrationWarning
               className="w-full bg-transparent py-3 text-sm text-[color:var(--text-primary)] placeholder:text-[color:var(--text-muted)] focus:outline-none"
               aria-label="Website URL to audit"
             />
           </div>
-          <button
+
+          <Button
             type="submit"
             disabled={status === 'loading'}
-            suppressHydrationWarning
             className="inline-flex items-center justify-center gap-2 rounded-2xl bg-secondary px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100"
           >
             {status === 'loading' ? (
@@ -109,7 +108,7 @@ export function AuditSection() {
             ) : (
               t('auditButton')
             )}
-          </button>
+          </Button>
         </form>
 
         <AnimatePresence mode="wait">

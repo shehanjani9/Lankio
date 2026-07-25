@@ -1,53 +1,66 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
-import { HeroCubeLoader } from './hero-cube-loader';
-import { HeroCubeStatic } from './hero-cube-static';
-import { SERVICE_FACE_ORDER, type CubeService, type ServiceId } from './hero-cube';
-
-// ssr:false + this only being referenced inside JSX that's conditionally
-// rendered (see `allowCube` below) means the three.js/@react-three bundle is
-// only ever fetched for visitors who actually get to see it move.
-const HeroCube = dynamic(() => import('./hero-cube').then((mod) => mod.HeroCube), {
-  ssr: false,
-  loading: () => <HeroCubeLoader />,
-});
+import { DigitalCreationEngine, DigitalCreationEngineStatic, MODULE_IDS } from './DigitalCreationEngine';
+import type { BrowserCopy, EngineModule, ModuleId } from './DigitalCreationEngine';
 
 export function Hero() {
   const t = useTranslations('Hero');
   const reduceMotion = useReducedMotion();
 
-  // Explicit state (rather than only gating animation via reduceMotion)
-  // because the decision of WHICH component to import has to happen before
-  // render -- disabling animation on an already-loaded 3D component doesn't
-  // avoid downloading it in the first place.
-  const [allowCube, setAllowCube] = useState<boolean | null>(null);
-  const [activeServiceId, setActiveServiceId] = useState<ServiceId | null>(null);
+  // allowMotion drives WHICH engine variant renders. It must be null during
+  // SSR and resolved during hydration -- this is the same guard the old
+  // HeroCube used (there as `allowCube`) to avoid a flash where one variant
+  // briefly appears before being replaced. Since the new engine has no
+  // heavy async chunk to code-split (it's SVG/CSS/Framer Motion, all of
+  // which the rest of this page already loads), there's no loading skeleton
+  // step any more: the static variant IS the deterministic first paint.
+  const [allowMotion, setAllowMotion] = useState<boolean | null>(null);
+  const [activeModuleId, setActiveModuleId] = useState<ModuleId | null>(null);
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setAllowCube(!query.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => setAllowCube(!e.matches);
-    query.addEventListener('change', handleChange);
-    return () => query.removeEventListener('change', handleChange);
+    setAllowMotion(!query.matches);
+    const onChange = (e: MediaQueryListEvent) => setAllowMotion(!e.matches);
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
   }, []);
 
-  // Translated label/glyph for each of the 6 core services. Built once per
-  // locale change; the cube only ever needs to know ids, not translation keys.
-  const services = useMemo<Record<ServiceId, CubeService>>(() => {
-    return SERVICE_FACE_ORDER.reduce((acc, id) => {
-      acc[id] = {
-        label: t(`services.${id}.label`),
-        glyph: t(`services.${id}.glyph`),
-      };
-      return acc;
-    }, {} as Record<ServiceId, CubeService>);
+  // modules map is memoized -- it only changes when the locale changes.
+  const modules = useMemo<Record<ModuleId, EngineModule>>(() => {
+    return MODULE_IDS.reduce(
+      (acc, id) => {
+        acc[id] = {
+          label: t(`engine.modules.${id}.label`),
+          glyph: t(`engine.modules.${id}.glyph`),
+        };
+        return acc;
+      },
+      {} as Record<ModuleId, EngineModule>
+    );
   }, [t]);
+
+  const browserCopy = useMemo<BrowserCopy>(
+    () => ({
+      urlPlaceholder: t('engine.browser.urlPlaceholder'),
+      domain: t('engine.browser.domain'),
+      liveLabel: t('engine.browser.liveLabel'),
+      badges: {
+        performance: t('engine.browser.badges.performance'),
+        accessibility: t('engine.browser.badges.accessibility'),
+        speed: t('engine.browser.badges.speed'),
+      },
+      graphs: {
+        traffic: t('engine.browser.graphs.traffic'),
+        leads: t('engine.browser.graphs.leads'),
+        growth: t('engine.browser.graphs.growth'),
+      },
+    }),
+    [t]
+  );
 
   const container: Variants = {
     hidden: {},
@@ -69,20 +82,17 @@ export function Hero() {
           className="flex flex-col items-center text-center lg:items-start lg:text-left"
         >
           <motion.div variants={item} className="mb-6 h-8">
-            {/* Crossfades between the default brand badge and whichever
-                service the visitor is currently hovering/clicking on the
-                cube, so the cube and the copy read as one interaction. */}
             <AnimatePresence mode="wait">
               <motion.span
-                key={activeServiceId ?? 'default'}
+                key={activeModuleId ?? 'default'}
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: reduceMotion ? 0 : -6 }}
                 transition={{ duration: reduceMotion ? 0 : 0.25 }}
                 className="font-mono-label inline-block rounded-full border border-[color:var(--glass-border)] px-4 py-1.5 text-xs text-[color:var(--text-secondary)]"
               >
-                {activeServiceId
-                  ? t('activeServiceBadge', { service: services[activeServiceId].label })
+                {activeModuleId
+                  ? t('activeServiceBadge', { service: modules[activeModuleId].label })
                   : t('badge')}
               </motion.span>
             </AnimatePresence>
@@ -128,13 +138,17 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.2 }}
           className="mx-auto h-[320px] w-full max-w-md sm:h-[380px] lg:h-[440px]"
+          style={{ minHeight: 320 }}
         >
-          {allowCube === null ? (
-            <HeroCubeLoader />
-          ) : allowCube ? (
-            <HeroCube services={services} onActiveServiceChange={setActiveServiceId} />
+          {allowMotion ? (
+            <DigitalCreationEngine
+              modules={modules}
+              browserCopy={browserCopy}
+              ariaLabel={t('engine.ariaLabel')}
+              onActiveModuleChange={setActiveModuleId}
+            />
           ) : (
-            <HeroCubeStatic services={services} />
+            <DigitalCreationEngineStatic modules={modules} browserCopy={browserCopy} ariaLabel={t('engine.ariaLabel')} />
           )}
         </motion.div>
       </div>

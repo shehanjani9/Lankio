@@ -21,6 +21,40 @@
     "seo": { "label": "SEO", "glyph": "SEO" },
     "aiSystems": { "label": "AI Systems", "glyph": "AI" },
     "growthStrategy": { "label": "Growth Strategy", "glyph": "GROW" }
+  },
+  "engine": {
+    "ariaLabel": "Diagram showing how Lankio turns an idea into a live, growing digital business: idea, strategy, research, content and brand feed into design and development, which is optimized, deployed and tracked as it grows.",
+    "browser": {
+      "urlPlaceholder": "yourbrand.com",
+      "domain": "lankio.it",
+      "liveLabel": "Live",
+      "badges": {
+        "performance": "Performance",
+        "accessibility": "Accessibility",
+        "speed": "Speed"
+      },
+      "graphs": {
+        "traffic": "Traffic",
+        "leads": "Leads",
+        "growth": "Growth"
+      }
+    },
+    "modules": {
+      "idea": { "label": "Idea", "glyph": "IDEA" },
+      "strategy": { "label": "Strategy", "glyph": "STRAT" },
+      "research": { "label": "Research", "glyph": "RSCH" },
+      "content": { "label": "Content", "glyph": "CTNT" },
+      "brand": { "label": "Brand", "glyph": "BRND" },
+      "development": { "label": "Development", "glyph": "DEV" },
+      "seo": { "label": "SEO", "glyph": "SEO" },
+      "analytics": { "label": "Analytics", "glyph": "ANLY" },
+      "performance": { "label": "Performance", "glyph": "PERF" },
+      "marketing": { "label": "Marketing", "glyph": "MKTG" },
+      "deployment": { "label": "Deployment", "glyph": "DPLY" },
+      "hosting": { "label": "Hosting", "glyph": "HOST" },
+      "maintenance": { "label": "Maintenance", "glyph": "MAINT" },
+      "growth": { "label": "Growth", "glyph": "GROW" }
+    }
   }
 },
   "CTA": {

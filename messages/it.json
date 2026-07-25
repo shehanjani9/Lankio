@@ -21,6 +21,40 @@
     "seo": { "label": "SEO", "glyph": "SEO" },
     "aiSystems": { "label": "Sistemi AI", "glyph": "AI" },
     "growthStrategy": { "label": "Strategia di Crescita", "glyph": "GROW" }
+  },
+  "engine": {
+    "ariaLabel": "Diagramma che mostra come Lankio trasforma un'idea in un business digitale attivo e in crescita: idea, strategia, ricerca, contenuti e brand confluiscono in design e sviluppo, che vengono ottimizzati, pubblicati e monitorati mentre crescono.",
+    "browser": {
+      "urlPlaceholder": "tuobrand.com",
+      "domain": "lankio.it",
+      "liveLabel": "Online",
+      "badges": {
+        "performance": "Performance",
+        "accessibility": "Accessibilità",
+        "speed": "Velocità"
+      },
+      "graphs": {
+        "traffic": "Traffico",
+        "leads": "Contatti",
+        "growth": "Crescita"
+      }
+    },
+    "modules": {
+      "idea": { "label": "Idea", "glyph": "IDEA" },
+      "strategy": { "label": "Strategia", "glyph": "STRAT" },
+      "research": { "label": "Ricerca", "glyph": "RSCH" },
+      "content": { "label": "Contenuti", "glyph": "CTNT" },
+      "brand": { "label": "Brand", "glyph": "BRND" },
+      "development": { "label": "Sviluppo", "glyph": "DEV" },
+      "seo": { "label": "SEO", "glyph": "SEO" },
+      "analytics": { "label": "Analytics", "glyph": "ANLY" },
+      "performance": { "label": "Performance", "glyph": "PERF" },
+      "marketing": { "label": "Marketing", "glyph": "MKTG" },
+      "deployment": { "label": "Pubblicazione", "glyph": "DPLY" },
+      "hosting": { "label": "Hosting", "glyph": "HOST" },
+      "maintenance": { "label": "Manutenzione", "glyph": "MAINT" },
+      "growth": { "label": "Crescita", "glyph": "GROW" }
+    }
   }
 },
   "CTA": {

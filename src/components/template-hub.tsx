@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { TEMPLATES, CATEGORIES, type TemplateCategory, type Template } from '@/lib/templates-data';
 import { TemplatePreviewImage } from './template-mockup';
 import { TemplatePreviewModal } from './template-preview-modal';
+import { Button } from '@/components/ui/button';
 
 export function TemplateHub() {
   const t = useTranslations('TemplateHub');
@@ -35,7 +36,7 @@ export function TemplateHub() {
 
         <div className="mt-10 flex flex-wrap justify-center gap-2">
           {CATEGORIES.map(({ key, labelKey }) => (
-            <button
+            <Button
               key={key}
               onClick={() => setActiveCategory(key)}
               className={cn(
@@ -46,7 +47,7 @@ export function TemplateHub() {
               )}
             >
               {t(`categories.${labelKey}`)}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -69,13 +70,13 @@ export function TemplateHub() {
                     category={template.category}
                   />
 
-                  <button
+                  <Button
                     onClick={() => setPreviewTemplate(template)}
                     className="absolute inset-3 flex items-center justify-center gap-2 rounded-lg bg-black/0 text-sm font-medium text-white opacity-0 transition-all duration-200 group-hover:bg-black/50 group-hover:opacity-100 group-hover:backdrop-blur-[1px]"
                   >
                     <Maximize2 size={15} />
                     {t('liveDemo')}
-                  </button>
+                  </Button>
                 </div>
 
                 <div className="p-5 pt-0">
@@ -106,14 +107,15 @@ export function TemplateHub() {
                         €{template.priceFrom.toLocaleString()}
                       </span>
                     </span>
-                    <button
+
+                    <Button
                       onClick={() => setPreviewTemplate(template)}
                       className="flex items-center gap-1 text-sm font-medium text-primary transition-transform group-hover:translate-x-0.5"
                       aria-label={`${t('preview')} ${template.name}`}
                     >
                       {t('preview')}
                       <ArrowUpRight size={14} />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </motion.div>
