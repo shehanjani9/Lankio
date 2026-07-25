@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// 1. Vercel Serverless Timeout එක තත්පර 60 දක්වා වැඩි කිරීම
+export const maxDuration = 60;
+
 const PSI_ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
 
 function normalizeUrl(input: string): string {
@@ -30,17 +33,20 @@ export async function GET(req: NextRequest) {
   params.append('category', 'BEST_PRACTICES');
   if (apiKey) params.set('key', apiKey);
 
+  // 2. Timeout එක තත්පර 9 සිට තත්පර 45 දක්වා වැඩි කළා (PageSpeed audit එකට ප්‍රමාණවත් කාලයක් දීමට)
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 9000);
+  const timeout = setTimeout(() => controller.abort(), 45000);
 
   try {
     const res = await fetch(`${PSI_ENDPOINT}?${params.toString()}`, {
       signal: controller.signal,
+      // PageSpeed API Responses Cache නොකර ලබා ගැනීමට (Next.js Data Cache Fix)
+      cache: 'no-store', 
     });
     clearTimeout(timeout);
 
     if (!res.ok) {
-      // Covers rate limiting (429) and PSI's own analysis failures (400/500)
+      console.error(`PageSpeed API Error Status: ${res.status}`);
       return NextResponse.json({ error: 'PageSpeed request failed' }, { status: 502 });
     }
 
@@ -67,9 +73,16 @@ export async function GET(req: NextRequest) {
         { label: 'Accessibility', score: accessibility },
       ],
     });
-  } catch (error) {
+  } catch (error: any) {
     clearTimeout(timeout);
+    
+    // Detailed Logging for Debugging
+    if (error.name === 'AbortError') {
+      console.error('PageSpeed Request Timed Out after 45s');
+      return NextResponse.json({ error: 'PageSpeed request timed out. Please try again.' }, { status: 504 });
+    }
+
     console.error('PageSpeed fetch failed:', error);
-    return NextResponse.json({ error: 'PageSpeed request failed or timed out' }, { status: 504 });
+    return NextResponse.json({ error: 'PageSpeed request failed' }, { status: 500 });
   }
 }
