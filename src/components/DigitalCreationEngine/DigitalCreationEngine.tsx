@@ -74,13 +74,13 @@ export function DigitalCreationEngine({ modules, browserCopy, ariaLabel, onActiv
   const groupIndex: Record<string, number> = {};
 
   return (
-    <div ref={ref} className="relative h-full w-full overflow-hidden flex items-center justify-center py-2" role="group" aria-label={ariaLabel}>
+    <div ref={ref} className="relative h-full w-full flex items-center justify-center p-2 sm:p-4" role="group" aria-label={ariaLabel}>
       {/* Screen-reader summary of the process */}
       <p className="sr-only">{ariaLabel}</p>
 
       {/* Universal 2D Diagram for Mobile, Tablet & Desktop */}
       <motion.div
-        className="relative h-full w-full min-h-[420px] sm:min-h-[480px] scale-[0.62] xs:scale-[0.75] sm:scale-90 md:scale-100 transition-transform origin-center"
+        className="relative h-full w-full min-h-[460px] sm:min-h-[520px] md:min-h-[580px] max-w-5xl mx-auto scale-[0.62] xs:scale-[0.72] sm:scale-85 md:scale-95 lg:scale-100 transition-transform origin-center"
         style={{ rotateX, rotateY, transformPerspective: 800 }}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
