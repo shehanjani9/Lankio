@@ -426,5 +426,51 @@
     "title": "Pagina Non Trovata",
     "description": "La pagina che stai cercando non esiste o è stata spostata.",
     "backHome": "Torna alla Home"
+  },
+  "Footer": {
+    "brand": {
+      "description": "Aiutiamo le aziende a crescere attraverso esperienze digitali premium.",
+      "tagline": "Sistemi Digitali Creati per Scalare"
+    },
+    "social": {
+      "ariaLabel": "Social media",
+      "facebook": "Seguici su Facebook",
+      "instagram": "Seguici su Instagram",
+      "linkedin": "Seguici su LinkedIn",
+      "github": "Vedi il nostro GitHub"
+    },
+    "columns": {
+      "navigation": {
+        "title": "Navigazione",
+        "home": "Home",
+        "services": "Servizi",
+        "templates": "Template",
+        "pricing": "Prezzi",
+        "about": "Chi Siamo",
+        "contact": "Contatti"
+      },
+      "services": {
+        "title": "Servizi",
+        "webDesign": "Web Design",
+        "graphicDesign": "Graphic Design",
+        "smm": "Social Media Marketing",
+        "branding": "Branding",
+        "seo": "SEO",
+        "aiSolutions": "Soluzioni AI"
+      },
+      "resources": {
+        "title": "Risorse & Legale",
+        "websiteAudit": "Audit del Sito",
+        "templateLibrary": "Libreria Template",
+        "faq": "FAQ",
+        "privacyPolicy": "Privacy Policy",
+        "terms": "Termini & Condizioni",
+        "cookiePolicy": "Cookie Policy"
+      }
+    },
+    "bottom": {
+      "rights": "© {year} Lankio. Tutti i diritti riservati.",
+      "madeWith": "Fatto con ❤️ usando Next.js."
+    }
   }
 }

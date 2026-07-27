@@ -91,3 +91,15 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+/* Scroll-reveal used by the Footer (soft fade + small upward motion) */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

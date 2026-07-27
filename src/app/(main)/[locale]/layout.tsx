@@ -4,6 +4,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google';
 import { routing } from '@/i18n/routing';
+import Footer from '@/components/Footer';
 import '../../globals.css';
 
 const sora = Sora({
@@ -96,6 +97,7 @@ export default async function LocaleLayout({
         */}
         <NextIntlClientProvider key={locale} messages={messages}>
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
