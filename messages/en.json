@@ -470,7 +470,7 @@
     },
     "bottom": {
       "rights": "© {year} Lankio. All rights reserved.",
-      "madeWith": "Made with ❤️ using Next.js."
+      
     }
   }
 }
