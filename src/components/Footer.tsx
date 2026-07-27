@@ -192,7 +192,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-8 text-xs text-[color:var(--text-muted)] sm:flex-row">
           <p>{t('bottom.rights', { year: new Date().getFullYear() })}</p>
-          <p>{t('bottom.madeWith')}</p>
+          
         </div>
       </div>
     </footer>
