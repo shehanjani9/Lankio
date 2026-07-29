@@ -190,20 +190,20 @@ export function ParticleField() {
 export function HeroPortrait({ alt }: { alt: string }) {
   const reduceMotion = useReducedMotion();
 
-  // Floating animation for the ENTIRE container (Circle + Connected Badge)
-  const floatAnimation = reduceMotion ? {} : {
-    animate: {
-      y: [0, -8, 0],
-    },
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  };
+// Floating animation for the ENTIRE container (Circle + Connected Badge)
+const floatAnimation: any = reduceMotion ? {} : {
+  animate: {
+    y: [0, -8, 0],
+  },
+  transition: {
+    duration: 6,
+    repeat: Infinity,
+    ease: 'easeInOut',
+  },
+};
 
   return (
-    <motion.div 
+    <motion.div
       className="relative mx-auto flex items-center justify-center w-full max-w-[500px]"
       {...floatAnimation} // Applying float to entire structure
     >
