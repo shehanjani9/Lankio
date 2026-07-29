@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Code2, Palette, Sparkles, TrendingUp, ArrowRight, Check } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { SERVICE_KEYS, type ServiceKey } from '@/lib/services-data';
 
 const ICONS: Record<ServiceKey, typeof Code2> = {
@@ -11,6 +12,13 @@ const ICONS: Record<ServiceKey, typeof Code2> = {
   ai: Sparkles,
   marketing: TrendingUp,
 };
+
+// Presentation-only hierarchy hint: which of the current four services reads
+// as a complementary add-on rather than a core offering. This is a local,
+// hardcoded list -- NOT sourced from services-data.ts -- so it can be
+// removed/replaced once the service catalog itself is restructured into
+// primary vs. supporting capabilities in a later phase.
+const ADDON_KEYS: ServiceKey[] = ['ai'];
 
 export function ServicesSection() {
   const t = useTranslations('Services');
@@ -35,6 +43,7 @@ export function ServicesSection() {
           {SERVICE_KEYS.map((key, i) => {
             const Icon = ICONS[key];
             const features = t.raw(`items.${key}.features`) as string[];
+            const isAddon = ADDON_KEYS.includes(key);
 
             return (
               <motion.div
@@ -45,13 +54,25 @@ export function ServicesSection() {
                 transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : i * 0.08 }}
                 className="glass-panel glass-panel-interactive flex flex-col p-7"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--accent-primary-soft)]">
-                  <Icon size={22} className="text-primary" />
+                <div
+                  className={cn(
+                    'flex h-12 w-12 items-center justify-center rounded-2xl',
+                    isAddon ? 'bg-[color:var(--glass-border)]' : 'bg-[color:var(--accent-primary-soft)]'
+                  )}
+                >
+                  <Icon size={22} className={isAddon ? 'text-[color:var(--text-muted)]' : 'text-primary'} />
                 </div>
 
-                <h3 className="font-display mt-5 text-xl font-semibold text-[color:var(--text-primary)]">
-                  {t(`items.${key}.title`)}
-                </h3>
+                <div className="mt-5 flex flex-wrap items-center gap-2">
+                  <h3 className="font-display text-xl font-semibold text-[color:var(--text-primary)]">
+                    {t(`items.${key}.title`)}
+                  </h3>
+                  {isAddon && (
+                    <span className="font-mono-label rounded-full border border-[color:var(--glass-border)] px-2.5 py-1 text-[10px] text-[color:var(--text-muted)]">
+                      {t('addonLabel')}
+                    </span>
+                  )}
+                </div>
                 <p className="mt-2 text-sm text-[color:var(--text-secondary)]">
                   {t(`items.${key}.description`)}
                 </p>
@@ -59,7 +80,10 @@ export function ServicesSection() {
                 <ul className="mt-5 flex flex-col gap-2.5">
                   {features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-sm text-[color:var(--text-secondary)]">
-                      <Check size={15} className="mt-0.5 shrink-0 text-primary" />
+                      <Check
+                        size={15}
+                        className={cn('mt-0.5 shrink-0', isAddon ? 'text-[color:var(--text-muted)]' : 'text-primary')}
+                      />
                       {feature}
                     </li>
                   ))}
@@ -68,7 +92,10 @@ export function ServicesSection() {
                 <div className="mt-6 flex items-center gap-5">
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary"
+                    className={cn(
+                      'inline-flex items-center gap-1.5 text-sm font-medium',
+                      isAddon ? 'text-[color:var(--text-secondary)]' : 'text-primary'
+                    )}
                   >
                     {t('learnMore')}
                     <ArrowRight size={14} />

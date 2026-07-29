@@ -155,7 +155,7 @@ export function AuditSection() {
               )}
 
               <a
-                href="#contact"
+                href="/#contact"
                 className="mt-6 inline-flex rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-white transition-transform hover:scale-[1.03]"
               >
                 {t('quoteButton')}

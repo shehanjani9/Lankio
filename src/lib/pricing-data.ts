@@ -1,27 +1,40 @@
 export type BillingMode = 'oneTime' | 'monthly';
 
 export type PricingTier = {
-  key: 'starterDigital' | 'businessGrowth' | 'customEnterprise';
-  oneTimePrice: number | null; // null => custom quote, no fixed number
+  key: 'starterDigital' | 'standardProfessional' | 'businessGrowth' | 'customEnterprise';
+  oneTimePrice: number | null;
   monthlyPrice: number | null;
-  featureCount: number; // how many of the shared feature list this tier includes, in order
+  featureCount: number;
   popular: boolean;
 };
+
+export interface PricingAddon {
+  key: string;
+  price: number;
+  type: 'oneTime' | 'monthly';
+}
 
 export const PRICING_TIERS: PricingTier[] = [
   {
     key: 'starterDigital',
-    oneTimePrice: 1200,
-    monthlyPrice: 150,
-    featureCount: 4,
+    oneTimePrice: 390,
+    monthlyPrice: 49,
+    featureCount: 3,
     popular: false,
   },
   {
-    key: 'businessGrowth',
-    oneTimePrice: 2800,
-    monthlyPrice: 350,
-    featureCount: 7,
+    key: 'standardProfessional',
+    oneTimePrice: 790,
+    monthlyPrice: 89,
+    featureCount: 5,
     popular: true,
+  },
+  {
+    key: 'businessGrowth',
+    oneTimePrice: 1290,
+    monthlyPrice: 149,
+    featureCount: 7,
+    popular: false,
   },
   {
     key: 'customEnterprise',
@@ -32,9 +45,7 @@ export const PRICING_TIERS: PricingTier[] = [
   },
 ];
 
-// Cumulative feature ladder -- each tier includes everything up to its
-// featureCount, so higher tiers visibly contain the lower tiers' features
-// plus more, rather than three unrelated lists.
+// Cumulative feature ladder
 export const PRICING_FEATURE_KEYS = [
   'responsiveWebsite',
   'basicSeo',
@@ -45,4 +56,12 @@ export const PRICING_FEATURE_KEYS = [
   'bookingOrPayments',
   'prioritySupport',
   'dedicatedStrategy',
+];
+
+// Extra Options / Add-ons for clients
+export const PRICING_ADDONS: PricingAddon[] = [
+  { key: 'extraPage', price: 49, type: 'oneTime' },
+  { key: 'extraLanguage', price: 149, type: 'oneTime' },
+  { key: 'speedOptimization', price: 89, type: 'oneTime' },
+  { key: 'monthlyMaintenance', price: 39, type: 'monthly' },
 ];

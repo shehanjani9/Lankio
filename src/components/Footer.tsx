@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { MapPin } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
 /**
@@ -112,6 +113,11 @@ export default function Footer() {
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[color:var(--text-secondary)]">
               {t('brand.description')}
+            </p>
+
+            <p className="mt-3 flex items-center gap-1.5 text-xs text-[color:var(--text-muted)]">
+              <MapPin size={12} />
+              {t('brand.location')}
             </p>
 
             <ul className="mt-6 flex items-center gap-3" aria-label={t('social.ariaLabel')}>

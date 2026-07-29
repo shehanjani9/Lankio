@@ -4,6 +4,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google';
 import { routing } from '@/i18n/routing';
+import { Navbar } from '@/components/navbar'; // 1. මෙතැන Import එක එකතු කරන්න
 import Footer from '@/components/Footer';
 import '../../globals.css';
 
@@ -87,15 +88,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-base text-[color:var(--text-primary)] antialiased">
-        {/*
-          key={locale} forces React to fully unmount and remount this
-          provider (and everything below it) when the locale changes,
-          instead of reconciling in place. Without this, navigating between
-          /en and /it via next-intl's Link can leave the client tree
-          reconciled rather than remounted, which is what was causing the
-          URL to update while the rendered translations stayed stale.
-        */}
         <NextIntlClientProvider key={locale} messages={messages}>
+          <Navbar /> {/* 2. මෙතැන Navbar එක Render කරන්න */}
           {children}
           <Footer />
         </NextIntlClientProvider>
