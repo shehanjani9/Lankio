@@ -1,12 +1,13 @@
 export type BillingMode = 'oneTime' | 'monthly';
+export type PricingCategory = 'web' | 'content';
 
-export type PricingTier = {
-  key: 'starterDigital' | 'standardProfessional' | 'businessGrowth' | 'customEnterprise';
+export interface PricingTier {
+  key: string;
   oneTimePrice: number | null;
   monthlyPrice: number | null;
+  popular?: boolean;
   featureCount: number;
-  popular: boolean;
-};
+}
 
 export interface PricingAddon {
   key: string;
@@ -14,38 +15,42 @@ export interface PricingAddon {
   type: 'oneTime' | 'monthly';
 }
 
+export interface ContentPackage {
+  key: string;
+  startingPrice: number;
+  priceUnit: 'perVideo' | 'perMonth' | 'perProject';
+  popular?: boolean;
+  deliverablesKey: string[];
+}
+
 export const PRICING_TIERS: PricingTier[] = [
   {
     key: 'starterDigital',
-    oneTimePrice: 390,
+    oneTimePrice: 490,
     monthlyPrice: 49,
-    featureCount: 3,
-    popular: false,
+    featureCount: 4,
   },
   {
     key: 'standardProfessional',
-    oneTimePrice: 790,
+    oneTimePrice: 890,
     monthlyPrice: 89,
-    featureCount: 5,
     popular: true,
+    featureCount: 6,
   },
   {
     key: 'businessGrowth',
-    oneTimePrice: 1290,
+    oneTimePrice: 1490,
     monthlyPrice: 149,
-    featureCount: 7,
-    popular: false,
+    featureCount: 8,
   },
   {
     key: 'customEnterprise',
     oneTimePrice: null,
     monthlyPrice: null,
     featureCount: 9,
-    popular: false,
   },
 ];
 
-// Cumulative feature ladder
 export const PRICING_FEATURE_KEYS = [
   'responsiveWebsite',
   'basicSeo',
@@ -58,10 +63,37 @@ export const PRICING_FEATURE_KEYS = [
   'dedicatedStrategy',
 ];
 
-// Extra Options / Add-ons for clients
 export const PRICING_ADDONS: PricingAddon[] = [
-  { key: 'extraPage', price: 49, type: 'oneTime' },
-  { key: 'extraLanguage', price: 149, type: 'oneTime' },
-  { key: 'speedOptimization', price: 89, type: 'oneTime' },
-  { key: 'monthlyMaintenance', price: 39, type: 'monthly' },
+  { key: 'extraPage', price: 90, type: 'oneTime' },
+  { key: 'extraLanguage', price: 150, type: 'oneTime' },
+  { key: 'speedOptimization', price: 120, type: 'oneTime' },
+  { key: 'monthlyMaintenance', price: 49, type: 'monthly' },
+];
+
+export const CONTENT_PACKAGES: ContentPackage[] = [
+  {
+    key: 'socialShorts',
+    startingPrice: 45,
+    priceUnit: 'perVideo',
+    deliverablesKey: ['shortsEditing', 'captionsSubtitles', 'soundDesign', 'fastTurnaround'],
+  },
+  {
+    key: 'motionGraphics',
+    startingPrice: 120,
+    priceUnit: 'perVideo',
+    deliverablesKey: ['logoAnimation', 'custom2d3dMotion', 'brandAssets', 'hdExport'],
+  },
+  {
+    key: 'promoVideo',
+    startingPrice: 350,
+    priceUnit: 'perProject',
+    popular: true,
+    deliverablesKey: ['fullScriptAndConcept', 'cinematicColorGrading', 'voiceoverIntegration', 'multiFormatExport'],
+  },
+  {
+    key: 'socialMonthlyBundle',
+    startingPrice: 590,
+    priceUnit: 'perMonth',
+    deliverablesKey: ['eightReelsShorts', 'twoPromoVideos', 'contentCalendarStrategy', 'monthlyAnalyticsReport'],
+  },
 ];

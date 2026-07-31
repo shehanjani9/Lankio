@@ -5,33 +5,33 @@
     "templates": "Template Hub",
     "caseStudies": "Casi di Studio",
     "pricing": "Prezzi",
-    "about": "Chi Sono",
+    "about": "Chi Siamo",
     "contact": "Contatti",
-    "bookCall": "Parliamo del Progetto"
+    "bookCall": "Parliamone"
   },
   "Hero": {
-    "badge": "Da Idee Sparse a Crescita Strutturata",
-    "activeServiceBadge": "Focalizzato su: {service}",
-    "headline": "Sviluppo siti web ad alte prestazioni e strumenti IA su misura per far crescere il tuo business.",
-    "tagline": "Progetto e realizzo siti web veloci, moderni e brand identity digitali per aziende che puntano a risultati concreti.",
+    "badge": "Qualità da Agenzia • Velocità da Freelance • Prezzi Equi",
+    "activeServiceBadge": "Focus su: {service}",
+    "headline": "Soluzioni Digitali e Web Premium Progettate per Scalare.",
+    "tagline": "Ottieni siti web ad alte prestazioni, branding dinamico e strumenti IA su misura — veloci, trasparenti e realizzati per una reale crescita aziendale.",
     "primaryCta": "Richiedi Audit Gratuito",
     "secondaryCta": "Esplora i Lavori",
-    "microTrust": "Consulenza gratuita • Risposta garantita entro 24 ore",
-    "portraitAlt": "Ritratto di Shehan, fondatore e lead developer di Lankio",
+    "microTrust": "A partire da €49/mese • Risposta garantita entro 24 ore",
+    "portraitAlt": "Ritratto di Shehan, fondatore e sviluppatore principale di Lankio",
     "services": {
       "webDesign": { "label": "Web Design", "glyph": "WEB" },
-      "graphicDesign": { "label": "Graphic Design", "glyph": "GFX" },
+      "graphicDesign": { "label": "Grafica Pubblicitaria", "glyph": "GFX" },
       "smm": { "label": "Social Media", "glyph": "SMM" },
       "seo": { "label": "SEO", "glyph": "SEO" },
-      "aiSystems": { "label": "Sistemi IA", "glyph": "IA" },
+      "aiSystems": { "label": "Sistemi IA", "glyph": "AI" },
       "growthStrategy": { "label": "Strategia di Crescita", "glyph": "GROW" }
     },
     "engine": {
-      "ariaLabel": "Diagramma che illustra come Lankio trasforma un'idea in un business digitale operativo e in crescita: idea, strategia, ricerca, contenuti e brand confluiscono in design e sviluppo, ottimizzati, distribuiti e monitorati durante la crescita.",
+      "ariaLabel": "Diagramma che illustra come Lankio trasforma un'idea in un'attività digitale operativa e in crescita: idea, strategia, ricerca, contenuti e brand confluiscono nel design e nello sviluppo, ottimizzati, distribuiti e monitorati attraverso la crescita.",
       "browser": {
-        "urlPlaceholder": "iltuobrand.it",
+        "urlPlaceholder": "tuobrand.com",
         "domain": "lankio.it",
-        "liveLabel": "Online",
+        "liveLabel": "Sistema Attivo",
         "badges": {
           "performance": "Prestazioni",
           "accessibility": "Accessibilità",
@@ -51,7 +51,7 @@
         "brand": { "label": "Brand", "glyph": "BRND" },
         "development": { "label": "Sviluppo", "glyph": "DEV" },
         "seo": { "label": "SEO", "glyph": "SEO" },
-        "analytics": { "label": "Analytics", "glyph": "ANLY" },
+        "analytics": { "label": "Analitica", "glyph": "ANLY" },
         "performance": { "label": "Prestazioni", "glyph": "PERF" },
         "marketing": { "label": "Marketing", "glyph": "MKTG" },
         "deployment": { "label": "Deployment", "glyph": "DPLY" },
@@ -62,62 +62,62 @@
     }
   },
   "CTA": {
-    "auditTitle": "Scopri esattamente dove il tuo sito sta perdendo visitatori.",
+    "auditTitle": "Scopri esattamente dove il tuo sito sta perdendo potenziali clienti.",
     "auditButton": "Avvia Audit Web Gratuito",
     "quoteButton": "Inizia il Tuo Progetto"
   },
   "AuditBanner": {
-    "title": "Vuoi un Audit SEO & Velocità gratuito per il tuo sito?",
-    "subtitle": "Ricevi un'analisi dettagliata in video o PDF realizzata direttamente da me — niente bot o report generici.",
+    "title": "Vuoi un Audit SEO e Velocità gratuito per il tuo sito?",
+    "subtitle": "Ricevi un'analisi dettagliata in formato video o PDF realizzata direttamente da me — niente bot, niente report generici.",
     "cta": "Richiedi Audit Gratuito"
   },
   "Portfolio": {
     "eyebrow": "Progetti Selezionati",
-    "title": "Lavori Selezionati & Portfolio",
-    "subtitle": "Una panoramica dei progetti recenti che ho sviluppato — lavori reali e attualmente online.",
-    "viewLive": "Vedi il Sito",
-    "templateHubLink": "Cerchi una base pronta all'uso? Sfoglia il Template Hub →",
+    "title": "Portfolio e Lavori in Evidenza",
+    "subtitle": "Una panoramica dei sistemi recenti che ho sviluppato — progetti reali e attivi in produzione.",
+    "viewLive": "Vedi Sito Online",
+    "templateHubLink": "Cerchi una soluzione pronta al lancio? Esplora il Template Hub →",
     "categories": {
-      "aiWebApp": "IA & Web Application",
+      "aiWebApp": "Applicazione Web & IA",
       "customDev": "Sviluppo Web Su Misura",
-      "corePlatform": "Piattaforma Core & Architettura",
+      "corePlatform": "Piattaforma Principale & Architettura",
       "tourism": "Turismo & Natura",
       "business": "Business & SaaS",
-      "hospitality": "Ospitalità & Ristorazione"
+      "hospitality": "Ristorazione & Ospitalità"
     },
     "projects": {
       "aiDocumentAnalyzer": {
-        "description": "Una piattaforma automatizzata basata su IA per l'analisi, l'estrazione e il riassunto di documenti complessi con insight immediati."
+        "description": "Una piattaforma automatizzata basata su IA progettata per analizzare, estrarre e sintetizzare documenti complessi in informazioni operative."
       },
       "wildscapeSriLanka": {
-        "description": "Una piattaforma web su misura ad alte prestazioni realizzata per un tour operator specializzato in fotografia naturalistica e di birdwatching, con itinerari immersivi e flussi di prenotazione personalizzati."
+        "description": "Una piattaforma web ad alte prestazioni realizzata per un tour operator di turismo ecologico e birdwatching, con itinerari immersivi e flussi di prenotazione."
       },
       "wildscape": {
-        "description": "Una piattaforma web su misura ad alte prestazioni realizzata per un tour operator specializzato in fotografia naturalistica e di birdwatching, con itinerari immersivi e flussi di prenotazione personalizzati."
+        "description": "Una piattaforma web ad alte prestazioni realizzata per un tour operator di turismo ecologico e birdwatching, con itinerari immersivi e flussi di prenotazione."
       },
       "lankioPlatform": {
-        "description": "Piattaforma per studio di ingegneria digitale multilingue ultraveloce con architetture a componenti personalizzate, localizzazione i18n dinamica e strumenti di audit automatizzati."
+        "description": "Piattaforma per agenzia di ingegneria digitale ultra-veloce con architetture a componenti personalizzate, localizzazione dinamica i18n e strumenti di audit automatizzati."
       },
       "demo-template-1": {
-        "description": "Esperienza landing page e automazione del flusso di lavoro aziendale ad alta conversione."
+        "description": "Automazione del flusso di lavoro aziendale ad alta conversione ed esperienza landing personalizzata."
       },
       "demo-template-2": {
-        "description": "Piattaforma moderna per l'ospitalità e la prenotazione progettata per un'esperienza utente fluida."
+        "description": "Moderna piattaforma di ospitalità e prenotazione progettata per un'esperienza utente fluida."
       }
     }
   },
   "TemplateHub": {
     "eyebrow": "Template Hub",
     "title": "Scegli un punto di partenza, non una pagina bianca.",
-    "subtitle": "Ogni template è pronto per la produzione, testato nelle prestazioni e progettato per essere personalizzato in base al tuo brand.",
-    "weeks": "sett.",
+    "subtitle": "Ogni template è pronto per la produzione, testato nelle prestazioni e costruito per essere personalizzato attorno al tuo brand.",
+    "weeks": "sett",
     "from": "Da",
     "preview": "Anteprima",
-    "liveDemo": "Demo Live",
+    "liveDemo": "Demo dal Vivo",
     "close": "Chiudi",
-    "openInNewTab": "Apri in una Nuova Scheda",
-    "loadingDemo": "Caricamento anteprima live...",
-    "loadTimeoutMessage": "L'anteprima sta impiegando più tempo del previsto o il sito potrebbe non consentire l'incorporamento.",
+    "openInNewTab": "Apri in una nuova scheda",
+    "loadingDemo": "Caricamento anteprima demo in corso...",
+    "loadTimeoutMessage": "L'anteprima dal vivo sta impiegando più tempo del previsto oppure il sito di destinazione non consente l'incorporamento.",
     "viewports": {
       "desktop": "Desktop",
       "tablet": "Tablet",
@@ -129,135 +129,135 @@
       "saas": "SaaS",
       "portfolio": "Portfolio",
       "restaurantHotel": "Ristoranti & Hotel",
-      "healthcare": "Salute & Sanità",
+      "healthcare": "Sanità & Salute",
       "realEstate": "Immobiliare",
-      "education": "Formazione & Education",
-      "transportation": "Trasporti & NCC",
+      "education": "Formazione",
+      "transportation": "Trasporti & Autista Privato",
       "fashion": "Moda & Retail",
-      "beauty": "Beauty & Wellness",
+      "beauty": "Bellezza & Benessere",
       "construction": "Edilizia & Ristrutturazioni",
       "tourism": "Turismo & Ospitalità",
       "professionalServices": "Servizi Professionali",
-      "healthFitness": "Fitness & Sport"
+      "healthFitness": "Fitness & Salute"
     },
     "templates": {
       "ncc": {
-        "title": "Autoblu — Noleggio Con Conducente & Transfer Aeroportuali",
-        "description": "Un template orientato alle prenotazioni per servizi NCC e transfer, con preventivi in tempo reale per tratta e classe di veicolo.",
-        "badges": ["Transfer aeroporto", "Showcase flotta", "Preventivo istantaneo"],
+        "title": "Autoblu — Servizio Noleggio Con Conducente & Transfer Aeroporto",
+        "description": "Un layout focalizzato sulle prenotazioni per servizi NCC e trasferimenti aeroportuali con stime dei percorsi in tempo reale e selezione della flotta.",
+        "badges": ["Transfer Aeroporto", "Vetrina Flotta", "Preventivo Immediato"],
         "features": [
-          "Calcolatore di prezzo basato sul percorso",
-          "Confronto classi di veicoli",
-          "Messaggistica per monitoraggio voli",
-          "Call-to-action per prenotazioni via telefono / WhatsApp"
+          "Calcolatore di stima prezzo basato sul percorso",
+          "Confronto dettagliato per classe di veicolo",
+          "Note cliente per tracciamento voli",
+          "Pulsanti di prenotazione via Chiamata / WhatsApp"
         ]
       },
       "fashion": {
-        "title": "Atelier — Boutique & Su Misura",
-        "description": "Un template lookbook editoriale per boutique di moda e sartorie, completo di collezioni, guida alle taglie e prenotazione appuntamenti.",
-        "badges": ["Lookbook", "Guida alle taglie", "Su misura"],
+        "title": "Atelier — Boutique di Moda & Sartoria",
+        "description": "Un layout editoriale stile lookbook per marchi di abbigliamento di alta gamma e abiti su misura, completo di collezioni, guide alle taglie e prenotazione prove.",
+        "badges": ["Lookbook", "Guida Taglie", "Prova Sartoriale"],
         "features": [
-          "Collezioni filtrabili",
-          "Guida alle taglie interattiva",
-          "Richiesta di appuntamenti",
-          "Pagine prodotto in stile editoriale"
+          "Collezioni stagionali filtrabili",
+          "Guida interattiva alle taglie e consulenza vestibilità",
+          "Richiesta di appuntamento per prova privata",
+          "Pagine di dettaglio prodotto con stile editoriale"
         ]
       },
       "pizzeria": {
-        "title": "Forno — Pizzeria & Trattoria",
-        "description": "Un template focalizzato sul menu per pizzerie e ristoranti, con menu a schede, tag dietetici e prenotazione tavoli.",
-        "badges": ["Menu digitale", "Tag alimentari", "Prenotazione tavolo"],
+        "title": "Forno — Pizzeria & Trattoria Italiana",
+        "description": "Un template incentrato sul menu, realizzato per pizzerie e ristoranti tradizionali, con menu tabellari, etichette dietetiche e prenotazione tavoli.",
+        "badges": ["Menu Digitale", "Etichette Dietetiche", "Prenotazione Tavolo"],
         "features": [
-          "Menu a schede (classiche / specialità / dolci)",
-          "Tag per opzioni vegane e senza glutine",
-          "Modulo di prenotazione",
-          "Call-to-action per asporto e consegne"
+          "Sezioni menu a schede (Classiche / Gourmet / Dolci)",
+          "Indicatori per opzioni senza glutine e vegane",
+          "Flusso di invio prenotazione tavolo",
+          "Pulsanti rapidi per ordinazioni d'asporto e consegne"
         ]
       },
       "beauty": {
-        "title": "Lumen — Salone di Bellezza & Spa",
-        "description": "Un template incentrato sui trattamenti per saloni e centri benessere, con menu dei servizi, scelta dell'operatore e prenotazione online.",
-        "badges": ["Menu trattamenti", "Scelta operatore", "Galleria Prima & Dopo"],
+        "title": "Lumen — Salone di Bellezza & Centro Benessere",
+        "description": "Un layout incentrato sui trattamenti, pensato per centri estetici, parrucchieri e spa, con menu servizi, scelta dello specialista e prenotazione online.",
+        "badges": ["Menu Trattamenti", "Scelta Staff", "Prima & Dopo"],
         "features": [
-          "Trattamenti filtrabili per categoria",
-          "Selezione dello staff / operatore",
-          "Visualizzazione di durata e prezzo",
-          "Flusso di prenotazione guidato"
+          "Menu trattamenti filtrabili per categoria",
+          "Selezione dello staff / specialista",
+          "Visualizzazione trasparenti di durate e prezzi",
+          "Procedura guidata di richiesta prenotazione online"
         ]
       },
       "edilizia": {
-        "title": "Fondamenta — Ristrutturazioni & Costruzioni",
-        "description": "Un template incentrato sul portfolio per imprese edili e di ristrutturazione, con gallerie progetti e richieste di preventivo.",
-        "badges": ["Portfolio progetti", "Badge di garanzia", "Richiesta preventivo"],
+        "title": "Fondamenta — Impresa Edile & Ristrutturazioni",
+        "description": "Un template incentrato sui progetti realizzati, progettato per imprese edili e team di ristrutturazione, con galleria lavori e richieste di preventivo.",
+        "badges": ["Vetrina Progetti", "Certificazioni", "Preventivatore"],
         "features": [
-          "Galleria progetti Prima / Dopo",
-          "Certificazioni e attestati di fiducia",
-          "Modulo per preventivo gratuito",
-          "Mappa delle zone coperte dal servizio"
+          "Galleria sfogliabile con transizioni Prima / Dopo",
+          "Badge di fiducia per licenze e coperture assicurative",
+          "Modulo di richiesta preventivo gratuito",
+          "Mappa e lista delle zone servite"
         ]
       },
       "tourism": {
         "title": "Terra & Mare — Turismo Boutique & Eco-Resort",
-        "description": "Un template turistico ad alta conversione con un motore di prenotazione multi-step completo, attività stagionali e guida al periodo migliore per la visita.",
-        "badges": ["Motore di prenotazione multi-step", "Attività stagionali", "Calcolatore prezzi live"],
+        "description": "Un template ad alta conversione per il settore viaggi, dotato di un motore di prenotazione multi-step, attività stagionali e indicazioni di viaggio interattive.",
+        "badges": ["Booking Engine Multi-Step", "Attività Stagionali", "Calcolatore Prezzo dal Vivo"],
         "features": [
-          "Flusso di prenotazione in 4 passaggi: esperienza, date e ospiti, extra, conferma",
-          "Calcolo del prezzo totale in tempo reale in euro",
-          "Vetrina dei tour e delle attività stagionali",
-          "Schede interattive su meteo e stagionalità"
+          "Flusso di prenotazione guidato in 4 passaggi: esperienza, date e ospiti, extra, riepilogo",
+          "Calcolatore del costo totale in tempo reale in EUR",
+          "Vetrina curata con le esperienze e tour principali",
+          "Schede interattive con consigli di viaggio stagionali"
         ]
       },
       "legal": {
-        "title": "Bellini & Associati — Studio Legale & Consulenza",
-        "description": "Un template legale altamente professionale con selettore delle aree di attività, modulo di consulenza e checklist per la valutazione del caso.",
-        "badges": ["Selettore aree legali", "Modulo consulenza", "Badge professionali"],
+        "title": "Bellini & Partners — Studio Legale & Consulenza Societaria",
+        "description": "Un layout legale di alto profilo con selettore delle aree di attività, pianificazione consulenze e checklist per la valutazione del caso.",
+        "badges": ["Selettore Aree Legali", "Prenotazione Consulenza", "Badge di Affidabilità"],
         "features": [
           "Selettore interattivo delle aree di attività con dettagli dedicati",
-          "Modulo di richiesta consulenza con descrizione del caso e preferenza avvocato",
-          "Checklist iniziale di valutazione del caso (accordion)",
-          "Badge di iscrizione all'albo ed esperienza professionale"
+          "Modulo di prenotazione consulenza con descrizione del caso e avvocato preferito",
+          "Checklist iniziale di valutazione del caso (formato accordion)",
+          "Badge per iscrizione all'albo ed esperienza professionale"
         ]
       },
       "fitness": {
         "title": "Forza — Club Fitness Moderno & Palestra",
-        "description": "Un template ad alta energia per il fitness con orario corsi filtrabile, calcolatore IMC/calorie e flusso di iscrizione per la prova gratuita.",
-        "badges": ["Filtro orario corsi", "Calcolatore IMC", "Prova gratuita"],
+        "description": "Un template dinamico per palestre e centri fitness con orario corsi filtrabile, calcolatore IMC/calorie e funnel per la richiesta del pass di prova.",
+        "badges": ["Filtro Orario Corsi", "Calcolatore IMC", "Pass di Prova Gratuito"],
         "features": [
           "Orario corsi filtrabile per giorno e tipo di allenamento",
-          "Calcolatore di IMC e fabbisogno calorico giornaliero",
-          "Iscrizione alla prova gratuita di 1 giorno con scelta della fascia oraria",
-          "Indicazione del trainer e dei posti disponibili per sessione"
+          "Calcolatore interattivo di IMC e fabbisogno calorico giornaliero",
+          "Modulo per richiedere un pass di prova gratuito di 1 giorno con orario preferito",
+          "Schede dettagliate degli personal trainer e indicatori di capienza corsi"
         ]
       }
     }
   },
   "Planner": {
-    "eyebrow": "Project Planner",
+    "eyebrow": "Configuratore Progetto",
     "title": "Configura il tuo progetto, scopri il prezzo.",
     "steps": {
       "businessType": "Qual è il tuo settore?",
       "pages": "Di quante pagine hai bisogno?",
       "features": "Hai bisogno di queste funzionalità?",
-      "timeline": "Scegli i tempi di consegna"
+      "timeline": "Seleziona i tempi di consegna"
     },
     "businessTypes": {
-      "restaurant": "Ristorazione",
-      "lawFirm": "Studio Legale",
-      "photographer": "Fotografia",
-      "medical": "Settore Medico",
-      "startup": "Startup",
+      "restaurant": "Ristorazione / Ospitalità",
+      "lawFirm": "Studio Legale / Servizi Giuridici",
+      "photographer": "Fotografia / Settore Creativo",
+      "medical": "Settore Medico & Sanitario",
+      "startup": "Startup / SaaS",
       "ecommerce": "E-commerce"
     },
     "pages": "pagine",
     "features": {
-      "booking": "Prenotazioni",
-      "payments": "Pagamenti",
-      "multiLanguage": "Multilingua",
-      "customBranding": "Brand Identity Su Misura"
+      "booking": "Prenotazioni Online",
+      "payments": "Integrazione Pagamenti",
+      "multiLanguage": "Supporto Multilingua",
+      "customBranding": "Identità visiva di Marca Personalizzata"
     },
     "timeline": {
-      "standard": "Standard",
-      "rush": "Prioritaria / Urgente"
+      "standard": "Consegna Standard",
+      "rush": "Consegna Prioritaria / Urgente"
     },
     "estimate": "Costo Stimato",
     "delivery": "Consegna",
@@ -272,27 +272,27 @@
     "next": "Avanti"
   },
   "Contact": {
-    "eyebrow": "Contatti",
-    "title": "Raccontami il tuo progetto.",
-    "subtitle": "Condividi alcuni dettagli e ti ricontatterò entro 24 ore.",
-    "inquiringAbout": "Richiesta per: {template}",
-    "clearTemplate": "Rimuovi template selezionato",
+    "eyebrow": "Contattami",
+    "title": "Realizziamo il tuo progetto.",
+    "subtitle": "Condividi alcuni dettagli su ciò di cui hai bisogno e ti risponderò entro 24 ore.",
+    "inquiringAbout": "Richiesta relativa a: {template}",
+    "clearTemplate": "Rimuovi selezione template",
     "selectPlaceholder": "Seleziona un'opzione",
     "fields": {
       "name": "Nome e Cognome",
-      "company": "Azienda (opzionale)",
-      "email": "Email",
+      "company": "Nome Azienda (opzionale)",
+      "email": "Indirizzo Email",
       "phone": "Telefono / WhatsApp",
       "serviceType": "Tipo di Servizio",
-      "budget": "Budget Orientativo",
+      "budget": "Budget Stimato",
       "preferredLanguage": "Lingua Preferita",
-      "message": "Messaggio"
+      "message": "Dettagli del Progetto"
     },
     "services": {
-      "templateCustomization": "Personalizzazione & Messa Online Template",
+      "templateCustomization": "Personalizzazione & Lancio Template",
       "customDevelopment": "Sviluppo Web Su Misura",
       "seoBranding": "SEO & Digital Branding",
-      "other": "Altro"
+      "other": "Altra Richiesta"
     },
     "budgets": {
       "range500to1000": "€500 - €1.000",
@@ -304,218 +304,279 @@
       "it": "Italiano"
     },
     "errors": {
-      "name": "Inserisci il tuo nome.",
+      "name": "Inserisci il tuo nome completo.",
       "email": "Inserisci un indirizzo email valido.",
-      "message": "Aggiungi un breve messaggio.",
+      "message": "Inserisci un breve messaggio.",
       "serviceType": "Seleziona un tipo di servizio.",
       "budget": "Seleziona una fascia di budget.",
       "general": "Si è verificato un errore. Riprova."
     },
     "submit": "Invia Messaggio",
     "sending": "Invio in corso...",
-    "successTitle": "Messaggio inviato.",
-    "successBody": "Grazie per avermi contattato — ti risponderò entro 24 ore.",
-    "directEmailNote": "Preferisci l'email diretta? Scrivici a info@lankio.it"
+    "successTitle": "Messaggio Inviato.",
+    "successBody": "Grazie per avermi contattato — risponderò al tuo messaggio entro 24 ore.",
+    "directEmailNote": "Preferisci scrivermi direttamente? Scrivi a info@lankio.it"
   },
   "CaseStudies": {
     "eyebrow": "Casi di Studio",
-    "title": "Risultati concreti, non solo immagini.",
+    "title": "Risultati aziendali reali, non solo estetica.",
     "subtitle": "Ogni progetto parte da un problema reale — ecco come ne abbiamo risolti alcuni.",
     "industries": {
-      "restaurant": "Ristorazione",
-      "lawFirm": "Studio Legale",
-      "medical": "Settore Medico"
+      "restaurant": "Ospitalità",
+      "lawFirm": "Servizi Legali",
+      "medical": "Sanità"
     },
     "caseStudies": {
       "case01": {
-        "problem": "Le prenotazioni online erano quasi inesistenti — la maggior parte arrivava ancora via telefono.",
-        "solution": "Sito riprogettato attorno a una homepage incentrata sulla prenotazione con disponibilità tavoli in tempo reale.",
-        "resultLabel": "di incremento nelle prenotazioni online"
+        "problem": "Le prenotazioni di tavoli online erano trascurabili — la maggior parte delle richieste arrivava ancora tramite telefonate durante le ore di punta.",
+        "solution": "Riprogettazione del sito attorno a una homepage incentrata sulla prenotazione con disponibilità tavoli in tempo reale.",
+        "resultLabel": "di aumento nelle prenotazioni online dirette"
       },
       "case02": {
-        "problem": "Il sito esistente aveva un aspetto datato, compromettendo la credibilità con i clienti ad alto valore.",
-        "solution": "Nuovo design incentrato sui casi studio e una navigazione più chiara tra le aree di attività.",
-        "resultLabel": "di incremento nelle richieste di consulenza"
+        "problem": "Un sito web obsoleto creava diffidenza nei confronti dei potenziali clienti aziendali ad alto valore.",
+        "solution": "Nuovo design incentrato su casi di studio, aree di attività chiare e profili diretti dei professionisti.",
+        "resultLabel": "di aumento nelle richieste di consulenza"
       },
       "case03": {
-        "problem": "I pazienti abbandonavano il modulo di prenotazione a causa dei troppi passaggi.",
-        "solution": "Semplificato in un flusso di richiesta a passaggio unico con conferma immediata.",
-        "resultLabel": "di incremento nei moduli di appuntamento completati"
+        "problem": "I pazienti abbandonavano frequentemente i moduli di prenotazione a causa di passaggi lunghi e complessi.",
+        "solution": "Semplificazione in un flusso di richiesta a passaggio unico con conferma immediata.",
+        "resultLabel": "di aumento nei moduli di appuntamento completati"
       }
     }
   },
   "Metadata": {
-    "title": "Lankio — Shehan Janith Hettiarachchi, Full-Stack Developer & Soluzioni IA",
-    "description": "Progetto e sviluppo siti web di alto livello e ne dimostro i risultati con dati reali — audit, casi di studio e prezzi trasparenti."
+    "title": "Lankio — Shehan Janith Hettiarachchi, Full-Stack Developer & AI Specialist",
+    "description": "Progetto e sviluppo siti web ad alte prestazioni dimostrando i risultati con dati reali — audit, casi di studio e prezzi trasparenti."
   },
   "Services": {
     "eyebrow": "Cosa Faccio",
     "title": "Design, sviluppo e branding — fatti come si deve.",
-    "subtitle": "Il mio obiettivo principale è realizzare siti web veloci e moderni e la visual identity che li valorizza. Tutto il resto è in funzione di questo.",
-    "learnMore": "Scopri di più",
+    "subtitle": "Il mio obiettivo principale è realizzare siti web veloci e moderni, insieme ai sistemi visivi che li valorizzano. Tutto il resto è al servizio di questa missione.",
+    "learnMore": "Scopri di Più",
     "getStarted": "Inizia Ora",
-    "addonLabel": "Add-on opzionale",
+    "addonLabel": "Add-on Opzionale",
     "items": {
       "webDev": {
         "title": "Sviluppo Web Full-Stack",
-        "description": "Siti e applicazioni realizzati in Next.js o WordPress, ottimizzati per velocità, SEO e facilità di manutenzione nel tempo.",
+        "description": "Siti web su misura in Next.js o WordPress realizzati per offrire massime prestazioni, SEO e facilità di manutenzione nel tempo.",
         "features": [
-          "Sviluppo Next.js o WordPress su misura",
+          "Sviluppo personalizzato in Next.js o WordPress",
           "Ottimizzazione dei Core Web Vitals",
-          "Configurazione CMS per gestire i contenuti in autonomia",
-          "Supporto tecnico continuativo"
+          "Configurazione CMS per una facile gestione dei contenuti",
+          "Manutenzione tecnica continuativa"
         ]
       },
       "branding": {
         "title": "Digital Branding & Produzione Media",
-        "description": "Identità visiva e contenuti video/media studiati per dare al tuo business la credibilità e l'immagine che merita.",
+        "description": "Identità visive e risorse multimediali create per dare alla tua azienda la professionalità che merita.",
         "features": [
           "Logo e sistemi di identità visiva",
-          "Linee guida del brand (Brand Book)",
+          "Linee guida del brand e kit di risorse visive",
           "Video promozionali e di prodotto",
-          "Direzione e produzione fotografica"
+          "Direzione e post-produzione fotografica"
         ]
       },
       "ai": {
         "title": "Soluzioni IA & Automazione dei Processi",
-        "description": "Per i clienti che vogliono di più, integro automazioni pratiche direttamente nel sito web per eliminare le attività manuali nella gestione dei lead, reportistica e operazioni.",
+        "description": "Per i clienti che vogliono di più, integro automazioni pratiche direttamente nel sito per ridurre il lavoro manuale nella gestione dei contatti e nelle operazioni.",
         "features": [
-          "Gestione lead e automazione CRM",
-          "Assistenza clienti con flussi IA dedicati",
+          "Automazione CRM e gestione dei lead",
+          "Assistenza clienti personalizzata basata su IA",
           "Automazione della reportistica interna",
           "Integrazioni API personalizzate"
         ]
       },
       "marketing": {
         "title": "Digital Marketing & SEO",
-        "description": "Strategie organiche e a pagamento modellate attorno a traffico e conversioni misurabili, non metriche di vanità.",
+        "description": "Strategie di marketing organico e a pagamento focalizzate su traffico reale e conversioni, non su metriche di vanità.",
         "features": [
           "SEO tecnica e on-page",
-          "Strategia dei contenuti",
-          "Gestione campagne pubblicitarie",
+          "Pianificazione e strategia dei contenuti",
+          "Configurazione e gestione campagne pubblicitarie",
           "Reportistica mensile sulle prestazioni"
         ]
       }
     }
   },
 "Pricing": {
-  "eyebrow": "PREZZI",
-  "title": "Prezzi Trasparenti per Ogni Esigenza",
-  "subtitle": "Scegli il piano più adatto alla tua attività o contattaci per una soluzione personalizzata.",
-  "mostPopular": "Più Popolare",
-  "customQuote": "Preventivo Personalizzato",
-  "perMonth": "/mese",
-  "getStarted": "Inizia Ora",
-  "contactSales": "Contattaci",
-  "addonsTitle": "Hai Bisogno di Qualcosa in Più?",
-  "addonsSubtitle": "Personalizza qualsiasi pacchetto con opzioni aggiuntive",
-  "billing": {
-    "oneTime": "Pagamento Unico",
-    "monthly": "Canone Mensile"
-  },
-  "tiers": {
-    "starterDigital": {
-      "name": "Starter Digital",
-      "description": "Presenza online essenziale per le nuove attività."
+    "eyebrow": "PREZZI",
+    "title": "Prezzi Trasparenti per Ogni Fase",
+    "subtitle": "Scegli il pacchetto più adatto ai tuoi obiettivi — dalle piattaforme web ai contenuti ad alto impatto.",
+    "mostPopular": "Più Richiesto",
+    "customQuote": "Preventivo Su Misura",
+    "perMonth": "/mese",
+    "startingFrom": "A partire da",
+    "getStarted": "Inizia Ora",
+    "contactSales": "Contattami",
+    "orderMediaPackage": "Ordina Servizio",
+    "addonsTitle": "Hai Bisogno di Qualcosa in Più?",
+    "addonsSubtitle": "Personalizza qualsiasi pacchetto web con add-on indipendenti",
+    "categories": {
+      "webDevelopment": "Sviluppo Web & App",
+      "contentVideo": "Produzione Contenuti & Video"
     },
-    "standardProfessional": {
-      "name": "Standard Pro",
-      "description": "Ideale per aziende in crescita con funzionalità personalizzate."
+    "billing": {
+      "oneTime": "Pagamento Unico",
+      "monthly": "Canone Mensile"
     },
-    "businessGrowth": {
-      "name": "Business Growth",
-      "description": "Soluzione digitale completa con prenotazioni e multilingua."
+    "units": {
+      "perVideo": "video",
+      "perMonth": "mese",
+      "perProject": "progetto"
     },
-    "customEnterprise": {
-      "name": "Enterprise",
-      "description": "Applicazione web su misura costruita da zero."
+    "tiers": {
+      "starterDigital": {
+        "name": "Starter Digital",
+        "description": "Presenza online essenziale per nuove attività."
+      },
+      "standardProfessional": {
+        "name": "Standard Pro",
+        "description": "Ideale per aziende in crescita che necessitano di funzionalità personalizzate."
+      },
+      "businessGrowth": {
+        "name": "Business Growth",
+        "description": "Soluzione digitale completa con prenotazioni e multilingua."
+      },
+      "customEnterprise": {
+        "name": "Enterprise",
+        "description": "Applicazione web su misura sviluppata interamente da zero."
+      }
+    },
+    "features": {
+      "responsiveWebsite": "Sito Web Responsive & Interfaccia Moderna",
+      "basicSeo": "Ottimizzazione SEO di Base",
+      "contactForm": "Modulo di Contatto / Lead Interattivo",
+      "oneRevisionRound": "Un Giro di Revisioni Incluso",
+      "cmsIntegration": "Integrazione CMS per Modifiche Semplici",
+      "multiLanguage": "Supporto Multilingua",
+      "bookingOrPayments": "Prenotazioni Online & Gateway di Pagamento",
+      "prioritySupport": "Supporto Prioritario 24/7",
+      "dedicatedStrategy": "Strategia di Crescita Dedicata"
+    },
+    "contentPackages": {
+      "socialShorts": {
+        "name": "Reels & Short Verticali",
+        "description": "Video verticali coinvolgenti ottimizzati per TikTok, Instagram Reels e YouTube Shorts."
+      },
+      "motionGraphics": {
+        "name": "Motion Graphics & 2D/3D",
+        "description": "Animazioni di logo personalizzate, intro con titoli ed elementi in grafica animata."
+      },
+      "promoVideo": {
+        "name": "Video Promozionale & Commercial",
+        "description": "Produzione video cinematografica di alto livello per campagne ed eventi di lancio."
+      },
+      "socialMonthlyBundle": {
+        "name": "Pacchetto Mensile Contenuti",
+        "description": "Servizio mensile completo per la produzione continuativa di video brevi e promo."
+      }
+    },
+    "contentDeliverables": {
+      "shortsEditing": "Montaggio Dinamico Formato Breve",
+      "captionsSubtitles": "Sottotitoli Animati & Effetti Sonori",
+      "soundDesign": "Missaggio Audio & Musica con Licenza",
+      "fastTurnaround": "Consegna Veloce in 48 Ore Disponibile",
+      "logoAnimation": "Animazione Logo e Testi Personalizzata",
+      "custom2d3dMotion": "Elementi Visual 2D in Movimento",
+      "brandAssets": "Palette Colori e Font di Brand",
+      "hdExport": "Renderizzazione in Alta Risoluzione 4K",
+      "fullScriptAndConcept": "Scrittura Script & Storyboard",
+      "cinematicColorGrading": "Color Grading Cinematografico",
+      "voiceoverIntegration": "Voce Fuori Campo AI o Professionale",
+      "multiFormatExport": "Esportazione Multiformato (16:9, 9:16)",
+      "eightReelsShorts": "8 Video Brevi (Reels/Shorts) / Mese",
+      "twoPromoVideos": "2 Video Promozionali Dedicati",
+      "contentCalendarStrategy": "Strategia Contenuti & Scripting",
+      "monthlyAnalyticsReport": "Reportistica sulle Performance Mensili"
+    },
+    "addons": {
+      "extraPage": "Pagina Secondaria Extra",
+      "extraLanguage": "Lingua Aggiuntiva",
+      "speedOptimization": "Ottimizzazione Velocità",
+      "monthlyMaintenance": "Manutenzione Mensile"
+    },
+    "mediaBanner": {
+      "title": "Hai bisogno di un progetto video su misura o un abbonamento continuativo?",
+      "subtitle": "Contattami per tempistiche di montaggio personalizzate, animazioni 3D avanzate o strategie per i tuoi canali.",
+      "cta": "Parliamo del Progetto Video"
     }
   },
-  "features": {
-    "responsiveWebsite": "Sito Web Responsive & Design Moderno",
-    "basicSeo": "Ottimizzazione SEO di Base",
-    "contactForm": "Modulo di Contatto Interattivo",
-    "oneRevisionRound": "Un Giro di Revisioni",
-    "cmsIntegration": "Integrazione CMS per Modifiche Facili",
-    "multiLanguage": "Supporto Multilingua",
-    "bookingOrPayments": "Sistema di Prenotazione e Pagamenti Online",
-    "prioritySupport": "Supporto Prioritario 24/7",
-    "dedicatedStrategy": "Strategia di Crescita Dedicata"
-  },
-  "addons": {
-    "extraPage": "Pagina Aggiuntiva",
-    "extraLanguage": "Lingua Aggiuntiva",
-    "speedOptimization": "Ottimizzazione Velocità",
-    "monthlyMaintenance": "Manutenzione Mensile"
-  }
-},
   "SuccessStories": {
     "eyebrow": "Storie di Successo",
-    "title": "Risultati concreti, non solo immagini.",
-    "subtitle": "Esempi di risultati ottenuti su progetti in diversi settori — generalizzati per tutelare la riservatezza dei clienti.",
-    "disclaimer": "I dati e i concetti presentati sono stime rappresentative basate su risultati tipici e non sono legati a un singolo cliente specifico.",
+    "title": "Impatto dimostrato, risultati reali.",
+    "subtitle": "Esempi di risultati ottenuti in diversi settori — generalizzati per proteggere la privacy dei clienti.",
+    "disclaimer": "Le metriche e gli scenari mostrati sono stime rappresentative basate su risultati tipici e non si riferiscono a un singolo cliente specifico.",
     "categories": {
-      "hospitality": "Brand di Ospitalità Locale",
-      "ecommerceAutomation": "Automazione E-commerce",
-      "saasRedesign": "Redesign Piattaforma SaaS"
+      "hospitality": "Brand Locale di Ospitalità",
+      "ecommerceAutomation": "Automazione E-Commerce",
+      "saasRedesign": "Riprogettazione Piattaforma SaaS"
     },
     "metrics": {
-      "organicTraffic": "di incremento nel traffico organico",
-      "fasterLoadSpeed": "più veloce nel caricamento pagine",
-      "automatedLeadWorkflow": "della gestione lead ora automatizzata"
+      "organicTraffic": "di aumento nel traffico di ricerca organico",
+      "fasterLoadSpeed": "più veloce nel tempo di caricamento medio della pagina",
+      "automatedLeadWorkflow": "del flusso di gestione dei contatti in ingresso automatizzato"
     },
     "stories": {
       "story-hospitality": {
-        "problem": "Un'attività locale si affidava solo al passaggio e al passaparola, senza alcuna presenza nei motori di ricerca.",
-        "solution": "Sito ricostruito attorno alla SEO locale, contenuti strutturati e una homepage orientata alla prenotazione."
+        "problem": "Un'attività locale si affidava esclusivamente al passaggio e al passaparola, con nessuna visibilità nei motori di ricerca.",
+        "solution": "Sito ricostruito attorno a dati strutturati per la SEO locale, menu chiaro e landing page orientate alle prenotazioni."
       },
       "story-ecommerce": {
-        "problem": "Il checkout e le pagine prodotto di uno store online erano troppo lenti, penalizzando le conversioni da mobile.",
-        "solution": "Storefront ricostruito su tecnologie moderne con immagini ottimizzate e un checkout semplificato."
+        "problem": "Pagine prodotto e checkout lenti causavano un alto tasso di abbandono del carrello da dispositivi mobili.",
+        "solution": "Storefront ricostruito su uno stack tecnologico moderno con asset ottimizzati e processo di acquisto senza intoppi."
       },
       "story-saas": {
-        "problem": "I lead in entrata venivano ricopiati manualmente tra moduli, fogli di calcolo ed email, provocando la perdita di contatti.",
-        "solution": "Automazione dell'intero flusso dal primo contatto al CRM con regole di smistamento ed email di risposta istantanee."
+        "problem": "Le richieste in entrata venivano copiate e incollate manualmente tra email e fogli di calcolo, causando la perdita di potenziali clienti.",
+        "solution": "Automazione del processo dall'invio del modulo all'instradamento nel CRM con email di risposta automatica immediata."
       }
     }
   },
-  "About": {
+ "About": {
     "eyebrow": "Chi Sono",
     "title": "Perché Lankio",
-    "subtitle": "Ciao, sono Shehan — Full-Stack Developer & AI Solutions Specialist dietro Lankio.",
+    "subtitle": "Ciao, sono Shehan — Full-Stack Developer e Specialist in Soluzioni AI dietro Lankio.",
     "founder": {
       "role": "Fondatore & Lead Developer presso Lankio",
-      "intro": "Mi dedico allo sviluppo di applicazioni web Next.js ultraveloci, progetti WordPress su misura e strumenti IA pratici — con un contatto diretto, attenzione alla qualità e affidabilità europea."
+      "intro": "Sono specializzato nella creazione di applicazioni web ultra-veloci in Next.js, siti WordPress su misura e strumenti AI pratici — offerti con comunicazione diretta, cura dei dettagli e affidabilità europea."
     },
-    "missionTitle": "Il mio obiettivo",
-    "missionBody": "Aiuto le aziende a sostituire siti web obsoleti o poco performanti con esperienze digitali moderne e veloci — affiancate da una brand identity all'altezza. Niente template riciclati spacciati per lavoro su misura, né costi ricorrenti ingiustificati.",
-    "approachTitle": "Il mio metodo di lavoro",
-    "approachBody": "Lavori direttamente con me, la persona che sviluppa il tuo progetto, senza intermediari o account manager. Ogni sito rilasciato viene testato su prestazioni e usabilità reali prima di andare online.",
+    "missionTitle": "La Mia Missione",
+    "missionBody": "Aiuto le aziende a sostituire siti web lenti o obsoleti con esperienze digitali veloci e moderne — abbinate a un'identità di brand coerente. Nessun template pesante spacciato per lavoro personalizzato e nessun costo di mantenimento superfluo.",
+    "approachTitle": "Il Mio Approccio",
+    "approachBody": "Mi concentro su architetture snelle, metriche di performance chiare ed esperienze utente fluide pensate per convertire i visitatori in clienti.",
+    "trustNote": "Con sede a Milano (Rho), al servizio di clienti in tutta Italia ed Europa.",
+    "cta": "Mettiti in Contatto",
     "facts": {
-      "location": { "label": "Sede", "value": "Lombardia, Italia" },
-      "directCollaboration": { "label": "Collaborazione Diretta 1-a-1", "value": "Nessun intermediario — lavori direttamente con me" },
-      "cleanCode": { "label": "Codice Pulito Su Misura", "value": "Nessun page builder pesante o template gonfiato" }
-    },
-    "trustNote": "Un professionista reale e sempre raggiungibile — non un'agenzia anonima in outsourcing.",
-    "cta": "Contattami"
+      "location": {
+        "label": "Posizione",
+        "value": "Rho, Milano, Italia"
+      },
+      "directCollaboration": {
+        "label": "Collaborazione Diretta",
+        "value": "Lavori direttamente con lo sviluppatore che realizza il tuo prodotto, senza intermediari."
+      },
+      "cleanCode": {
+        "label": "Tech Stack Moderno",
+        "value": "Sviluppato con Next.js, React, Tailwind CSS e API Cloud scalabili."
+      }
+    }
   },
   "NotFound": {
-    "title": "Pagina non trovata",
+    "title": "Pagina Non Trovata",
     "description": "La pagina che stai cercando non esiste o è stata spostata.",
     "backHome": "Torna alla Home"
   },
   "Footer": {
     "brand": {
-      "description": "Aiuto le aziende a crescere attraverso esperienze digitali di alto livello.",
-      "tagline": "Siti Web Ad Alte Prestazioni & Strumenti IA, Sviluppati da un Unico Developer",
+      "description": "Aiutiamo le aziende a crescere attraverso esperienze digitali ad alte prestazioni.",
+      "tagline": "Siti Web ad Alte Prestazioni & Strumenti IA, Sviluppati da un Unico Professionista",
       "location": "Rho, Milano, Italia"
     },
     "social": {
-      "ariaLabel": "Social media",
-      "facebook": "Seguimi su Facebook",
-      "instagram": "Seguimi su Instagram",
-      "linkedin": "Seguimi su LinkedIn",
-      "github": "Vedi il mio GitHub"
+      "ariaLabel": "Link ai social media",
+      "facebook": "Segui su Facebook",
+      "instagram": "Segui su Instagram",
+      "linkedin": "Connettiti su LinkedIn",
+      "github": "Vedi Profilo GitHub"
     },
     "columns": {
       "navigation": {
@@ -524,26 +585,26 @@
         "services": "Servizi",
         "templates": "Template",
         "pricing": "Prezzi",
-        "about": "Chi Sono",
+        "about": "Chi Siamo",
         "contact": "Contatti"
       },
       "services": {
         "title": "Servizi",
         "webDesign": "Web Design",
-        "graphicDesign": "Graphic Design",
+        "graphicDesign": "Grafica Pubblicitaria",
         "smm": "Social Media Marketing",
         "branding": "Branding",
-        "seo": "SEO",
+        "seo": "Ottimizzazione SEO",
         "aiSolutions": "Soluzioni IA"
       },
       "resources": {
         "title": "Risorse & Note Legali",
-        "websiteAudit": "Audit Sito Web",
+        "websiteAudit": "Audit del Sito Web",
         "templateLibrary": "Libreria Template",
-        "faq": "FAQ",
-        "privacyPolicy": "Privacy Policy",
-        "terms": "Termini & Condizioni",
-        "cookiePolicy": "Cookie Policy"
+        "faq": "Domande Frequenti",
+        "privacyPolicy": "Informativa sulla Privacy",
+        "terms": "Termini di Servizio",
+        "cookiePolicy": "Informativa sui Cookie"
       }
     },
     "bottom": {
@@ -553,9 +614,9 @@
   "FAQ": {
     "eyebrow": "Domande Frequenti",
     "title": "Tutto quello che c'è da sapere.",
-    "subtitle": "Hai domande su come lavoriamo, sui prezzi o sui template? Ecco le risposte.",
-    "ctaTitle": "Hai ancora dubbi o domande?",
-    "ctaSubtitle": "Non trovi la risposta che cerchi? Scrivimi direttamente e ti risponderò in breve tempo.",
+    "subtitle": "Hai domande sulla collaborazione, sui prezzi o sui template? Ecco le risposte.",
+    "ctaTitle": "Hai ancora domande?",
+    "ctaSubtitle": "Non trovi la risposta che cerchi? Scrivimi pure direttamente.",
     "ctaButton": "Contattami",
     "categories": {
       "general": "Generale & Processo",
@@ -565,90 +626,67 @@
     },
     "items": [
       {
-        "q": "Qual è il vantaggio di lavorare con uno sviluppatore singolo rispetto a un'agenzia?",
-        "a": "Comunichi direttamente con chi scrive il codice. Nessun account manager, passaggi di consegne intermedi o costi di gestione gonfiati. Tempi di risposta più rapidi e massima trasparenza."
+        "q": "Come si confronta la collaborazione con uno sviluppatore singolo rispetto a un'agenzia?",
+        "a": "Comunichi direttamente con me — l'ingegnere che scrive il tuo codice. Nessun account manager, nessun passaggio di consegne nascosto, tempi di risposta più rapidi e minori costi di gestione trasferiti a te."
       },
       {
-        "q": "Quanto tempo occorre per completare un progetto?",
-        "a": "I progetti basati sui template vengono consegnati in 1-2 settimane. I siti o le web application su misura richiedono generalmente dalle 3 alle 6 settimane in base alla complessità."
+        "q": "Quanto tempo richiede in media la realizzazione di un progetto?",
+        "a": "Le personalizzazioni dei template sono solitamente pronte entro 1 o 2 settimane. I progetti di sviluppo su misura e applicazioni web dinamiche richiedono generalmente da 3 a 6 settimane, a seconda della complessità delle funzionalità."
       },
       {
-        "q": "Serve competenza tecnica per gestire il sito dopo il rilascio?",
-        "a": "Assolutamente no. Ogni progetto viene fornito con un pannello CMS semplice e personalizzato, oltre a una guida per modificare testi, immagini e contenuti in totale autonomia."
+        "q": "Ho bisogno di competenze tecniche per gestire il mio sito dopo il lancio?",
+        "a": "Assolutamente no. Ogni sito include un CMS personalizzato o una struttura di gestione semplice, accompagnata da una formazione diretta per consentirti di modificare contenuti, testi e immagini senza alcuno sforzo."
       },
       {
-        "q": "Cosa succede se ho bisogno di assistenza dopo il lancio?",
-        "a": "Ogni progetto include un periodo di assistenza post-lancio. Offro anche piani di manutenzione mensili per aggiornamenti tecnici, ottimizzazioni SEO e sviluppo di nuove funzionalità."
+        "q": "Cosa succede se ho bisogno di supporto o aggiornamenti dopo il lancio?",
+        "a": "Ogni progetto include un periodo di assistenza post-lancio. Offro anche piani di manutenzione mensili flessibili per aggiornamenti tecnici, ottimizzazioni SEO e miglioramenti continui del sistema."
       }
     ]
   },
-  "PrivacyPolicy": {
-    "title": "Informativa sulla Privacy",
-    "lastUpdated": "Ultimo aggiornamento: Luglio 2026",
-    "intro": "Lankio ('noi') rispetta la tua privacy ed è impegnata a proteggere i tuoi dati personali in conformità con il Regolamento Generale sulla Protezione dei Dati (GDPR - UE 2016/679) e la normativa italiana.",
+  "TermsOfService": {
+    "title": "Termini di Servizio",
+    "lastUpdated": "Ultimo aggiornamento: Marzo 2026",
+    "intro": "Si prega di leggere attentamente questi Termini di Servizio prima di utilizzare i nostri servizi.",
     "sections": {
       "dataCollected": {
-        "title": "1. Dati Raccolti",
-        "body": "Raccogliamo i dati forniti volontariamente tramite il modulo di contatto, la richiesta di audit o il configuratore di progetti. I dati includono nome, indirizzo email, telefono, nome dell'azienda e dettagli del progetto."
+        "title": "Informazioni Raccolte",
+        "body": "Dettagli sui dati raccolti durante l'utilizzo dei nostri servizi."
       },
       "dataUsage": {
-        "title": "2. Finalità del Trattamento",
-        "body": "I dati vengono utilizzati esclusivamente per rispondere alle tue richieste, erogare gli audit gratuiti, fornire i servizi concordati, inviare comunicazioni amministrative e garantire la sicurezza del sistema."
+        "title": "Come Utilizziamo i Dati",
+        "body": "Spiegazione di come i dati raccolti vengono elaborati e conservati."
       },
       "cookies": {
-        "title": "3. Cookie e Tracciamento",
-        "body": "Utilizziamo cookie tecnici essenziali per il funzionamento del sito e cookie analitici anonimizzati per monitorare le prestazioni. Nessun dato personale viene ceduto a terzi."
+        "title": "Utilizzo dei Cookie",
+        "body": "Informazioni su come i cookie vengono utilizzati su questo sito."
       },
       "rights": {
-        "title": "4. Diritti dell'Utente (GDPR)",
-        "body": "In base alla normativa europea, hai il diritto di accedere, rettificare o richiedere la cancellazione dei tuoi dati in qualsiasi momento scrivendo a info@lankio.it."
+        "title": "I Tuoi Diritti",
+        "body": "Panoramica dei tuoi diritti legali in materia di dati personali."
       }
     }
   },
-  "TermsOfService": {
-  "title": "Termini di Servizio",
-  "lastUpdated": "Ultimo aggiornamento: Marzo 2026",
-  "intro": "Si prega di leggere attentamente questi Termini di Servizio prima di utilizzare la nostra piattaforma.",
-  "sections": {
-    "dataCollected": {
-      "title": "Informazioni Raccoglitore",
-      "body": "Dettagli sui dati raccolti durante l'utilizzo dei nostri servizi."
-    },
-    "dataUsage": {
-      "title": "Come Utilizziamo i Dati",
-      "body": "Spiegazione di come i dati raccolti vengono elaborati e memorizzati."
-    },
-    "cookies": {
-      "title": "Uso dei Cookie",
-      "body": "Informazioni su come i cookie vengono utilizzati su questo sito."
-    },
-    "rights": {
-      "title": "I Tuoi Diritti",
-      "body": "Panoramica dei tuoi diritti legali relativi ai dati personali."
+  "CookiePolicy": {
+    "title": "Informativa sui Cookie",
+    "lastUpdated": "Ultimo aggiornamento: Marzo 2026",
+    "intro": "Questa Informativa sui Cookie spiega come utilizziamo i cookie e tecnologie simili.",
+    "sections": {
+      "dataCollected": {
+        "title": "Cookie Raccolti",
+        "body": "Tipi di cookie memorizzati nel tuo browser."
+      },
+      "dataUsage": {
+        "title": "Finalità dei Cookie",
+        "body": "Perché utilizziamo cookie analitici, funzionali e necessari."
+      },
+      "cookies": {
+        "title": "Gestione dei Cookie",
+        "body": "Come disabilitare o regolare le impostazioni dei cookie nel tuo browser."
+      },
+      "rights": {
+        "title": "Le Tue Scelte sulla Privacy",
+        "body": "I tuoi diritti relativi alla gestione dei cookie ai sensi del GDPR."
+      }
     }
   }
-},
-"CookiePolicy": {
-  "title": "Informativa sui Cookie",
-  "lastUpdated": "Ultimo aggiornamento: Marzo 2026",
-  "intro": "Questa informativa spiega come utilizziamo i cookie e tecnologie simili.",
-  "sections": {
-    "dataCollected": {
-      "title": "Cookie Raccolti",
-      "body": "Tipi di cookie memorizzati nel tuo browser."
-    },
-    "dataUsage": {
-      "title": "Scopo dei Cookie",
-      "body": "Perché utilizziamo cookie analitici, funzionali e necessari."
-    },
-    "cookies": {
-      "title": "Gestione dei Cookie",
-      "body": "Come disabilitare o regolare le impostazioni dei cookie nel tuo browser."
-    },
-    "rights": {
-      "title": "Le Tue Scelte sulla Privacy",
-      "body": "I tuoi diritti relativi alla gestione dei cookie ai sensi del GDPR."
-    }
-  }
-}
 }

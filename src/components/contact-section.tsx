@@ -4,7 +4,7 @@ import { Suspense, useMemo, useState, type FormEvent, type ChangeEvent } from 'r
 import { useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Send, CheckCircle2, Mail, X, Tag } from 'lucide-react';
+import { Send, CheckCircle2, Mail, X, Tag, RotateCcw } from 'lucide-react';
 import { TEMPLATES } from '@/lib/templates-data';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
@@ -133,8 +133,7 @@ function ContactSectionInner() {
                 type="button"
                 onClick={() => setTemplateSlug(null)}
                 aria-label={t('clearTemplate')}
-                suppressHydrationWarning
-                className="flex h-7 w-7 items-center justify-center rounded-full text-[color:var(--text-muted)] hover:text-[color:var(--text-primary)]"
+                className="flex h-7 w-7 items-center justify-center rounded-full text-[color:var(--text-muted)] hover:text-[color:var(--text-primary)] transition-colors"
               >
                 <X size={14} />
               </button>
@@ -154,13 +153,21 @@ function ContactSectionInner() {
                 transition={{ duration: reduceMotion ? 0 : 0.35 }}
                 className="flex flex-col items-center py-6 text-center"
               >
-                <CheckCircle2 size={40} className="text-primary" />
-                <h3 className="font-display mt-4 text-lg font-semibold text-[color:var(--text-primary)]">
+                <CheckCircle2 size={48} className="text-primary animate-bounce" />
+                <h3 className="font-display mt-4 text-xl font-semibold text-[color:var(--text-primary)]">
                   {t('successTitle')}
                 </h3>
                 <p className="mt-2 text-sm text-[color:var(--text-secondary)]">
                   {t('successBody')}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => setStatus('idle')}
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-[color:var(--glass-border)] px-5 py-2 text-xs font-medium text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] hover:border-[color:var(--text-primary)] transition-all"
+                >
+                  <RotateCcw size={14} />
+                  Send another message
+                </button>
               </motion.div>
             ) : (
               <motion.form
@@ -216,7 +223,7 @@ function ContactSectionInner() {
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-left text-xs text-[color:var(--text-secondary)]">
+                  <label className="mb-1.5 block text-left text-xs font-medium text-[color:var(--text-secondary)]">
                     {t('fields.preferredLanguage')}
                   </label>
                   <div className="flex gap-2">
@@ -225,11 +232,10 @@ function ContactSectionInner() {
                         key={lang}
                         type="button"
                         onClick={() => setPreferredLanguage(lang)}
-                        suppressHydrationWarning
-                        className={`flex-1 rounded-xl border px-4 py-2.5 text-sm transition-colors ${
+                        className={`flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all ${
                           preferredLanguage === lang
-                            ? 'border-transparent bg-primary text-white'
-                            : 'border-[color:var(--glass-border)] text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)]'
+                            ? 'border-transparent bg-primary text-white shadow-md'
+                            : 'border-[color:var(--glass-border)] text-[color:var(--text-secondary)] hover:text-[color:var(--text-primary)] hover:border-[color:var(--text-secondary)]'
                         }`}
                       >
                         {t(`languages.${lang}`)}
@@ -249,15 +255,14 @@ function ContactSectionInner() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  suppressHydrationWarning
-                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100"
+                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:opacity-90 active:scale-95 disabled:opacity-70 disabled:hover:scale-100 cursor-pointer"
                 >
                   {status === 'submitting' ? t('sending') : t('submit')}
                   <Send size={16} />
                 </button>
 
                 {status === 'error' && (
-                  <p role="alert" className="text-center text-sm text-secondary">
+                  <p role="alert" className="text-center text-sm font-medium text-red-500">
                     {t('errors.general')}
                   </p>
                 )}
@@ -295,12 +300,12 @@ function Field({
   const baseClass =
     'w-full rounded-xl border bg-transparent px-4 py-3 text-sm text-[color:var(--text-primary)] placeholder:text-[color:var(--text-muted)] focus:outline-none transition-colors';
   const borderClass = error
-    ? 'border-secondary'
+    ? 'border-red-500 focus:border-red-500'
     : 'border-[color:var(--glass-border)] focus:border-[color:var(--accent-primary)]';
 
   return (
     <div>
-      <label htmlFor={name} className="mb-1.5 block text-left text-xs text-[color:var(--text-secondary)]">
+      <label htmlFor={name} className="mb-1.5 block text-left text-xs font-medium text-[color:var(--text-secondary)]">
         {label}
       </label>
       {textarea ? (
@@ -309,7 +314,6 @@ function Field({
           name={name}
           rows={4}
           onChange={onChange}
-          suppressHydrationWarning
           className={`${baseClass} ${borderClass} resize-none`}
           aria-invalid={Boolean(error)}
         />
@@ -320,12 +324,11 @@ function Field({
           type={type}
           autoComplete={autoComplete}
           onChange={onChange}
-          suppressHydrationWarning
           className={`${baseClass} ${borderClass}`}
           aria-invalid={Boolean(error)}
         />
       )}
-      {error && <p className="mt-1 text-left text-xs text-secondary">{error}</p>}
+      {error && <p className="mt-1 text-left text-xs font-medium text-red-500">{error}</p>}
     </div>
   );
 }
@@ -346,12 +349,12 @@ function SelectField({
   onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }) {
   const borderClass = error
-    ? 'border-secondary'
+    ? 'border-red-500 focus:border-red-500'
     : 'border-[color:var(--glass-border)] focus:border-[color:var(--accent-primary)]';
 
   return (
     <div>
-      <label htmlFor={name} className="mb-1.5 block text-left text-xs text-[color:var(--text-secondary)]">
+      <label htmlFor={name} className="mb-1.5 block text-left text-xs font-medium text-[color:var(--text-secondary)]">
         {label}
       </label>
       <select
@@ -360,8 +363,7 @@ function SelectField({
         defaultValue=""
         onChange={onChange}
         aria-invalid={Boolean(error)}
-        suppressHydrationWarning
-        className={`w-full rounded-xl border bg-[color:var(--glass-panel-bg,transparent)] px-4 py-3 text-sm text-[color:var(--text-primary)] focus:outline-none transition-colors ${borderClass}`}
+        className={`w-full rounded-xl border bg-[color:var(--glass-panel-bg,transparent)] px-4 py-3 text-sm text-[color:var(--text-primary)] focus:outline-none transition-colors cursor-pointer ${borderClass}`}
       >
         <option value="" disabled className="bg-slate-900 text-[color:var(--text-muted)]">
           {placeholder}
@@ -372,7 +374,7 @@ function SelectField({
           </option>
         ))}
       </select>
-      {error && <p className="mt-1 text-left text-xs text-secondary">{error}</p>}
+      {error && <p className="mt-1 text-left text-xs font-medium text-red-500">{error}</p>}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google';
 import { routing } from '@/i18n/routing';
-import { Navbar } from '@/components/navbar'; // 1. මෙතැන Import එක එකතු කරන්න
+import { Navbar } from '@/components/navbar';
 import Footer from '@/components/Footer';
 import '../../globals.css';
 
@@ -86,10 +86,14 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-base text-[color:var(--text-primary)] antialiased">
+    <html 
+      lang={locale} 
+      className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-base text-[color:var(--text-primary)] antialiased" suppressHydrationWarning>
         <NextIntlClientProvider key={locale} messages={messages}>
-          <Navbar /> {/* 2. මෙතැන Navbar එක Render කරන්න */}
+          <Navbar />
           {children}
           <Footer />
         </NextIntlClientProvider>

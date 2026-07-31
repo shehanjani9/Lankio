@@ -13,11 +13,6 @@ const ICONS: Record<ServiceKey, typeof Code2> = {
   marketing: TrendingUp,
 };
 
-// Presentation-only hierarchy hint: which of the current four services reads
-// as a complementary add-on rather than a core offering. This is a local,
-// hardcoded list -- NOT sourced from services-data.ts -- so it can be
-// removed/replaced once the service catalog itself is restructured into
-// primary vs. supporting capabilities in a later phase.
 const ADDON_KEYS: ServiceKey[] = ['ai'];
 
 export function ServicesSection() {
