@@ -3,6 +3,7 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { routing } from '@/i18n/routing';
 import { Navbar } from '@/components/navbar';
 import Footer from '@/components/Footer';
@@ -27,6 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lankio.it';
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-3VNPQ6S0LN';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -98,6 +100,8 @@ export default async function LocaleLayout({
           <Footer />
         </NextIntlClientProvider>
       </body>
+      {/* නිවැරදි කළ Google Analytics Tag එක */}
+      {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
   );
 }
