@@ -10,6 +10,7 @@ import { SiteFooter } from '@/components/layout/site-footer';
 import { MotionProvider } from '@/components/motion/motion-provider';
 import { ConsentManager } from '@/components/consent/consent-manager';
 import { CONSENT_BOOT_SCRIPT } from '@/lib/consent';
+import { InlineScript } from '@/components/inline-script';
 import '../../globals.css';
 
 const inter = Inter({
@@ -76,7 +77,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: CONSENT_BOOT_SCRIPT }} />
+        {/* Runs during HTML parsing, before first paint: hides the
+            server-rendered consent banner for visitors who already chose.
+            It never loads analytics -- that is gated by ConsentManager. */}
+        <InlineScript id="consent-boot" code={CONSENT_BOOT_SCRIPT} />
       </head>
       <body className="min-h-dvh bg-canvas text-fg">
         <a

@@ -53,7 +53,9 @@ test.describe('cookie consent', () => {
 
   test('the banner is in the server HTML, and never flashes for returning visitors', async ({ page, context }) => {
     // Block every JS bundle so the page never hydrates: what remains is the
-    // server HTML plus the inline boot script.
+    // server HTML plus the inline boot script. This is the guard against
+    // moving the boot script to next/script beforeInteractive, which only
+    // runs after the bundles load (measured: ~1.4 s banner flash on mobile).
     await page.route(/\/_next\/static\/.*\.js/, (route) => route.abort());
     await page.goto('/en', { waitUntil: 'load' });
     await expect(page.getByRole('region', { name: 'Your privacy choices' })).toBeVisible();
@@ -62,6 +64,57 @@ test.describe('cookie consent', () => {
     await page.goto('/en', { waitUntil: 'load' });
     await expect(page.locator('html')).toHaveAttribute('data-consent', 'set');
     await expect(page.locator('[data-consent-banner]')).toBeHidden();
+  });
+
+  test('the boot script is one synchronous inline script in <head>, before any body content', async ({ request }) => {
+    const html = await (await request.get('/en')).text();
+    const headEnd = html.indexOf('</head>');
+    const tags = html.match(/<script id="consent-boot"[^>]*>/g) ?? [];
+    // Exactly one, inline and parser-blocking: no src, async or defer.
+    expect(tags).toEqual(['<script id="consent-boot" type="text/javascript">']);
+    const bootIndex = html.indexOf('id="consent-boot"');
+    expect(bootIndex).toBeGreaterThan(0);
+    expect(bootIndex).toBeLessThan(headEnd);
+    expect(bootIndex).toBeLessThan(html.indexOf('<body'));
+    expect(bootIndex).toBeLessThan(html.indexOf('data-consent-banner'));
+    // Not queued for Next's client bootstrap -- that is how next/script's
+    // beforeInteractive works in the App Router, and it runs after first paint.
+    expect(html).not.toContain('__next_s');
+    // The server HTML never references Google Analytics.
+    expect(html).not.toMatch(/googletagmanager\.com/);
+  });
+
+  test('a client-side locale switch keeps consent state and never re-runs the boot script', async ({ page, context }) => {
+    const errors: string[] = [];
+    page.on('console', (message) => {
+      if (message.type() === 'error') errors.push(message.text());
+    });
+
+    // Rejected: banner stays hidden, analytics stays off across the root-layout re-render.
+    await presetConsent(context, false);
+    let ga = await interceptAnalytics(page);
+    await page.goto('/en/work', { waitUntil: 'networkidle' });
+    await page.getByRole('link', { name: /Switch language/ }).first().click();
+    await expect(page).toHaveURL(/\/it\/work$/);
+    await page.waitForTimeout(800);
+    await expect(page.locator('[data-consent-banner]')).toHaveCount(0);
+    expect(ga).toHaveLength(0);
+    // Any script React re-created on the client is inert.
+    const executableBoot = await page.locator('script#consent-boot:not([type="text/plain"])').count();
+    expect(executableBoot).toBeLessThanOrEqual(1);
+
+    // Accepted: analytics stays on, and gtag.js is not injected twice.
+    await page.unrouteAll();
+    await presetConsent(context, true);
+    ga = await interceptAnalytics(page);
+    await page.goto('/en/work', { waitUntil: 'networkidle' });
+    await expect.poll(() => ga.length).toBeGreaterThan(0);
+    await page.getByRole('link', { name: /Switch language/ }).first().click();
+    await expect(page).toHaveURL(/\/it\/work$/);
+    await page.waitForTimeout(800);
+    await expect(page.locator('script#ga4-gtag')).toHaveCount(1);
+    await expect(page.locator('[data-consent-banner]')).toHaveCount(0);
+    expect(errors).toEqual([]);
   });
 
   test('Italian banner', async ({ page }) => {

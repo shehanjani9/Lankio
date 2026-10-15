@@ -233,3 +233,31 @@ Redirects are consistent: everything is permanent to the HTTPS www host. The app
 4. **Confirmation emails go to whatever address is entered.** That could be used to send someone an unwanted confirmation; it is limited by the honeypot, timing check and rate limit. If it becomes an issue, consider a CAPTCHA (e.g. Cloudflare Turnstile, which would itself need consent review) or dropping the confirmation email.
 5. **Untested surfaces:** real email delivery, real devices, non-Chrome browsers and production Lighthouse (§3).
 6. **Legacy `/demo` templates** still have pre-existing lint warnings and Unsplash imagery. They're unlinked and `noindex`, but reachable by URL.
+
+---
+
+## Addendum (2026-10-15): consent boot script rendering fix
+
+**Symptom:** in development, React logged *"Encountered a script tag while rendering React component…"* for the `<script>` in `src/app/(main)/[locale]/layout.tsx`.
+
+**Root cause:** React logs this when it **creates** an executable `<script>` on the client. This happens when the root layout re-renders client-side, for example on a `/en` → `/it` navigation (a root-param change) or a Fast Refresh. Scripts React creates never run. The server-rendered copy did run during HTML parsing as intended, so production behaviour was correct; the warning was the only symptom.
+
+**Fix:** `src/components/inline-script.tsx` (a Client Component) implements the pattern from the bundled Next.js guide *"How to prevent flash before hydration"*:
+
+- It renders `type="text/javascript"` on the server, so the browser executes it during parsing, before first paint.
+- It renders `type="text/plain"` on the client, an inert data block that React doesn't warn about and that never re-executes.
+- `suppressHydrationWarning` accepts the `type` difference.
+
+It has to be a Client Component; in a Server Component, `typeof window` is always evaluated on the server.
+
+**Why not `next/script` `beforeInteractive`:** that was evaluated empirically, and the root layout is a valid place for it. In the App Router it doesn't run inline code in place: it emits `self.__next_s.push(…)`, and Next's client bootstrap executes the code after the JavaScript bundles load. Measured on a throttled mobile profile, returning visitors saw the consent banner for about 1.4 s (56–62 frames) before it was hidden, and the existing pre-hydration test failed. With `InlineScript`, the banner is visible for 0 frames.
+
+**Analytics gating is unaffected.** The boot script only hides the banner. GA4 loads exclusively from the React `Analytics` component, after a valid consent record with `analytics: true`.
+
+**Tests:** 80/80 pass. New tests cover:
+- the `InlineScript` server and client types
+- that the boot script never touches analytics
+- that exactly one synchronous boot script sits in `<head>`, before `<body>` and the banner, with no `__next_s` queueing
+- that a client-side locale switch keeps the rejected and accepted states, with no duplicate `gtag.js` and no console errors
+
+In dev, the reproduction script now logs 0 warnings, where it previously logged one per session.

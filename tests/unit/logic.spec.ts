@@ -3,6 +3,7 @@ import { validateContact, singleLine, LIMITS } from '../../src/lib/contact';
 import { parseConsent, serializeConsent, CONSENT_VERSION, CONSENT_MAX_AGE_DAYS, CONSENT_BOOT_SCRIPT } from '../../src/lib/consent';
 import { getEmailConfig } from '../../src/lib/resend';
 import { resolveSiteUrl } from '../../src/config/site';
+import { InlineScript } from '../../src/components/inline-script';
 
 test.describe('resolveSiteUrl', () => {
   test('normalises the configured origin', () => {
@@ -107,6 +108,35 @@ test.describe('CONSENT_BOOT_SCRIPT', () => {
       const raw = cookie.split('; ').find((part) => part.startsWith('lankio_consent='))?.slice('lankio_consent='.length);
       expect(bootMarks(cookie), cookie).toBe(parseConsent(raw) !== null);
     }
+  });
+});
+
+test.describe('InlineScript', () => {
+  // React only warns about (and never runs) scripts it creates on the client,
+  // unless their type marks them as a non-JavaScript data block.
+  type ScriptElement = { type: string; props: { id: string; type: string; suppressHydrationWarning: boolean; dangerouslySetInnerHTML: { __html: string } } };
+  const g = globalThis as { window?: unknown };
+
+  test('is executable in server HTML', () => {
+    expect(g.window).toBeUndefined();
+    const element = InlineScript({ id: 'consent-boot', code: 'void 0' }) as unknown as ScriptElement;
+    expect(element.type).toBe('script');
+    expect(element.props).toMatchObject({ id: 'consent-boot', type: 'text/javascript', suppressHydrationWarning: true });
+    expect(element.props.dangerouslySetInnerHTML.__html).toBe('void 0');
+  });
+
+  test('is an inert data block when rendered on the client', () => {
+    g.window = {};
+    try {
+      const element = InlineScript({ id: 'consent-boot', code: 'void 0' }) as unknown as ScriptElement;
+      expect(element.props.type).toBe('text/plain');
+    } finally {
+      delete g.window;
+    }
+  });
+
+  test('the consent boot script never touches analytics', () => {
+    expect(CONSENT_BOOT_SCRIPT).not.toMatch(/gtag|googletagmanager|dataLayer|createElement/);
   });
 });
 
