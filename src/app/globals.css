@@ -1,105 +1,243 @@
 @import "tailwindcss";
 
-/* ඔයාගේ CSS Variables සහ අනිත් Custom Styles පහළින් තියාගන්න */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --bg-base: #0a0b0f;
-  --bg-elevated: #101219;
-
-  --glass-fill: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --glass-fill-hover: rgba(255, 255, 255, 0.07);
-
-  --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --text-muted: #6b7280;
-
-  --accent-primary: #6d5dfc;
-  --accent-primary-soft: rgba(109, 93, 252, 0.15);
-  --accent-secondary: #ff6b57;
-
-  --radius-glass: 20px;
+/*
+ * Lankio design tokens -- "Quiet confidence".
+ * Tailwind v4 reads tokens from @theme; there is deliberately no
+ * tailwind.config.ts (v4 ignores it unless linked with @config).
+ */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
 }
 
-* {
-  box-sizing: border-box;
-  border-color: var(--glass-border);
+@theme {
+  --color-canvas: #07080b;
+  --color-surface: #0d0f14;
+  --color-surface-2: #13161d;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.16);
+
+  --color-fg: #f4f5f7;
+  --color-fg-muted: #a3a8b4;
+  --color-fg-subtle: #7d8290;
+
+  --color-accent: #8b7dff;
+  --color-accent-strong: #7262ff;
+  --color-accent-blue: #4da3ff;
+  --color-danger: #ff7a7a;
+  --color-success: #5fd39a;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-drift: drift 22s var(--ease-in-out-soft) infinite alternate;
+  --animate-drift-slow: drift-alt 30s var(--ease-in-out-soft) infinite alternate;
+
+  @keyframes drift {
+    0% { transform: translate3d(-6%, -4%, 0) scale(1); }
+    100% { transform: translate3d(8%, 6%, 0) scale(1.15); }
+  }
+  @keyframes drift-alt {
+    0% { transform: translate3d(6%, 4%, 0) scale(1.1); }
+    100% { transform: translate3d(-8%, -6%, 0) scale(0.95); }
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+/*
+ * CSS-driven entrances. These run from the first paint of server-rendered
+ * HTML, so above-the-fold content never waits for hydration (better LCP)
+ * and they replay when template.tsx remounts on navigation.
+ */
+@keyframes page-in {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes line-up {
+  from { transform: translate3d(0, 112%, 0); }
+  to { transform: none; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(100%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
+.page-enter {
+  animation: page-in 0.6s var(--ease-out-expo) both;
+}
+
+/* Masked line: wrapper clips, inner span slides up. Delay via --d. */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.line-mask > span {
+  display: block;
+  animation: line-up 1.15s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+
+.enter-fade-up {
+  animation: fade-up 1s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+.enter-fade {
+  animation: fade-in 1.4s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
   html {
-    scroll-behavior: auto;
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 45%, transparent);
+    color: var(--color-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Anchor targets clear the fixed header. */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* Reduced motion: stop decorative loops and long transitions, but keep
+   short colour/opacity feedback so hover and focus states stay visible. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-body {
-  background: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-inter), system-ui, sans-serif;
+/* ------------------------------------------------------------------ */
+/* Type & layout utilities                                             */
+/* ------------------------------------------------------------------ */
+
+@utility container-page {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
+  }
 }
 
-/* Ambient background glow — sits behind hero content, not decoration for its own sake */
-.bg-ambient-glow {
-  background:
-    radial-gradient(600px circle at 20% 0%, rgba(109, 93, 252, 0.12), transparent 60%),
-    radial-gradient(500px circle at 90% 20%, rgba(255, 107, 87, 0.08), transparent 55%);
+@utility section-y {
+  padding-block: clamp(5rem, 11vw, 10rem);
 }
 
-.glass-panel {
-  background: var(--glass-fill);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+@utility text-display {
+  font-size: clamp(2.6rem, 7.4vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  font-weight: 550;
 }
 
-.glass-panel-interactive {
-  transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+@utility text-headline {
+  font-size: clamp(2.1rem, 4.8vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 550;
 }
 
-.glass-panel-interactive:hover {
-  background: var(--glass-fill-hover);
-  border-color: rgba(255, 255, 255, 0.14);
+@utility text-title {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 550;
 }
 
-/* Visible keyboard focus, not the browser default outline */
-:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-  border-radius: 4px;
+@utility text-lead {
+  font-size: clamp(1.075rem, 1.5vw, 1.3rem);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
-.font-display {
-  font-family: var(--font-sora), system-ui, sans-serif;
-}
-
-.font-mono-label {
-  font-family: var(--font-jetbrains), monospace;
-  letter-spacing: 0.05em;
+@utility text-eyebrow {
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
-/* Scroll-reveal used by the Footer (soft fade + small upward motion) */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 600ms ease, transform 600ms ease;
+/* Editorial serif accent: one or two words per headline, never body copy. */
+@utility font-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+@utility hairline {
+  border-color: var(--color-line);
+}
+
+/* Subtle film grain over the canvas -- inline SVG noise, no network cost. */
+@utility bg-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.035 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Fine grid used behind the hero, faded towards the edges. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%);
+}
+
+@utility text-balance-pretty {
+  text-wrap: balance;
+}
+
+/* Returning visitors: the inline consent boot script sets this before first
+   paint, so the server-rendered banner never flashes. */
+html[data-consent='set'] [data-consent-banner] {
+  display: none;
 }

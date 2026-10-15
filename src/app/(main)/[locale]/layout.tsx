@@ -1,19 +1,17 @@
-import type { Metadata } from 'next';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
-import { Sora, Inter, JetBrains_Mono } from 'next/font/google';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { Inter, Instrument_Serif } from 'next/font/google';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { Navbar } from '@/components/navbar';
-import Footer from '@/components/Footer';
+import { siteConfig } from '@/config/site';
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+import { MotionProvider } from '@/components/motion/motion-provider';
+import { ConsentManager } from '@/components/consent/consent-manager';
+import { CONSENT_BOOT_SCRIPT } from '@/lib/consent';
+import { InlineScript } from '@/components/inline-script';
 import '../../globals.css';
-
-const sora = Sora({
-  subsets: ['latin'],
-  variable: '--font-sora',
-  display: 'swap',
-});
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,87 +19,87 @@ const inter = Inter({
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
+// Single editorial accent face, italic only where used.
+const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
-  variable: '--font-jetbrains',
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
   display: 'swap',
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://lankio.it';
+// GA4 loads only after analytics consent (see ConsentManager). The fallback
+// keeps analytics working if the env var is missing on the host.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-3VNPQ6S0LN';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
+export const viewport: Viewport = {
+  themeColor: '#07080b',
+  colorScheme: 'dark',
+};
 
-  const languages: Record<string, string> = {};
-  routing.locales.forEach((loc) => {
-    languages[loc] = `${BASE_URL}/${loc}`;
-  });
+export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+  const t = await getTranslations({ locale, namespace: 'Meta' });
 
   return {
-    metadataBase: new URL(BASE_URL),
-    title: t('title'),
-    description: t('description'),
-    alternates: {
-      canonical: `${BASE_URL}/${locale}`,
-      languages,
+    metadataBase: new URL(siteConfig.url),
+    title: {
+      default: t('siteTitle'),
+      template: `%s — ${siteConfig.shortName}`,
     },
-    openGraph: {
-      title: t('title'),
-      description: t('description'),
-      url: `${BASE_URL}/${locale}`,
-      siteName: 'Lankio',
-      locale: locale === 'it' ? 'it_IT' : 'en_US',
-      type: 'website',
-      images: [{ url: `${BASE_URL}/og-image.png`, width: 1200, height: 630, alt: t('title') }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: t('title'),
-      description: t('description'),
-    },
+    description: t('siteDescription'),
+    applicationName: siteConfig.name,
+    authors: [{ name: siteConfig.founder.name }],
+    creator: siteConfig.founder.name,
+    publisher: siteConfig.name,
+    formatDetection: { telephone: false, address: false, email: false },
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
+export default async function LocaleLayout({ children, params }: LayoutProps<'/[locale]'>) {
   const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+  setRequestLocale(locale);
 
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: 'Common' });
 
   return (
-    <html 
-      lang={locale} 
-      className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+    <html
+      lang={locale}
+      className={`${inter.variable} ${instrumentSerif.variable}`}
+      data-scroll-behavior="smooth"
+      // The consent boot script may add data-consent before hydration.
       suppressHydrationWarning
     >
-      <body className="bg-base text-[color:var(--text-primary)] antialiased" suppressHydrationWarning>
-        <NextIntlClientProvider key={locale} messages={messages}>
-          <Navbar />
-          {children}
-          <Footer />
+      <head>
+        {/* Runs during HTML parsing, before first paint: hides the
+            server-rendered consent banner for visitors who already chose.
+            It never loads analytics -- that is gated by ConsentManager. */}
+        <InlineScript id="consent-boot" code={CONSENT_BOOT_SCRIPT} />
+      </head>
+      <body className="min-h-dvh bg-canvas text-fg">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-fg focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-canvas"
+        >
+          {t('skipToContent')}
+        </a>
+        <NextIntlClientProvider>
+          <MotionProvider>
+            <SiteHeader />
+            <main id="main" tabIndex={-1} className="outline-none">
+              {children}
+            </main>
+            <SiteFooter />
+          </MotionProvider>
+          <ConsentManager gaId={GA_ID} />
         </NextIntlClientProvider>
       </body>
-      {/* නිවැරදි කළ Google Analytics Tag එක */}
-      {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
   );
 }

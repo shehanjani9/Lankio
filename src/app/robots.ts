@@ -1,12 +1,15 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/config/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/'], // Hide private routes if any
+      // API routes and the standalone template demos are not content.
+      disallow: ['/api/', '/demo/'],
     },
-    sitemap: 'https://www.lankio.it/sitemap.xml',
-  }
+    sitemap: `${siteConfig.url}/sitemap.xml`,
+    host: siteConfig.url,
+  };
 }

@@ -1,103 +1,136 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { resend } from '@/lib/resend';
+import { getEmailConfig, getResend } from '@/lib/resend';
 import { adminNotificationEmail, leadConfirmationEmail } from '@/lib/email-templates';
+import { MIN_FILL_TIME_MS, validateContact } from '@/lib/contact';
 
-const ADMIN_EMAIL = process.env.LANKIO_ADMIN_EMAIL || 'info.lankio@gmail.com';
-const FROM_EMAIL = process.env.LANKIO_FROM_EMAIL || 'Lankio <info@lankio.it>';
+const MAX_BODY_BYTES = 16_000;
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Best-effort sliding-window limit per client IP. On serverless hosting each
+// instance keeps its own map, so this slows down bursts rather than being a
+// hard guarantee -- pair with platform-level protection for stronger limits.
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_PER_WINDOW = Number(process.env.CONTACT_RATE_LIMIT_MAX) || 5;
+const hits = new Map<string, number[]>();
 
-type ContactPayload = {
-  name?: string;
-  email?: string;
-  phone?: string;
-  company?: string;
-  templateName?: string;
-  serviceType?: string;
-  budget?: string;
-  preferredLanguage?: string;
-  message?: string;
-  website?: string; // 🍯 Honeypot field එක (Anti-spam)
-};
+function rateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (hits.get(ip) ?? []).filter((time) => now - time < WINDOW_MS);
+  recent.push(now);
+  hits.set(ip, recent);
+  if (hits.size > 5000) {
+    for (const [key, times] of hits) {
+      if (times.every((time) => now - time >= WINDOW_MS)) hits.delete(key);
+    }
+  }
+  return recent.length > MAX_PER_WINDOW;
+}
+
+function clientIp(req: NextRequest): string {
+  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip') || 'unknown';
+}
+
+type SendResult = { error: { name?: string; statusCode?: number | null; message?: string } | null };
+
+/** Rate limits, 5xx and network failures are worth one more attempt. */
+function isTransient(error: SendResult['error']): boolean {
+  if (!error) return false;
+  const status = error.statusCode ?? 0;
+  return status === 429 || status >= 500 || error.name === 'rate_limit_exceeded' || error.name === 'application_error';
+}
+
+async function sendWithRetry(send: () => Promise<SendResult>): Promise<SendResult> {
+  let result: SendResult;
+  try {
+    result = await send();
+  } catch (error) {
+    result = { error: { name: 'network_error', message: String(error) } };
+  }
+  if (!isTransient(result.error)) return result;
+  await new Promise((resolve) => setTimeout(resolve, 700));
+  try {
+    return await send();
+  } catch (error) {
+    return { error: { name: 'network_error', message: String(error) } };
+  }
+}
 
 export async function POST(req: NextRequest) {
-  let body: ContactPayload;
+  if (!req.headers.get('content-type')?.includes('application/json')) {
+    return NextResponse.json({ error: 'Unsupported content type' }, { status: 415 });
+  }
 
+  const text = await req.text();
+  if (text.length > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: 'Payload too large' }, { status: 413 });
+  }
+
+  let body: Record<string, unknown>;
   try {
-    body = await req.json();
+    body = JSON.parse(text);
   } catch {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  // 🤖 1. Honeypot Check (Spam Bot Protection)
-  // Human users ලට මේ field එක පෙනෙන්නේ නැති නිසා fill කරන්නේ නැහැ.
-  // Bot කෙනෙක් මේක fill කරලා තිබ්බොත්, Silent එකේ 200 Success දීලා මගහරිනවා (Bot එක මනාව trick කිරීමට).
-  if (body.website && body.website.trim() !== '') {
-    console.log('Spam bot detected and blocked via Honeypot field.');
+  // Bots: a filled honeypot or an impossibly fast submission gets a silent
+  // success so the bot learns nothing, and no email is sent.
+  const honeypot = typeof body.website === 'string' ? body.website.trim() : '';
+  const elapsed = typeof body.elapsed === 'number' ? body.elapsed : 0;
+  if (honeypot || elapsed < MIN_FILL_TIME_MS) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = (body.name || '').trim();
-  const email = (body.email || '').trim();
-  const message = (body.message || '').trim();
-  const phone = (body.phone || '').trim();
-  const company = (body.company || '').trim();
-  const templateName = (body.templateName || '').trim();
-  const serviceType = (body.serviceType || '').trim();
-  const budget = (body.budget || '').trim();
-  const preferredLanguage: 'en' | 'it' = body.preferredLanguage === 'it' ? 'it' : 'en';
-
-  if (!name || !message || !EMAIL_PATTERN.test(email)) {
-    return NextResponse.json({ error: 'Invalid form data' }, { status: 422 });
+  if (rateLimited(clientIp(req))) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429, headers: { 'Retry-After': '600' } });
   }
 
+  const result = validateContact(body);
+  if (result.errors) {
+    return NextResponse.json({ error: 'Invalid form data', fields: result.errors }, { status: 422 });
+  }
+  const data = result.data;
+
+  const emailConfig = getEmailConfig();
+  if (!emailConfig.ok) {
+    // Names of the misconfigured variables only -- never their values.
+    console.error('Contact form is not configured:', emailConfig.problems.join('; '));
+    return NextResponse.json({ error: 'Email service unavailable' }, { status: 503 });
+  }
+  if (emailConfig.warnings.length > 0) console.warn('Contact form:', emailConfig.warnings.join('; '));
+  const { apiKey, adminEmail, fromEmail } = emailConfig.config;
+  const resend = getResend(apiKey);
+
+  const admin = await sendWithRetry(() =>
+    resend.emails.send({
+      from: fromEmail,
+      to: adminEmail,
+      replyTo: data.email,
+      // validateContact has already collapsed CR/LF in `name`.
+      subject: `New project inquiry from ${data.name}`,
+      html: adminNotificationEmail(data),
+    })
+  );
+
+  if (admin.error) {
+    console.error('Contact admin email failed:', admin.error.name, admin.error.statusCode ?? '', admin.error.message ?? '');
+    return NextResponse.json({ error: 'Failed to send message' }, { status: 502 });
+  }
+
+  // The inquiry has reached the studio. A failed confirmation is logged but
+  // must not make the visitor resend (and duplicate) the inquiry.
   try {
-    // 2. Send Notification Email to Admin
-    const adminEmailResult = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: ADMIN_EMAIL,
-      replyTo: email,
-      subject: templateName
-        ? `New inquiry from ${name} -- ${templateName}`
-        : `New project inquiry from ${name}`,
-      html: adminNotificationEmail({
-        name,
-        email,
-        phone: phone || undefined,
-        company: company || undefined,
-        templateName: templateName || undefined,
-        serviceType: serviceType || undefined,
-        budget: budget || undefined,
-        preferredLanguage,
-        message,
-      }),
+    const confirmation = await resend.emails.send({
+      from: fromEmail,
+      to: data.email,
+      replyTo: adminEmail,
+      subject: data.language === 'it' ? 'Ho ricevuto il tuo messaggio — Lankio' : 'I’ve received your message — Lankio',
+      html: leadConfirmationEmail({ name: data.name, language: data.language }),
     });
-
-    // Check for Resend API error response
-    if (adminEmailResult.error) {
-      console.error('Resend Admin Email Error:', adminEmailResult.error);
-      return NextResponse.json({ error: 'Failed to send admin notification' }, { status: 502 });
+    if (confirmation.error) {
+      console.error('Contact confirmation email failed:', confirmation.error.name, confirmation.error.message ?? '');
     }
-
-    // 3. Send Confirmation Email to Client
-    const clientEmailResult = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: email,
-      subject:
-        preferredLanguage === 'it'
-          ? 'Abbiamo ricevuto il tuo messaggio -- Lankio'
-          : 'We received your message -- Lankio',
-      html: leadConfirmationEmail({ name, preferredLanguage }),
-    });
-
-    if (clientEmailResult.error) {
-      console.error('Resend Client Confirmation Email Error:', clientEmailResult.error);
-      // Admin එකට email එක ගිය නිසා client email එක fail වුණත් form එක successfully submitted ලෙස සලකයි.
-    }
-
-    return NextResponse.json({ ok: true, id: adminEmailResult.data?.id });
   } catch (error) {
-    console.error('Resend execution exception:', error);
-    return NextResponse.json({ error: 'Failed to send message' }, { status: 500 });
+    console.error('Contact confirmation email threw:', error);
   }
+
+  return NextResponse.json({ ok: true });
 }

@@ -1,29 +1,17 @@
-import { useTranslations } from "next-intl";
+import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { Locale } from '@/i18n/routing';
+import { buildMetadata } from '@/lib/seo';
+import { LegalPage } from '@/components/legal/legal-page';
 
-export default function PrivacyPolicyPage() {
-  const t = useTranslations("CookiePolicy");
+export async function generateMetadata({ params }: PageProps<'/[locale]/cookie-policy'>): Promise<Metadata> {
+  const locale = (await params).locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'Meta.cookies' });
+  return buildMetadata({ locale, path: '/cookie-policy', title: t('title'), description: t('description') });
+}
 
-  const sections = ["dataCollected", "dataUsage", "cookies", "rights"] as const;
-
-  return (
-    <main className="min-h-screen py-20 px-4 max-w-3xl mx-auto">
-      <h1 className="text-3xl md:text-4xl font-bold mb-2">{t("title")}</h1>
-      <p className="text-sm text-muted-foreground mb-8">{t("lastUpdated")}</p>
-
-      <p className="text-muted-foreground leading-relaxed mb-8">{t("intro")}</p>
-
-      <div className="space-y-8">
-        {sections.map((key) => (
-          <section key={key} className="space-y-2">
-            <h2 className="text-xl font-semibold">
-              {t(`sections.${key}.title`)}
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              {t(`sections.${key}.body`)}
-            </p>
-          </section>
-        ))}
-      </div>
-    </main>
-  );
+export default async function CookiePolicyPage({ params }: PageProps<'/[locale]/cookie-policy'>) {
+  const locale = (await params).locale as Locale;
+  setRequestLocale(locale);
+  return <LegalPage document="cookies" />;
 }
