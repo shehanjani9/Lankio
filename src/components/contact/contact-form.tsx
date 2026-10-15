@@ -377,7 +377,23 @@ function SelectField({
         onChange={onChange}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={describedBy(id, undefined, error)}
-        className={cn(FIELD_CLASS, 'h-12 cursor-pointer appearance-none bg-[length:1rem] bg-[right_1rem_center] bg-no-repeat pr-10', error ? 'border-danger/70' : 'border-line')}
+        // Native option lists are painted by the browser/OS outside the page,
+        // so they can't show the translucent field background through. Without
+        // explicit colours Chrome on Windows drew light option text on its
+        // default white list (readable only on the hovered row). An opaque
+        // field (the same colour the translucent inputs show over the form
+        // panel), dark colour-scheme and explicit option colours keep the list
+        // dark with light text. Scoped here: the /demo templates have their
+        // own light-themed selects.
+        // `position:` is required: tailwind-merge reads an unlabelled
+        // `bg-[right_1rem_center]` as a background *colour* and silently
+        // drops the real one, which left the select fully transparent.
+        className={cn(
+          FIELD_CLASS,
+          'h-12 cursor-pointer appearance-none bg-[color:color-mix(in_srgb,var(--color-canvas)_60%,var(--color-surface))] bg-[length:1rem] bg-[position:right_1rem_center] bg-no-repeat pr-10 [color-scheme:dark]',
+          '[&_option]:bg-surface-2 [&_option]:text-fg [&_option:disabled]:text-fg-muted',
+          error ? 'border-danger/70' : 'border-line'
+        )}
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a3a8b4' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
