@@ -48,7 +48,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
             <ContactForm />
           </div>
 
-          <aside className="space-y-12 lg:col-span-4 lg:col-start-9">
+          <div className="space-y-12 lg:col-span-4 lg:col-start-9">
             <Reveal>
               <h2 className="text-eyebrow text-fg-subtle">{t('directTitle')}</h2>
               <p className="mt-4 text-fg-muted">{t('directBody')}</p>
@@ -80,7 +80,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                 ))}
               </div>
             </Reveal>
-          </aside>
+          </div>
         </div>
       </section>
     </>

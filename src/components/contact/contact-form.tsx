@@ -28,9 +28,12 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<ContactErrors>({});
 
+  // Time since the form first appeared (bot heuristic). Set once: resetting
+  // it on status changes would make a quick retry after an error look like
+  // a bot and get silently dropped by the API.
   useEffect(() => {
     mountedAt.current = Date.now();
-  }, [status]);
+  }, []);
 
   useEffect(() => {
     if (status === 'success') successRef.current?.focus();
@@ -96,7 +99,10 @@ export function ContactForm() {
         <p className="mt-4 max-w-md text-fg-muted">{t('successBody')}</p>
         <button
           type="button"
-          onClick={() => setStatus('idle')}
+          onClick={() => {
+            mountedAt.current = Date.now();
+            setStatus('idle');
+          }}
           className="mt-10 inline-flex min-h-11 items-center gap-2 rounded-full border border-line-strong px-5 text-sm text-fg-muted transition-colors hover:text-fg"
         >
           <RotateCcw size={15} aria-hidden="true" />

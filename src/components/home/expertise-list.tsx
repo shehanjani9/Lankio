@@ -6,6 +6,9 @@ export const EXPERTISE_KEYS = ['web', 'brand', 'motion', 'media', 'marketing'] a
 /** Numbered expertise rows; `detailed` adds the deliverables list. */
 export function ExpertiseList({ detailed = false }: { detailed?: boolean }) {
   const t = useTranslations('Expertise');
+  // On the expertise page the groups sit directly under the h1.
+  const Title = detailed ? 'h2' : 'h3';
+  const Sub = detailed ? 'h3' : 'h4';
 
   return (
     <ol className="border-t border-line">
@@ -23,15 +26,15 @@ export function ExpertiseList({ detailed = false }: { detailed?: boolean }) {
               {String(index + 1).padStart(2, '0')}
             </span>
             <div className="md:col-span-5">
-              <h3 className="text-title text-fg transition-transform duration-700 ease-out-expo md:group-hover:translate-x-2">
+              <Title className="text-title text-fg transition-transform duration-700 ease-out-expo md:group-hover:translate-x-2">
                 {t(`groups.${key}.title`)}
-              </h3>
+              </Title>
             </div>
             <div className="md:col-span-6">
               <p className="text-fg-muted leading-relaxed">{t(`groups.${key}.summary`)}</p>
               {detailed ? (
                 <>
-                  <h4 className="text-eyebrow mt-8 text-fg-subtle">{t('deliverables')}</h4>
+                  <Sub className="text-eyebrow mt-8 text-fg-subtle">{t('deliverables')}</Sub>
                   <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
                     {items.map((item) => (
                       <li key={item} className="flex items-baseline gap-3 text-[0.95rem] text-fg">

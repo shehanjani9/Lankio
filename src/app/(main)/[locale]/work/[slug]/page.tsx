@@ -189,8 +189,8 @@ export default async function ProjectPage({ params }: PageProps<'/[locale]/work/
       <section aria-labelledby="overview" className="section-y">
         <div className="container-page grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <SectionLabel index={nextIndex()}>
-              <span id="overview">{t('overview')}</span>
+            <SectionLabel as="h2" id="overview" index={nextIndex()}>
+              {t('overview')}
             </SectionLabel>
           </div>
           <Reveal className="space-y-6 md:col-span-8">
@@ -207,8 +207,8 @@ export default async function ProjectPage({ params }: PageProps<'/[locale]/work/
       {highlights.length > 0 && (
         <section aria-labelledby="highlights" className="pb-24 md:pb-32">
           <div className="container-page">
-            <SectionLabel index={nextIndex()}>
-              <span id="highlights">{t('highlights')}</span>
+            <SectionLabel as="h2" id="highlights" index={nextIndex()}>
+              {t('highlights')}
             </SectionLabel>
             <ul className="mt-12 grid gap-px overflow-hidden rounded-[1.5rem] border border-line bg-line md:grid-cols-2">
               {highlights.map((item, i) => (
@@ -227,8 +227,8 @@ export default async function ProjectPage({ params }: PageProps<'/[locale]/work/
       {project.videos && project.videos.length > 0 && (
         <section aria-labelledby="film" className="pb-24 md:pb-32">
           <div className="container-page">
-            <SectionLabel index={nextIndex()}>
-              <span id="film">{t('film')}</span>
+            <SectionLabel as="h2" id="film" index={nextIndex()}>
+              {t('film')}
             </SectionLabel>
             <div className="mt-12 space-y-16">
               {project.videos.map((video) => (
@@ -260,8 +260,8 @@ export default async function ProjectPage({ params }: PageProps<'/[locale]/work/
       {project.gallery && project.gallery.length > 0 && (
         <section aria-labelledby="gallery" className="pb-24 md:pb-32">
           <div className="container-page">
-            <SectionLabel index={nextIndex()}>
-              <span id="gallery">{t('gallery')}</span>
+            <SectionLabel as="h2" id="gallery" index={nextIndex()}>
+              {t('gallery')}
             </SectionLabel>
             <div className="mt-12">
               <ProjectGallery images={project.gallery} locale={locale} tint={project.tint} />
@@ -276,7 +276,7 @@ export default async function ProjectPage({ params }: PageProps<'/[locale]/work/
           <div className="container-page grid gap-16 md:grid-cols-2">
             {approach.length > 0 && (
               <div>
-                <SectionLabel index={nextIndex()}>{t('approach')}</SectionLabel>
+                <SectionLabel as="h2" index={nextIndex()}>{t('approach')}</SectionLabel>
                 <ol className="mt-10 space-y-6">
                   {approach.map((item, i) => (
                     <Reveal as="li" key={i} delay={i * 0.06} className="flex gap-5 border-b border-line pb-6">
@@ -289,7 +289,7 @@ export default async function ProjectPage({ params }: PageProps<'/[locale]/work/
             )}
             {outcomes.length > 0 && (
               <div>
-                <SectionLabel index={nextIndex()}>{t('outcomes')}</SectionLabel>
+                <SectionLabel as="h2" index={nextIndex()}>{t('outcomes')}</SectionLabel>
                 <ul className="mt-10 space-y-4">
                   {outcomes.map((item, i) => (
                     <li key={i} className="text-lg text-fg">

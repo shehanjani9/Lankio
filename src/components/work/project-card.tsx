@@ -19,12 +19,15 @@ export function ProjectCard({
   sizes,
   priority = false,
   className,
+  headingLevel: Heading = 'h3',
 }: {
   project: ProjectCardData;
   index: number;
   sizes: string;
   priority?: boolean;
   className?: string;
+  /** h2 when cards sit directly under the page h1 (work index). */
+  headingLevel?: 'h2' | 'h3';
 }) {
   const tint = project.tint ?? '#2c2470';
 
@@ -79,7 +82,7 @@ export function ProjectCard({
         <div className="mt-6 flex items-start gap-5">
           <span className="pt-1 text-sm tabular-nums text-fg-subtle">{String(index + 1).padStart(2, '0')}</span>
           <div className="min-w-0">
-            <h3 className="text-title text-fg transition-colors duration-300">{project.title}</h3>
+            <Heading className="text-title text-fg transition-colors duration-300">{project.title}</Heading>
             <p className="mt-2 text-sm text-fg-muted">{project.discipline}</p>
           </div>
         </div>

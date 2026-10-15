@@ -100,6 +100,7 @@ export function WorkGallery({
                   project={project}
                   index={projects.indexOf(project)}
                   priority={index < 2}
+                  headingLevel="h2"
                   sizes="(min-width: 768px) 46vw, 100vw"
                 />
               </motion.li>
