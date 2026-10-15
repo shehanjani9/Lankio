@@ -8,10 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "check:i18n": "node scripts/check-messages.mjs"
+    "check:i18n": "node scripts/check-messages.mjs",
+    "test": "npm run build && playwright test",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@next/third-parties": "^16.3.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
     "lucide-react": "^1.25.0",
@@ -23,10 +24,12 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "axe-core": "^4.10.2",
     "eslint": "^9",
     "eslint-config-next": "^16.4.1",
     "postcss": "^8.5.22",

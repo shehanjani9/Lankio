@@ -14,7 +14,7 @@
     },
     "about": {
       "title": "About Shehan",
-      "description": "Shehan Janith Hettiarachchi is a Sri Lankan creative developer and multidisciplinary digital designer based in Italy, and the person behind Lankio Digital Solutions."
+      "description": "Shehan Janith Hettiarachchi is a Sri Lankan creative developer and multidisciplinary digital designer based in Italy, and the founder of Lankio Digital Solutions."
     },
     "contact": {
       "title": "Start a Project",
@@ -83,7 +83,7 @@
     "about": {
       "eyebrow": "About",
       "title": "One person across design, code and media.",
-      "body": "I grew up in Sri Lanka and now live and work in Italy. My background spans web design and development, graphic design, photography, video, motion and digital marketing, along with professional experience in tourism. Clients work with me directly, from the first conversation to launch.",
+      "body": "I’m a Sri Lankan creative professional based in Italy. My experience spans web development and design, graphic design, photography, videography and video editing, 2D animation and motion graphics, social media marketing and SEO, as well as professional work in tourism. Clients work with me directly, from the first conversation to launch.",
       "cta": "More about me"
     },
     "expertise": {
@@ -234,9 +234,9 @@
     "role": "Creative Developer & Multidisciplinary Digital Designer",
     "portraitAlt": "Portrait of Shehan Janith Hettiarachchi",
     "bio": [
-      "I’m a creative developer and multidisciplinary digital designer. I grew up in Sri Lanka and now live and work in Italy, where Lankio Digital Solutions is based.",
-      "My work sits where design, technology and media meet. I design and build websites and web applications, shape visual identities, shoot photography and video, edit films, animate motion graphics and 2D advertisements, and support it all with SEO and social media marketing.",
-      "I also bring professional experience from the tourism industry and hold the IATA Foundation Diploma. That background is part of why travel and hospitality brands feel familiar to me."
+      "I’m Shehan, a Sri Lankan creative professional based in Italy. I work as a creative developer and multidisciplinary digital designer, and Lankio Digital Solutions is my independent studio.",
+      "My professional experience spans web development, web design, graphic design, photography, videography, video editing, 2D animation, motion graphics, social media marketing and SEO. Working across all of them means a website, a visual identity and a campaign film can grow from the same idea and stay consistent.",
+      "I also have professional experience in tourism and hold the IATA Foundation Diploma, which gives me a practical understanding of travel and hospitality businesses."
     ],
     "factsTitle": "At a glance",
     "facts": {
@@ -263,14 +263,14 @@
     },
     "capabilitiesTitle": "Capabilities",
     "capabilities": [
-      "Web design",
       "Web development",
+      "Web design",
       "UI/UX design",
       "Graphic design",
       "Photography",
       "Videography",
       "Video editing",
-      "2D animated advertisements",
+      "2D animation",
       "Motion graphics",
       "Social media marketing",
       "SEO",
@@ -389,7 +389,8 @@
     "terms": "Terms of use",
     "social": "Elsewhere",
     "rights": "© {year} Lankio Digital Solutions. All rights reserved.",
-    "madeBy": "Designed and built by Shehan Janith Hettiarachchi."
+    "madeBy": "Designed and built by Shehan Janith Hettiarachchi.",
+    "cookieSettings": "Cookie settings"
   },
   "NotFound": {
     "eyebrow": "Error 404",
@@ -420,7 +421,7 @@
         },
         {
           "title": "Analytics",
-          "body": "The website uses Google Analytics 4 to understand how pages are used in aggregate, for example which pages are visited and from which country. Google Analytics sets cookies and processes data such as your IP address and device information. See the cookie policy for details and how to opt out."
+          "body": "With your consent, the website uses Google Analytics 4 to understand in aggregate how pages are used, for example which pages are visited and from which country. Google Analytics processes data such as your IP address and device information and sets cookies. It is loaded only after you accept analytics in the cookie banner (legal basis: consent, Art. 6(1)(a) GDPR), with Google Signals and ad personalisation turned off. You can withdraw consent at any time from “Cookie settings”; withdrawal does not affect processing carried out before it."
         },
         {
           "title": "Hosting and server logs",
@@ -438,19 +439,23 @@
     },
     "cookies": {
       "title": "Cookie Policy",
-      "intro": "This policy explains which cookies lankio.it uses.",
+      "intro": "This policy explains which cookies lankio.it uses, when they are set, and how you can change your choice.",
       "sections": [
         {
-          "title": "Technical cookies",
-          "body": "The website does not need cookies to work. Your language is determined by the address you visit (/en or /it), and the language-detection system may store a small cookie that remembers your choice."
+          "title": "How consent works",
+          "body": "On your first visit a banner asks whether you allow analytics. Analytics cookies are set only if you choose “Accept” or switch analytics on in “Preferences”. Rejecting, or closing the banner, keeps them off, and the website works the same either way. Your choice is remembered for six months, after which you will be asked again."
         },
         {
-          "title": "Analytics cookies",
-          "body": "Google Analytics 4 sets first-party cookies (such as _ga and _ga_*) to distinguish visitors and sessions. They are used only for aggregated statistics about how the website is used."
+          "title": "Technical cookies (no consent needed)",
+          "body": "lankio_consent stores your cookie choice and expires after six months. NEXT_LOCALE is a session cookie, set only when you view the site in a language different from your browser’s, so the site can keep showing your chosen language. Neither cookie is used to track you."
         },
         {
-          "title": "Managing cookies",
-          "body": "You can block or delete cookies in your browser settings, and you can opt out of Google Analytics with Google’s official browser add-on (tools.google.com/dlpage/gaoptout). Blocking cookies doesn’t affect how the website works."
+          "title": "Analytics cookies (only with your consent)",
+          "body": "If you accept analytics, Google Analytics 4 is loaded and sets the first-party cookies _ga and _ga_<ID>, which can last up to two years. They are used only for aggregated statistics about how the website is used. Google Signals and ad personalisation are turned off. Before you consent, no Google Analytics script is loaded and no request is sent to Google."
+        },
+        {
+          "title": "Changing or withdrawing consent",
+          "body": "Use “Cookie settings” at the bottom of any page, or the button below, to change your choice at any time. If you withdraw consent, Google Analytics is disabled straight away and its cookies on this website are deleted. You can also block or delete cookies in your browser settings."
         }
       ]
     },
@@ -476,5 +481,26 @@
         }
       ]
     }
+  },
+  "Consent": {
+    "title": "Your privacy choices",
+    "body": "This site uses a technical cookie to remember your choices. With your permission it also uses Google Analytics to understand, in aggregate, how pages are used. Analytics stays off unless you accept. Read the <link>cookie policy</link>.",
+    "reject": "Reject",
+    "accept": "Accept",
+    "preferences": "Preferences",
+    "close": "Close and continue without accepting",
+    "dialogTitle": "Cookie preferences",
+    "dialogIntro": "Choose which optional cookies you allow. You can change this at any time from “Cookie settings” at the bottom of every page.",
+    "necessaryTitle": "Necessary",
+    "alwaysOn": "Always on",
+    "necessaryBody": "Remember your cookie choice and, when relevant, your language. They don’t track you, and the site can’t work properly without them.",
+    "analyticsTitle": "Analytics (Google Analytics 4)",
+    "analyticsBody": "Counts visits and page views in aggregate, so I can see which pages are useful. Sets _ga cookies. Google Signals and ad personalisation are turned off.",
+    "save": "Save preferences",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "closeDialog": "Close",
+    "saved": "Your cookie preferences have been saved.",
+    "openSettings": "Change cookie settings"
   }
 }

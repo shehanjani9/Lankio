@@ -3,12 +3,13 @@ import { notFound } from 'next/navigation';
 import { Inter, Instrument_Serif } from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { routing } from '@/i18n/routing';
 import { siteConfig } from '@/config/site';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { MotionProvider } from '@/components/motion/motion-provider';
+import { ConsentManager } from '@/components/consent/consent-manager';
+import { CONSENT_BOOT_SCRIPT } from '@/lib/consent';
 import '../../globals.css';
 
 const inter = Inter({
@@ -26,8 +27,8 @@ const instrumentSerif = Instrument_Serif({
   display: 'swap',
 });
 
-// Kept as the fallback so production analytics continue if the env var is
-// not configured on the host. See the final report for the consent note.
+// GA4 loads only after analytics consent (see ConsentManager). The fallback
+// keeps analytics working if the env var is missing on the host.
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-3VNPQ6S0LN';
 
 export function generateStaticParams() {
@@ -71,7 +72,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
       lang={locale}
       className={`${inter.variable} ${instrumentSerif.variable}`}
       data-scroll-behavior="smooth"
+      // The consent boot script may add data-consent before hydration.
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: CONSENT_BOOT_SCRIPT }} />
+      </head>
       <body className="min-h-dvh bg-canvas text-fg">
         <a
           href="#main"
@@ -87,8 +93,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
             </main>
             <SiteFooter />
           </MotionProvider>
+          <ConsentManager gaId={GA_ID} />
         </NextIntlClientProvider>
-        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
   );

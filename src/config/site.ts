@@ -3,15 +3,29 @@
  * structured data. Only verified information belongs here.
  */
 
-// Production serves from www (the apex 308-redirects there). An env value is
-// only honoured when it is a real public origin, so a copied local
-// `http://localhost:3000` can never leak into canonical URLs in production.
-function resolveSiteUrl(): string {
-  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '');
-  if (fromEnv && (process.env.NODE_ENV !== 'production' || !/localhost|127\.0\.0\.1/.test(fromEnv))) {
-    return fromEnv;
+export const PRODUCTION_URL = 'https://www.lankio.it';
+
+/**
+ * Production serves from www (the apex 308-redirects there). The env value
+ * is normalised to a bare origin -- the live site once emitted
+ * "https://www.lankio.it//en" because the variable had a trailing slash --
+ * and is ignored when it is not an http(s) URL, or when it points at
+ * localhost in a production build, so canonical URLs can't be corrupted.
+ */
+export function resolveSiteUrl(
+  value: string | undefined = process.env.NEXT_PUBLIC_SITE_URL,
+  nodeEnv: string | undefined = process.env.NODE_ENV
+): string {
+  const raw = value?.trim();
+  if (!raw) return PRODUCTION_URL;
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return PRODUCTION_URL;
+    if (nodeEnv === 'production' && /^(localhost|127\.0\.0\.1|\[::1\])$/.test(url.hostname)) return PRODUCTION_URL;
+    return url.origin;
+  } catch {
+    return PRODUCTION_URL;
   }
-  return 'https://www.lankio.it';
 }
 
 export const siteConfig = {

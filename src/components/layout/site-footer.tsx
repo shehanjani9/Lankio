@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { siteConfig, activeSocialLinks } from '@/config/site';
 import { getPublishedProjects } from '@/content/projects';
 import { BrandMark } from './brand-mark';
+import { CookieSettingsButton } from '@/components/consent/consent-manager';
 
 const SOCIAL_LABELS: Record<string, string> = {
   linkedin: 'LinkedIn',
@@ -116,6 +117,12 @@ export function SiteFooter() {
               <FooterLink href="/terms" small>
                 {t('terms')}
               </FooterLink>
+            </li>
+            <li>
+              <CookieSettingsButton
+                label={t('cookieSettings')}
+                className="text-xs text-fg-muted transition-colors duration-300 hover:text-fg"
+              />
             </li>
           </ul>
         </div>

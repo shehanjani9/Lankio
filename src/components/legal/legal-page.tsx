@@ -1,10 +1,12 @@
 import { getTranslations } from 'next-intl/server';
 import { PageHeader } from '@/components/ui/page-header';
+import { CookieSettingsButton } from '@/components/consent/consent-manager';
 
 type LegalKey = 'privacy' | 'cookies' | 'terms';
 
 export async function LegalPage({ document }: { document: LegalKey }) {
   const t = await getTranslations('Legal');
+  const consent = await getTranslations('Consent');
   const sections = t.raw(`${document}.sections`) as { title: string; body: string }[];
 
   return (
@@ -19,6 +21,12 @@ export async function LegalPage({ document }: { document: LegalKey }) {
                 <p className="mt-4 leading-relaxed text-fg-muted">{section.body}</p>
               </section>
             ))}
+            {document === 'cookies' && (
+              <CookieSettingsButton
+                label={consent('openSettings')}
+                className="inline-flex min-h-12 items-center rounded-full bg-fg px-6 font-medium text-canvas transition-colors hover:bg-white"
+              />
+            )}
             <p className="border-t border-line pt-8 text-sm text-fg-subtle">{t('reviewNote')}</p>
           </div>
         </div>

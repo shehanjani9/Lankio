@@ -24,12 +24,16 @@ let problems = 0;
 
 for (const locale of others) {
   const current = shape(load(locale));
+  const report = (message) => {
+    problems++;
+    console.error(`[${locale}] ${message}`);
+  };
   for (const [key, kind] of reference) {
-    if (!current.has(key)) (problems++, console.error(`[${locale}] missing: ${key}`));
-    else if (current.get(key) !== kind) (problems++, console.error(`[${locale}] shape mismatch at ${key}: ${current.get(key)} vs ${kind}`));
+    if (!current.has(key)) report(`missing: ${key}`);
+    else if (current.get(key) !== kind) report(`shape mismatch at ${key}: ${current.get(key)} vs ${kind}`);
   }
   for (const key of current.keys()) {
-    if (!reference.has(key)) (problems++, console.error(`[${locale}] extra key: ${key}`));
+    if (!reference.has(key)) report(`extra key: ${key}`);
   }
 }
 

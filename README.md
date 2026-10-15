@@ -19,7 +19,8 @@ Environment variables (`.env.local`, never committed):
 | `LANKIO_ADMIN_EMAIL` | Inbox that receives inquiries |
 | `LANKIO_FROM_EMAIL` | Verified sender, e.g. `Lankio <info@lankio.it>` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin. Set to `https://www.lankio.it` in production. Localhost values are ignored in production builds. |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (loaded only after analytics consent) |
+| `CONTACT_RATE_LIMIT_MAX` | Optional. Contact submissions per IP per 10 minutes (default 5) |
 
 ## Checks
 
@@ -29,7 +30,25 @@ npm run lint
 npm run check:i18n     # en/it message files must have identical keys
 npm run build
 npm start              # serve the production build
+npm test               # build, then the Playwright suite (unit + end-to-end)
+npm run test:e2e       # Playwright only, against an existing build
 ```
+
+The test suite starts the production build on port 3100 and a local mock of
+the Resend API on port 3901 (`tests/support/mock-resend.mjs`). The app runs
+with a fake API key pointed at the mock, so **tests never send real email**.
+Google Analytics requests are intercepted and never reach Google. Tests use
+the locally installed Google Chrome; see `playwright.config.ts` to use
+Playwright's bundled browser instead.
+
+## Cookie consent
+
+Google Analytics 4 is loaded only after a visitor accepts analytics in the
+consent banner (`src/components/consent/`). The choice is stored for six
+months in the technical cookie `lankio_consent`; bump `CONSENT_VERSION` in
+`src/lib/consent.ts` when the cookie policy changes in a way that needs fresh
+consent. Visitors can change their choice from "Cookie settings" in the footer
+or on the cookie policy page.
 
 ## Project structure
 

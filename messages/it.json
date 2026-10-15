@@ -14,7 +14,7 @@
     },
     "about": {
       "title": "Chi sono",
-      "description": "Shehan Janith Hettiarachchi è un creative developer e digital designer multidisciplinare di origine srilankese che vive e lavora in Italia, fondatore di Lankio Digital Solutions."
+      "description": "Shehan Janith Hettiarachchi è un creative developer e digital designer multidisciplinare srilankese che vive e lavora in Italia, fondatore di Lankio Digital Solutions."
     },
     "contact": {
       "title": "Inizia un progetto",
@@ -83,7 +83,7 @@
     "about": {
       "eyebrow": "Chi sono",
       "title": "Una sola persona tra design, codice e media.",
-      "body": "Sono cresciuto in Sri Lanka e oggi vivo e lavoro in Italia. La mia esperienza spazia dal web design e sviluppo alla grafica, dalla fotografia al video, dal motion al marketing digitale, con un percorso professionale anche nel turismo. Chi lavora con me ha un unico interlocutore, dalla prima conversazione al lancio.",
+      "body": "Sono un professionista creativo srilankese che vive e lavora in Italia. La mia esperienza comprende sviluppo e design web, graphic design, fotografia, riprese e montaggio video, animazione 2D e motion graphics, social media marketing e SEO, oltre a un percorso professionale nel turismo. Chi lavora con me ha un unico interlocutore, dalla prima conversazione al lancio.",
       "cta": "Scopri di più su di me"
     },
     "expertise": {
@@ -234,9 +234,9 @@
     "role": "Creative Developer e Digital Designer multidisciplinare",
     "portraitAlt": "Ritratto di Shehan Janith Hettiarachchi",
     "bio": [
-      "Sono un creative developer e digital designer multidisciplinare. Sono cresciuto in Sri Lanka e oggi vivo e lavoro in Italia, dove ha sede Lankio Digital Solutions.",
-      "Il mio lavoro nasce dall’incontro tra design, tecnologia e media. Progetto e sviluppo siti web e web application, costruisco identità visive, scatto fotografie e giro video, curo il montaggio, animo motion graphics e spot in 2D, e sostengo tutto questo con SEO e social media marketing.",
-      "Ho inoltre esperienza professionale nel settore turistico e ho conseguito l’IATA Foundation Diploma. Anche per questo i brand del viaggio e dell’ospitalità mi sono particolarmente familiari."
+      "Sono Shehan, un professionista creativo srilankese che vive e lavora in Italia. Mi occupo di sviluppo creativo e design digitale multidisciplinare, e Lankio Digital Solutions è il mio studio indipendente.",
+      "La mia esperienza professionale comprende sviluppo web, web design, graphic design, fotografia, riprese video, montaggio, animazione 2D, motion graphics, social media marketing e SEO. Lavorare su tutti questi fronti permette a un sito, a un’identità visiva e a un video di campagna di nascere dalla stessa idea e restare coerenti.",
+      "Ho inoltre esperienza professionale nel turismo e ho conseguito l’IATA Foundation Diploma, che mi dà una conoscenza concreta del mondo dei viaggi e dell’ospitalità."
     ],
     "factsTitle": "In breve",
     "facts": {
@@ -263,14 +263,14 @@
     },
     "capabilitiesTitle": "Competenze",
     "capabilities": [
-      "Web design",
       "Sviluppo web",
+      "Web design",
       "UI/UX design",
       "Graphic design",
       "Fotografia",
       "Riprese video",
       "Montaggio video",
-      "Spot animati in 2D",
+      "Animazione 2D",
       "Motion graphics",
       "Social media marketing",
       "SEO",
@@ -389,7 +389,8 @@
     "terms": "Termini d’uso",
     "social": "Altrove",
     "rights": "© {year} Lankio Digital Solutions. Tutti i diritti riservati.",
-    "madeBy": "Progettato e sviluppato da Shehan Janith Hettiarachchi."
+    "madeBy": "Progettato e sviluppato da Shehan Janith Hettiarachchi.",
+    "cookieSettings": "Impostazioni cookie"
   },
   "NotFound": {
     "eyebrow": "Errore 404",
@@ -420,7 +421,7 @@
         },
         {
           "title": "Statistiche",
-          "body": "Il sito utilizza Google Analytics 4 per capire in forma aggregata come vengono usate le pagine, ad esempio quali pagine vengono visitate e da quale Paese. Google Analytics imposta cookie e tratta dati come l’indirizzo IP e le informazioni sul dispositivo. Consulta la cookie policy per i dettagli e per sapere come disattivarlo."
+          "body": "Con il tuo consenso il sito utilizza Google Analytics 4 per capire in forma aggregata come vengono usate le pagine, ad esempio quali pagine vengono visitate e da quale Paese. Google Analytics tratta dati come l’indirizzo IP e le informazioni sul dispositivo e imposta cookie. Viene caricato solo dopo che hai accettato le statistiche nel banner dei cookie (base giuridica: consenso, art. 6(1)(a) GDPR), con Google Signals e la personalizzazione degli annunci disattivati. Puoi revocare il consenso in qualsiasi momento da «Impostazioni cookie»; la revoca non pregiudica il trattamento effettuato in precedenza."
         },
         {
           "title": "Hosting e log del server",
@@ -438,19 +439,23 @@
     },
     "cookies": {
       "title": "Cookie policy",
-      "intro": "Questa informativa spiega quali cookie utilizza lankio.it.",
+      "intro": "Questa informativa spiega quali cookie utilizza lankio.it, quando vengono impostati e come puoi modificare la tua scelta.",
       "sections": [
         {
-          "title": "Cookie tecnici",
-          "body": "Il sito non ha bisogno di cookie per funzionare. La lingua dipende dall’indirizzo visitato (/en o /it) e il sistema di rilevamento della lingua può salvare un piccolo cookie che ricorda la tua scelta."
+          "title": "Come funziona il consenso",
+          "body": "Alla prima visita un banner ti chiede se consenti le statistiche. I cookie statistici vengono impostati solo se scegli «Accetta» o attivi le statistiche in «Preferenze». Se rifiuti o chiudi il banner restano disattivati, e il sito funziona allo stesso modo. La tua scelta viene ricordata per sei mesi, dopodiché ti verrà chiesta di nuovo."
         },
         {
-          "title": "Cookie statistici",
-          "body": "Google Analytics 4 imposta cookie di prima parte (come _ga e _ga_*) per distinguere visitatori e sessioni. Vengono usati esclusivamente per statistiche aggregate sull’utilizzo del sito."
+          "title": "Cookie tecnici (non richiedono consenso)",
+          "body": "lankio_consent memorizza la tua scelta sui cookie e scade dopo sei mesi. NEXT_LOCALE è un cookie di sessione, impostato solo quando visiti il sito in una lingua diversa da quella del browser, per continuare a mostrarti la lingua scelta. Nessuno dei due viene usato per tracciarti."
         },
         {
-          "title": "Gestione dei cookie",
-          "body": "Puoi bloccare o cancellare i cookie dalle impostazioni del browser e disattivare Google Analytics con il componente aggiuntivo ufficiale di Google (tools.google.com/dlpage/gaoptout). Bloccare i cookie non compromette il funzionamento del sito."
+          "title": "Cookie statistici (solo con il tuo consenso)",
+          "body": "Se accetti le statistiche, viene caricato Google Analytics 4, che imposta i cookie di prima parte _ga e _ga_<ID>, con durata fino a due anni. Sono usati esclusivamente per statistiche aggregate sull’utilizzo del sito. Google Signals e la personalizzazione degli annunci sono disattivati. Prima del consenso non viene caricato alcuno script di Google Analytics né inviata alcuna richiesta a Google."
+        },
+        {
+          "title": "Modificare o revocare il consenso",
+          "body": "Puoi cambiare la tua scelta in qualsiasi momento da «Impostazioni cookie» in fondo a ogni pagina, oppure con il pulsante qui sotto. Se revochi il consenso, Google Analytics viene disattivato immediatamente e i suoi cookie su questo sito vengono cancellati. Puoi anche bloccare o cancellare i cookie dalle impostazioni del browser."
         }
       ]
     },
@@ -476,5 +481,26 @@
         }
       ]
     }
+  },
+  "Consent": {
+    "title": "Le tue scelte sulla privacy",
+    "body": "Questo sito usa un cookie tecnico per ricordare le tue scelte. Con il tuo consenso usa anche Google Analytics per capire, in forma aggregata, come vengono utilizzate le pagine. Le statistiche restano disattivate finché non accetti. Leggi la <link>cookie policy</link>.",
+    "reject": "Rifiuta",
+    "accept": "Accetta",
+    "preferences": "Preferenze",
+    "close": "Chiudi e continua senza accettare",
+    "dialogTitle": "Preferenze cookie",
+    "dialogIntro": "Scegli quali cookie facoltativi consentire. Puoi cambiare idea in qualsiasi momento da «Impostazioni cookie» in fondo a ogni pagina.",
+    "necessaryTitle": "Necessari",
+    "alwaysOn": "Sempre attivi",
+    "necessaryBody": "Ricordano la tua scelta sui cookie e, quando serve, la lingua. Non ti tracciano e senza di essi il sito non funziona correttamente.",
+    "analyticsTitle": "Statistiche (Google Analytics 4)",
+    "analyticsBody": "Contano visite e pagine viste in forma aggregata, per capire quali pagine sono utili. Impostano i cookie _ga. Google Signals e la personalizzazione degli annunci sono disattivati.",
+    "save": "Salva preferenze",
+    "acceptAll": "Accetta tutti",
+    "rejectAll": "Rifiuta tutti",
+    "closeDialog": "Chiudi",
+    "saved": "Le tue preferenze sui cookie sono state salvate.",
+    "openSettings": "Modifica le impostazioni dei cookie"
   }
 }

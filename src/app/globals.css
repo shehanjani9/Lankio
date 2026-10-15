@@ -235,3 +235,9 @@
 @utility text-balance-pretty {
   text-wrap: balance;
 }
+
+/* Returning visitors: the inline consent boot script sets this before first
+   paint, so the server-rendered banner never flashes. */
+html[data-consent='set'] [data-consent-banner] {
+  display: none;
+}

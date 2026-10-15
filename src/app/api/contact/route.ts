@@ -1,17 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { resend } from '@/lib/resend';
+import { getEmailConfig, getResend } from '@/lib/resend';
 import { adminNotificationEmail, leadConfirmationEmail } from '@/lib/email-templates';
 import { MIN_FILL_TIME_MS, validateContact } from '@/lib/contact';
 
-const ADMIN_EMAIL = process.env.LANKIO_ADMIN_EMAIL || 'info.lankio@gmail.com';
-const FROM_EMAIL = process.env.LANKIO_FROM_EMAIL || 'Lankio <info@lankio.it>';
 const MAX_BODY_BYTES = 16_000;
 
 // Best-effort sliding-window limit per client IP. On serverless hosting each
 // instance keeps its own map, so this slows down bursts rather than being a
 // hard guarantee -- pair with platform-level protection for stronger limits.
 const WINDOW_MS = 10 * 60 * 1000;
-const MAX_PER_WINDOW = 5;
+const MAX_PER_WINDOW = Number(process.env.CONTACT_RATE_LIMIT_MAX) || 5;
 const hits = new Map<string, number[]>();
 
 function rateLimited(ip: string): boolean {
@@ -29,6 +27,31 @@ function rateLimited(ip: string): boolean {
 
 function clientIp(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip') || 'unknown';
+}
+
+type SendResult = { error: { name?: string; statusCode?: number | null; message?: string } | null };
+
+/** Rate limits, 5xx and network failures are worth one more attempt. */
+function isTransient(error: SendResult['error']): boolean {
+  if (!error) return false;
+  const status = error.statusCode ?? 0;
+  return status === 429 || status >= 500 || error.name === 'rate_limit_exceeded' || error.name === 'application_error';
+}
+
+async function sendWithRetry(send: () => Promise<SendResult>): Promise<SendResult> {
+  let result: SendResult;
+  try {
+    result = await send();
+  } catch (error) {
+    result = { error: { name: 'network_error', message: String(error) } };
+  }
+  if (!isTransient(result.error)) return result;
+  await new Promise((resolve) => setTimeout(resolve, 700));
+  try {
+    return await send();
+  } catch (error) {
+    return { error: { name: 'network_error', message: String(error) } };
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -66,38 +89,48 @@ export async function POST(req: NextRequest) {
   }
   const data = result.data;
 
-  try {
-    const admin = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: ADMIN_EMAIL,
+  const emailConfig = getEmailConfig();
+  if (!emailConfig.ok) {
+    // Names of the misconfigured variables only -- never their values.
+    console.error('Contact form is not configured:', emailConfig.problems.join('; '));
+    return NextResponse.json({ error: 'Email service unavailable' }, { status: 503 });
+  }
+  if (emailConfig.warnings.length > 0) console.warn('Contact form:', emailConfig.warnings.join('; '));
+  const { apiKey, adminEmail, fromEmail } = emailConfig.config;
+  const resend = getResend(apiKey);
+
+  const admin = await sendWithRetry(() =>
+    resend.emails.send({
+      from: fromEmail,
+      to: adminEmail,
       replyTo: data.email,
       // validateContact has already collapsed CR/LF in `name`.
       subject: `New project inquiry from ${data.name}`,
       html: adminNotificationEmail(data),
-    });
+    })
+  );
 
-    if (admin.error) {
-      console.error('Resend admin email error:', admin.error);
-      return NextResponse.json({ error: 'Failed to send message' }, { status: 502 });
-    }
+  if (admin.error) {
+    console.error('Contact admin email failed:', admin.error.name, admin.error.statusCode ?? '', admin.error.message ?? '');
+    return NextResponse.json({ error: 'Failed to send message' }, { status: 502 });
+  }
 
+  // The inquiry has reached the studio. A failed confirmation is logged but
+  // must not make the visitor resend (and duplicate) the inquiry.
+  try {
     const confirmation = await resend.emails.send({
-      from: FROM_EMAIL,
+      from: fromEmail,
       to: data.email,
-      subject:
-        data.language === 'it'
-          ? 'Ho ricevuto il tuo messaggio — Lankio'
-          : 'I’ve received your message — Lankio',
+      replyTo: adminEmail,
+      subject: data.language === 'it' ? 'Ho ricevuto il tuo messaggio — Lankio' : 'I’ve received your message — Lankio',
       html: leadConfirmationEmail({ name: data.name, language: data.language }),
     });
-
-    // The inquiry already reached the studio; a failed confirmation should
-    // not make the visitor resend it.
-    if (confirmation.error) console.error('Resend confirmation email error:', confirmation.error);
-
-    return NextResponse.json({ ok: true });
+    if (confirmation.error) {
+      console.error('Contact confirmation email failed:', confirmation.error.name, confirmation.error.message ?? '');
+    }
   } catch (error) {
-    console.error('Contact route exception:', error);
-    return NextResponse.json({ error: 'Failed to send message' }, { status: 500 });
+    console.error('Contact confirmation email threw:', error);
   }
+
+  return NextResponse.json({ ok: true });
 }

@@ -1,6 +1,7 @@
 import type { Project } from './types';
 
-// Facts verified against the live site (wildscapesrilanka.com) on 2026-10-15:
+// Facts verified against the live site (www.wildscapesrilanka.com) on 2026-10-15.
+// The site's own name is "Wildscape Sri Lanka" (singular), used here as-is.
 // page structure, tour categories, enquiry flow, and Next.js/Vercel headers.
 export const wildscapeSriLanka: Project = {
   slug: 'wildscape-sri-lanka',
@@ -130,5 +131,5 @@ export const wildscapeSriLanka: Project = {
     },
   ],
 
-  liveUrl: 'https://wildscapesrilanka.com/',
+  liveUrl: 'https://www.wildscapesrilanka.com/',
 };
