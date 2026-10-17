@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element -- ImageResponse renders plain <img> */
 import { ImageResponse } from 'next/og';
+import { LOGO_ASPECT, logoSvg } from '@/lib/brand-logo';
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
+const LOGO_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(logoSvg('#F4F5F7')).toString('base64')}`;
+
 /**
  * Shared Open Graph composition: near-black canvas, soft violet/blue light,
- * the Lankio mark, a headline, and optionally a project screenshot.
+ * the official Lankio logo, a headline, and optionally a project screenshot.
  */
 export function renderOgImage({
   eyebrow,
@@ -43,24 +46,7 @@ export function renderOgImage({
           }}
         />
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: 72, width: image ? 620 : '100%' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: 14,
-                border: '1.5px solid rgba(255,255,255,0.18)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: 26,
-                fontWeight: 700,
-              }}
-            >
-              L
-            </div>
-            <div style={{ fontSize: 26, fontWeight: 600, letterSpacing: -0.5 }}>Lankio</div>
-          </div>
+          <img src={LOGO_DATA_URI} alt="" width={Math.round(44 * LOGO_ASPECT)} height={44} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ fontSize: 22, letterSpacing: 3, textTransform: 'uppercase', color: '#a3a8b4' }}>{eyebrow}</div>
             <div style={{ marginTop: 22, fontSize: image ? 58 : 72, lineHeight: 1.04, letterSpacing: -2, fontWeight: 600 }}>

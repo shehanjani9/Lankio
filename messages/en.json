@@ -139,6 +139,15 @@
       "nextProject": "Next project",
       "youAreHere": "You’re looking at it",
       "breadcrumbWork": "Work"
+    },
+    "video": {
+      "eyebrow": "Motion & video",
+      "title": "Films and",
+      "titleAccent": "Shorts",
+      "intro": "Motion graphics, animation and video published on the Lankio YouTube channel.",
+      "featured": "Featured film",
+      "shorts": "Shorts",
+      "shortsCount": "{count, plural, one {# vertical video} other {# vertical videos}}"
     }
   },
   "Video": {
@@ -158,7 +167,13 @@
     "seconds": "{value} s",
     "fps": "{value} fps",
     "unsupported": "Your browser can’t play this video.",
-    "download": "Download the video"
+    "download": "Download the video",
+    "introLabel": "Introduction",
+    "close": "Close video",
+    "playerTitle": "YouTube video player: {title}",
+    "watchOnYouTube": "Watch on YouTube",
+    "watchOnYouTubeAria": "Watch {title} on YouTube (opens in a new tab)",
+    "youtubeNotice": "Videos play from YouTube. Nothing loads from YouTube until you press play; after that, YouTube may set cookies. <link>Cookie policy</link>"
   },
   "Expertise": {
     "eyebrow": "Expertise",
@@ -401,7 +416,7 @@
   },
   "Legal": {
     "lastUpdated": "Last updated: {date}",
-    "updatedDate": "15 October 2026",
+    "updatedDate": "17 October 2026",
     "reviewNote": "This page describes how this website actually processes data. It is not legal advice.",
     "privacy": {
       "title": "Privacy Policy",
@@ -428,6 +443,10 @@
           "body": "The website is hosted on Vercel. Like any web server, the hosting infrastructure processes technical data such as IP addresses in server logs to deliver pages and keep the service secure (legitimate interest, Art. 6(1)(f) GDPR)."
         },
         {
+          "title": "Embedded videos (YouTube)",
+          "body": "When you choose to play a video, your browser connects to YouTube, a service operated by Google, which then processes data such as your IP address and device information under Google’s privacy policy. Before you press play, no data is sent to YouTube."
+        },
+        {
           "title": "International transfers",
           "body": "Some providers may process data outside the European Economic Area. Where this happens, transfers rely on safeguards recognised by the GDPR, such as the EU–US Data Privacy Framework or Standard Contractual Clauses."
         },
@@ -452,6 +471,10 @@
         {
           "title": "Analytics cookies (only with your consent)",
           "body": "If you accept analytics, Google Analytics 4 is loaded and sets the first-party cookies _ga and _ga_<ID>, which can last up to two years. They are used only for aggregated statistics about how the website is used. Google Signals and ad personalisation are turned off. Before you consent, no Google Analytics script is loaded and no request is sent to Google."
+        },
+        {
+          "title": "Embedded YouTube videos",
+          "body": "Videos on this website are hosted on YouTube. Until you press play, only a preview image stored on lankio.it is shown and nothing is loaded from YouTube. When you press play, the video loads from youtube-nocookie.com, YouTube’s privacy-enhanced mode, and YouTube (Google) may then set cookies or use similar storage on your device under Google’s own privacy policy. Playing a video is your choice; the rest of the website works without it."
         },
         {
           "title": "Changing or withdrawing consent",

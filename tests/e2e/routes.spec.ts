@@ -104,6 +104,12 @@ test('sitemap, robots, icon, OG images and security headers', async ({ request }
   const robots = await (await request.get('/robots.txt')).text();
   expect(robots).toContain(`Sitemap: ${SITE}/sitemap.xml`);
   expect((await request.get('/icon.svg')).status()).toBe(200);
+  expect((await request.get('/favicon.ico')).status()).toBe(200);
+  const home = await (await request.get('/en')).text();
+  const appleIcon = home.match(/rel="apple-touch-icon" href="([^"]+)"/)?.[1]?.replace(/&amp;/g, '&');
+  expect((await request.get(appleIcon!)).headers()['content-type']).toBe('image/png');
+  const manifest = await (await request.get('/manifest.webmanifest')).json();
+  for (const icon of manifest.icons) expect((await request.get(icon.src)).status(), icon.src).toBe(200);
 
   for (const page of ['/it', '/en/work/lankio-learn', '/en/about']) {
     const html = await (await request.get(page)).text();

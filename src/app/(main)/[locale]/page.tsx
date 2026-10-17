@@ -14,6 +14,8 @@ import { ProjectCard } from '@/components/work/project-card';
 import { ButtonLink } from '@/components/ui/button-link';
 import { SectionLabel } from '@/components/ui/section-label';
 import { MaskedLine, Reveal } from '@/components/motion/reveal';
+import { YouTubeNotice, YouTubeVideoCard } from '@/components/video/youtube-video';
+import { introVideo } from '@/content/videos';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]'>): Promise<Metadata> {
   const locale = (await params).locale as Locale;
@@ -33,6 +35,7 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
 
   const t = await getTranslations('Home');
   const meta = await getTranslations('Meta');
+  const video = await getTranslations('Video');
   const projects = getFeaturedProjects().map((project) => toCardData(project, locale));
 
   return (
@@ -107,6 +110,15 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
                   {t('about.cta')}
                 </ButtonLink>
               </div>
+            </Reveal>
+            <Reveal className="mt-14" delay={0.15}>
+              <p className="text-eyebrow text-fg-subtle">{video('introLabel')}</p>
+              <YouTubeVideoCard
+                video={introVideo(locale)}
+                className="mt-5"
+                sizes="(min-width: 1024px) 52vw, (min-width: 768px) 55vw, 100vw"
+              />
+              <YouTubeNotice className="mt-3" />
             </Reveal>
           </div>
         </div>
