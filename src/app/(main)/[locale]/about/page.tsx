@@ -9,6 +9,8 @@ import { PageHeader } from '@/components/ui/page-header';
 import { SectionLabel } from '@/components/ui/section-label';
 import { ButtonLink } from '@/components/ui/button-link';
 import { Reveal } from '@/components/motion/reveal';
+import { YouTubeNotice, YouTubeVideoCard } from '@/components/video/youtube-video';
+import { introVideo } from '@/content/videos';
 
 const FACT_KEYS = ['base', 'origin', 'studio', 'qualification', 'languages'] as const;
 
@@ -25,6 +27,7 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
   const t = await getTranslations('About');
   const meta = await getTranslations('Meta');
   const nav = await getTranslations('Nav');
+  const video = await getTranslations('Video');
   const bio = t.raw('bio') as string[];
   const capabilities = t.raw('capabilities') as string[];
   const approach = t.raw('approach') as { title: string; body: string }[];
@@ -76,6 +79,16 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
                 </Reveal>
               ))}
             </div>
+
+            <Reveal className="mt-14">
+              <h2 className="text-eyebrow text-fg-subtle">{video('introLabel')}</h2>
+              <YouTubeVideoCard
+                video={introVideo(locale)}
+                className="mt-5"
+                sizes="(min-width: 1024px) 52vw, (min-width: 768px) 55vw, 100vw"
+              />
+              <YouTubeNotice className="mt-3" />
+            </Reveal>
 
             <Reveal className="mt-14">
               <h2 className="text-eyebrow text-fg-subtle">{t('factsTitle')}</h2>

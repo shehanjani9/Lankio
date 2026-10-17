@@ -55,7 +55,7 @@ export function organizationSchema(description: string) {
     name: siteConfig.name,
     alternateName: siteConfig.shortName,
     url: siteConfig.url,
-    logo: absoluteUrl('/icon.svg'),
+    logo: absoluteUrl('/brand/icon-512.png'),
     email: siteConfig.email,
     description,
     founder: { '@id': PERSON_ID },

@@ -139,6 +139,15 @@
       "nextProject": "Progetto successivo",
       "youAreHere": "Lo stai già guardando",
       "breadcrumbWork": "Lavori"
+    },
+    "video": {
+      "eyebrow": "Motion e video",
+      "title": "Film e",
+      "titleAccent": "Shorts",
+      "intro": "Motion graphics, animazione e video pubblicati sul canale YouTube di Lankio.",
+      "featured": "Film in evidenza",
+      "shorts": "Shorts",
+      "shortsCount": "{count, plural, one {# video verticale} other {# video verticali}}"
     }
   },
   "Video": {
@@ -158,7 +167,13 @@
     "seconds": "{value} s",
     "fps": "{value} fps",
     "unsupported": "Il tuo browser non riesce a riprodurre questo video.",
-    "download": "Scarica il video"
+    "download": "Scarica il video",
+    "introLabel": "Presentazione",
+    "close": "Chiudi il video",
+    "playerTitle": "Player video YouTube: {title}",
+    "watchOnYouTube": "Guarda su YouTube",
+    "watchOnYouTubeAria": "Guarda {title} su YouTube (si apre in una nuova scheda)",
+    "youtubeNotice": "I video vengono riprodotti da YouTube. Nulla viene caricato da YouTube finché non premi play; da quel momento YouTube può impostare cookie. <link>Cookie policy</link>"
   },
   "Expertise": {
     "eyebrow": "Competenze",
@@ -401,7 +416,7 @@
   },
   "Legal": {
     "lastUpdated": "Ultimo aggiornamento: {date}",
-    "updatedDate": "15 ottobre 2026",
+    "updatedDate": "17 ottobre 2026",
     "reviewNote": "Questa pagina descrive il trattamento dei dati effettivamente svolto dal sito. Non costituisce consulenza legale.",
     "privacy": {
       "title": "Informativa sulla privacy",
@@ -428,6 +443,10 @@
           "body": "Il sito è ospitato su Vercel. Come ogni server web, l’infrastruttura di hosting tratta dati tecnici come gli indirizzi IP nei log, per distribuire le pagine e mantenere sicuro il servizio (legittimo interesse, art. 6(1)(f) GDPR)."
         },
         {
+          "title": "Video incorporati (YouTube)",
+          "body": "Quando scegli di riprodurre un video, il tuo browser si collega a YouTube, un servizio gestito da Google, che tratta dati come il tuo indirizzo IP e le informazioni sul dispositivo secondo l’informativa privacy di Google. Prima che tu prema play, nessun dato viene inviato a YouTube."
+        },
+        {
           "title": "Trasferimenti internazionali",
           "body": "Alcuni fornitori possono trattare dati al di fuori dello Spazio economico europeo. In questi casi i trasferimenti si basano su garanzie riconosciute dal GDPR, come l’EU–US Data Privacy Framework o le Clausole contrattuali standard."
         },
@@ -452,6 +471,10 @@
         {
           "title": "Cookie statistici (solo con il tuo consenso)",
           "body": "Se accetti le statistiche, viene caricato Google Analytics 4, che imposta i cookie di prima parte _ga e _ga_<ID>, con durata fino a due anni. Sono usati esclusivamente per statistiche aggregate sull’utilizzo del sito. Google Signals e la personalizzazione degli annunci sono disattivati. Prima del consenso non viene caricato alcuno script di Google Analytics né inviata alcuna richiesta a Google."
+        },
+        {
+          "title": "Video YouTube incorporati",
+          "body": "I video di questo sito sono ospitati su YouTube. Finché non premi play viene mostrata solo un’immagine di anteprima salvata su lankio.it e nulla viene caricato da YouTube. Quando premi play, il video viene caricato da youtube-nocookie.com, la modalità di privacy avanzata di YouTube, e YouTube (Google) può quindi impostare cookie o usare archiviazione simile sul tuo dispositivo secondo l’informativa privacy di Google. Riprodurre un video è una tua scelta; il resto del sito funziona anche senza."
         },
         {
           "title": "Modificare o revocare il consenso",
